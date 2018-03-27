@@ -114,6 +114,9 @@ var leftDrop,
 	leftFill,
 	rightFill;
 
+var rightTimer,
+	leftTimer;
+
 // generic window resize listener event
 function handleResize() {
 	// 1. update height of step elements
@@ -448,12 +451,22 @@ d3.selectAll('.remove-input').on('click', function() {
 	
 	if (sideLetter == 'r') {
 		side = 'right';
+		d3.selectAll('.' + side + '-dot').remove();
+		rightTimer.stop();
 	} else {
 		side = 'left';
+		d3.selectAll('.' + side + '-dot').remove();
+		leftTimer.stop();
 	}
 
 	removeInput(side);
 })
+
+d3.select('.create-button').on('click', function() {
+	if (rightDrop && leftDrop) {
+		generateCombination();
+	}
+});
 
 function changeInputs(side, input, dropArea, fill) {
 	d3.select('.dropped-' + side)
@@ -485,15 +498,16 @@ function removeInput(side) {
 	dropArea.select('.remove-input')
 	  .style('display', 'none')
 	
-	d3.selectAll('.' + side + '-dot').remove();
-	
 	if (side == 'right') {
+		rightTimer.stop();
 		rightDrop = null;
 		rightFill = '#b5b5b5';
 	} else {
+		leftTimer.stop();
 		leftDrop = null;
 		leftFill = '#b5b5b5';
 	}
+	d3.selectAll('.' + side + '-dot').remove();
 }
 
 function generateDots(side, input, dropArea, fill) {
@@ -502,11 +516,72 @@ function generateDots(side, input, dropArea, fill) {
 	
 	var channelOffset;
 	if (side == 'left') {
+		if (leftTimer) {
+			leftTimer.stop();
+		}
 		channelOffset = firstChannelOffset;
+		leftTimer = d3.interval(function(elapsed) {
+			var dots = d3.range(30).map(i => {
+				return {
+					i: i, 
+					startX: Math.floor(Math.random()*channelW), 
+					endX: Math.floor(Math.random()*channelW), 
+				}
+			});
+
+			chipSvg.appendMany('circle.' + side + '-dot', dots)
+				.at({
+				  r: 4,
+				  opacity: 0,
+				  stroke: fill,
+				  fillOpacity:.4,
+				  fill: fill
+				})
+				.translate(d => [channelOffset + d.startX, topMargin])
+			  .transition().delay(d => d.i*100)
+				.at({opacity: 1})
+			  .transition().duration(2000)
+				.translate(d => [channelOffset + d.endX, topMargin + chipH])
+			  .transition().duration(0)
+				.at({opacity: 0})
+				.remove()
+
+		}, 1000);
 	} else {
+		if (rightTimer) {
+			rightTimer.stop();
+		}
 		channelOffset = secondChannelOffset;
+		rightTimer = d3.interval(function(elapsed) {
+			var dots = d3.range(20).map(i => {
+				return {
+					i: i, 
+					startX: Math.floor(Math.random()*channelW), 
+					endX: Math.floor(Math.random()*channelW), 
+				}
+			});
+
+			chipSvg.appendMany('circle.' + side + '-dot', dots)
+				.at({
+				  r: 4,
+				  opacity: 0,
+				  stroke: fill,
+				  fillOpacity:.4,
+				  fill: fill
+				})
+				.translate(d => [channelOffset + d.startX, topMargin])
+			  .transition().delay(d => d.i*100)
+				.at({opacity: 1})
+			  .transition().duration(3000)
+				.translate(d => [channelOffset + d.endX, topMargin + chipH])
+			  .transition().duration(0)
+				.at({opacity: 0})
+				.remove()
+
+		}, 1000);
 	}
 	
+	/*
 	var dots = d3.range(1000).map(i => {
 		return {
 			i: i, 
@@ -514,7 +589,6 @@ function generateDots(side, input, dropArea, fill) {
 			endX: Math.floor(Math.random()*channelW), 
 		}
 	})
-	
 	chipSvg.appendMany('circle.' + side + '-dot', dots)
 		.at({
 		  r: 4,
@@ -531,6 +605,7 @@ function generateDots(side, input, dropArea, fill) {
 	  .transition().duration(250)
 		.at({opacity: 0})
 		.remove()
+	*/
 	
 	/*
 	chipSvg.appendMany('circle', dots)
@@ -553,12 +628,6 @@ function generateDots(side, input, dropArea, fill) {
 		.remove()
 	*/
 }
-
-d3.select('.create-button').on('click', function() {
-	if (rightDrop && leftDrop) {
-		generateCombination();
-	}
-});
 
 function generateCombination() {
 	//$(".chart").effect( "shake" );
@@ -637,6 +706,8 @@ function reset() {
   	  .text('drop here')
 	  .style('color', 'grey');
 	
+	rightTimer.stop();
+	leftTimer.stop();
 	d3.selectAll('circle').remove();
 	
 	leftDrop = null;
