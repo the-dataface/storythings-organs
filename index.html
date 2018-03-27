@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Title</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div id='intro'>
+		<p class='intro__dek'>			
+			In 1537 Swiss physician Paracelsus came up with a method to craft a tiny model human: Fill a gourd with human semen, and put it in the womb of a horse to putrefy. The resulting transparent form must be fed with human blood for forty weeks and kept warm by the horse, after which point a miniature child should grow. 
+		</p>
+		<p class='intro__dek'>			
+			History does not record if Paracelsus' attempts were successful, and the lack of miniature children running around the world today suggests they probably weren't. But our fascination with the idea of creating model people, simplified versions of our human ecosystems, has endured -- we long to make computer brains, synthetic hearts, to watch full-fledged organs grow in labs. The instinct to simulate is part of our instinct to study and understand, and biological physicists continue to pursue the dream of model humans, with systems that perform like our own.
+		</p>
+		<p class='intro__dek'>			
+			Testing on rats is the classic way we've done this - we share a large amount of genetic material with all mammals, including rats, and almost all human genes known to be associated with diseases have counterparts in the rat genome. But there are also major differences -- circadian rhythms play a big role in pharmacology and toxicology, and rats are nocturnal. Another key motivation for researchers is to overcome traditional challenges with drug trials. 
+		</p>
+		<p class='intro__dek'>			
+			Another alternative is to test drugs on parts of an organ, or the entire thing, in test tubes. This preserves the organ's structure and layout, but requires both careful handling and a regular supply of fresh organs. Plus, when an organ is studied away from the body, it's easy to miss interactions between it and other parts of the body. For example, a drug that seems safe when tested on heart and liver cells separately might reveal a lethal transformation when it travels through a whole human test subject. 
+		</p>
+	</div>
+	<div id='scroll'>
+		<div class='scroll__graphic sticky'>
+			<div class='chart'>
+				<div class='chart-inner-mobile'>
+					<div class='chart-header-container'>
+						<div class='chart-header-text'>
+							<div class='chart-header'>
+								<span>Make your own organ on a chip!</span>
+							</div>
+							<div class='chart-sub-header'>Drop two inputs into the drop areas and press <span style='background-color:#ee3939; color:white;font-weight:600;padding-left:5px;padding-right:5px;border:1px solid #ee3939;border-radius:4px;'>GO!</span> to see what they create.</div>
+						</div>
+						<div class='drag-container' style='display:none'>
+							<div class='drag-object' id='blood'>Blood</div>
+							<div class='drag-object' id='acid'>Acid</div>
+							<div class='drag-object' id='water'>Water</div>
+							<div class='drag-object' id='waste'>Waste</div>
+						</div>
+						<div class='drop-container' style='display:none'>
+							<div class='drop-area' id='droppable-left'>
+								<p class='remove-input' id='remove-l'>x</p>
+								<p class='drop-area-text'>Drop Here</p>
+							</div>
+							<div class='drop-area-separator'>
+								<div class='drop-area-separator-text'>+</div>
+							</div>
+							<div class='drop-area' id='droppable-right'>
+								<p class='remove-input' id='remove-r'>x</p>
+								<p class='drop-area-text'>Drop Here</p>
+							</div>
+						</div>
+					</div>
+					<svg id='chip-svg'></svg>
+					<div class='chart-footer-container'>
+						<div class='create-button'>GO!</div>
+						<div class='output-container' style='display:none'>
+							<p class='output-waiting-text'>Generating organ...<span class='countdown-text'></span></p>
+							<p class='output-sorry-text' style='display:none'>I'm sorry...</p>
+							<p class='output-success-text' style='display:none'>Congratulations!</p>
+							<p class='output-generic-text' style='display:none'>You've created</p>
+							<p class='output-created-text' style='display:none'></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class='scroll__text'>
+			<div class='step' data-step='1'>
+				<p>Today, the cutting edge of our attempts to model the insides of our bodies lies in the creation of "organs on chips". These are generally a piece of glass, silicon or polymer about the size of a computer memory stick.</p>
+			</div>
+			<div class='step' data-step='2'>
+				<p>Each chip can model a specific organ system, like the lungs, bone marrow, or intestines. Tiny tunnels run through the clear polymer chip, arranged to mimic normal - or even diseased - organ structures, so researchers can study what happens inside in great detail. These are abstractions, meaning that they won’t necessarily look like the real thing - in the same way that a subway map represents a city without actually looking like it. As long as they connect up in the right places, they’re accurate.</p>
+			</div>
+			<div class='step' data-step='3'>
+				<p>Fluids and gases containing living human cells can then be piped down those channels, kept moving by mechanical or electrical stimulation and continually monitored by sensors or microscopes at key locations. Controlled, sterile conditions allow cell growth and other processes to happen without outside influence, and it's even possible to simulate mechanical processes like beating hearts, or varying stresses like flexing muscles.</p>
+			</div>
+			<div class='step' data-step='4'>
+				<p>STEP 4</p>
+			</div>
+		</div>
+	</div>
+	<div id='outro'></div>
+	<div class='debug'></div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src='js/stickyfill.min.js'></script>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src="js/d3v4+jetpack.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.5/lib/draggable.bundle.js"></script>
+	<script src='https://unpkg.com/intersection-observer'></script>
+	<script src='https://unpkg.com/scrollama'></script>
+	<script src='js/main.js'></script>
+</body>
