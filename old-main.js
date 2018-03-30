@@ -71,7 +71,7 @@ var combos = [
 	{
 		key: 'bloodwaste',
 		successful: 'no',
-		result: 'Acidic Waste'
+		result: 'Dirty Blood'
 	},
 	{
 		key: 'bloodwater',
@@ -81,22 +81,22 @@ var combos = [
 	{
 		key: 'wateracid',
 		successful: 'no',
-		result: 'Clotted Blood'
+		result: 'Diluted Acid'
 	}, 
 	{
 		key: 'waterblood',
 		successful: 'no',
-		result: 'Acidic Waste'
+		result: 'Diluted Blood'
 	},
 	{
 		key: 'waterwaste',
-		successful: 'no',
-		result: 'Diluted Acid'
+		successful: 'yes',
+		result: 'KIDNEYS: Clean Blood, Uine'
 	},
 	{
 		key: 'wasteblood',
 		successful: 'no',
-		result: 'Clotted Blood'
+		result: 'Dirty Blood'
 	}, 
 	{
 		key: 'wasteacid',
@@ -105,8 +105,8 @@ var combos = [
 	},
 	{
 		key: 'wastewater',
-		successful: 'no',
-		result: 'Diluted Acid'
+		successful: 'yes',
+		result: 'KIDNEYS: Clean Blood, Uine'
 	}
 ]
 
