@@ -107,7 +107,6 @@ a:hover {
 }
 
 .chart-header {
-	font-size:40px;
 	font-weight:500;
 	font-style:italic;
 	margin-bottom:10px;
@@ -118,6 +117,25 @@ a:hover {
 	font-weight:300;
 	margin-bottom:30px;
 }
+
+@media only screen and (min-width : 1000px) {
+	.chart-header {
+		font-size:40px;
+	}
+}
+
+@media only screen and (min-width : 764px) and (max-width: 999px) {
+	.chart-header {
+		font-size:28px;
+	}
+}
+
+@media only screen and (max-width: 763px) {
+	.chart-header {
+		font-size:20px;
+	}
+}
+
 
 .drag-container {
 	width:100%;
@@ -256,10 +274,37 @@ a:hover {
 	stroke-width:1
 }
 
+.outer-chip-path-immediate {
+	fill:none;
+	stroke:black;
+	stroke-width:1
+}
+
 .channel-path {
 	fill:none;
 	stroke:black;
 	stroke-width:1
+}
+
+.channel-path-immediate {
+	fill:none;
+	stroke:black;
+	stroke-width:1
+}
+
+.all-chip-container {
+	position:relative;
+}
+
+.chip-img-container {
+	text-align:center;
+	position:absolute;
+	top:40px;
+	z-index: -1;
+}
+
+.chip-img {
+	
 }
 
 .dropped {
