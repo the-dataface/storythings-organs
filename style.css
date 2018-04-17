@@ -203,14 +203,6 @@ a:hover {
 	
 } 
 
-.flex-drag-container {
-	width:300px;
-	height:600px;
-	display:none;
-	justify-content:center;
-	flex-flow:row wrap;
-}
-
 .icon {
 	width:100px;
 	height:100px;
@@ -230,7 +222,13 @@ a:hover {
 }
 
 @media only screen and (min-width : 1000px) {
-	
+	.flex-drag-container {
+		width:300px;
+		height:600px;
+		display:none;
+		justify-content:center;
+		flex-flow:row wrap;
+	}
 }
 
 @media only screen and (max-width: 999px) {
@@ -252,8 +250,7 @@ a:hover {
 	}
 	
 	.flex-drag-container {
-		width:250px;
-		height:600px;
+		width:100%;
 		display:none;
 		justify-content:center;
 		flex-flow:row wrap;
@@ -273,6 +270,17 @@ a:hover {
 		padding:40px;
 
 	}
+}
+
+.success-message-container {
+	text-align:center;
+	width:100%;
+	display:none;
+}
+
+.success-message {
+	font-weight:800;
+	color:green;
 }
 
 .drop-container {

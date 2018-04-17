@@ -260,12 +260,15 @@ d3.selectAll('.drag-object').on('click', function() {
 	var id = thisObject.attr('id');
 	thisObject.classed('drag-object-selected', true);
 	
+	console.log(src);
+	
 	if (!leftDrop) {
 		d3.select('#left-drop').attr('xlink:href', src)
 		leftDrop = true;
 		leftDropItem = id;
 		d3.select('.instructions-step-number').text('2');
 		d3.select('.instructions-description').text('Choose the second input');
+		generateDots('left');
 		
 	} else if (!rightDrop) {
 		d3.select('#right-drop').attr('xlink:href', src)
@@ -274,26 +277,37 @@ d3.selectAll('.drag-object').on('click', function() {
 		d3.select('.instructions-step-number').text('3');
 		d3.select('.instructions-description').text('Watch them mix!');
 		d3.select('#mix-gif').attr('xlink:href', 'img/mixture.gif');
+		generateDots('right');
+		
+		d3.select('.flex-drag-container').style('display', 'none');
 		
 		var output,
-			png;
+			png,
+			success,
+			successMessage;
 		for (i in combinations) {
 			if ((combinations[i].input1 == leftDropItem && combinations[i].input2 == rightDropItem) || (combinations[i].input1 == rightDropItem && combinations[i].input2 == leftDropItem)) {
 				output = combinations[i].output;
 				png = combinations[i].outputpng;
+				success = combinations[i].success;
+				successMessage = combinations[i].successtext;
 				break;
 			}
 
 		}
-		
-		 console.log(output);
-		console.log(png);
 		
 		var t = d3.timer(function(elapsed) {
 		  if (elapsed < 3000) {
 			  
 		  } else if (elapsed < 5000) {
 			  d3.select('#output').attr('xlink:href', 'img/icons/PNG/' + png + '.png')
+			  if (success) {
+				  d3.select('#output-success').attr('xlink:href', 'img/organ_output_successful.gif');
+				  
+				  d3.select('.success-message-container').text(successMessage);
+				  d3.select('.success-message-container').style('display', 'block');
+			  }
+			  
 		  } else {
 			  
 			 reset();
@@ -304,6 +318,131 @@ d3.selectAll('.drag-object').on('click', function() {
 		
 	}
 })
+
+function generateDots(side) {
+	
+	d3.selectAll('.' + side + '-dot').remove();
+	
+	var chipH = $('#chip-svg').height();
+	var chipW = $('#chip-svg').width();
+	var outerChipPathW = document.getElementById("outer-chip-paths").getBoundingClientRect().width;
+	var outerChipPathH = document.getElementById("outer-chip-paths").getBoundingClientRect().height;
+	
+	var channelOffsetX;
+	var sideMultiplier;
+	if (side == 'left') {
+		//channelOffsetX = outerChipPathW / 4;
+		channelOffsetX = 137;
+		sideMultiplier = 1;
+	} else {
+		//channelOffsetX = ((3 * outerChipPathW) / 4);
+		channelOffsetX = 300;
+		sideMultiplier = -1;
+	}
+	var channelOffsetY = 160;
+	var midX = 218;
+	var midY = 315;
+	var endY = 545;
+	
+	/*
+	var dots = d3.range(1000).map(i => {
+		return {
+			i: i, 
+			startX: Math.floor(Math.random()*channelW), 
+			endX: Math.floor(Math.random()*channelW), 
+		}
+	})
+	*/
+	
+	var dots = d3.range(1000).map(i => {
+		return {
+			i: i, 
+			firstXOffset: Math.floor(Math.random()*10) + Math.floor(Math.random()*-10),
+			secondXOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30),
+			secondYOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30)
+			
+			
+		}
+	})
+	
+	/*
+	chipSvg.appendMany('circle.' + side + '-dot', dots)
+		.at({
+		  r: 4,
+		  opacity: 0,
+		  stroke: fill,
+		  fillOpacity:.4,
+		  fill: fill
+		})
+		.translate(d => [channelOffset + d.startX + d.startOffset, chipH / 3])
+	  .transition().delay(d => d.i*100)
+		.at({opacity: 1})
+	  .transition().duration(2000)
+		.translate(d => [channelOffset + (d.midX * sideMultiplier) + d.midOffset, (.95 * chipH)])
+	  .transition().duration(2000)
+		.translate(d => [channelOffset + (d.endX * sideMultiplier) + d.endOffset, (chipH * 2) - (chipH / 3)])
+	  .transition().duration(250)
+		.at({opacity: 0})
+		.remove()
+	*/
+	
+	chipSvg.appendMany('circle.' + side + '-dot.dot', dots)
+		.at({
+		  r: 4,
+		  opacity: 0,
+		  stroke: 'red',
+		  fillOpacity:.4,
+		  fill: 'red',
+		  cx: channelOffsetX,
+		  cy: channelOffsetY
+		})
+	    .translate(d => [d.firstXOffset, 0])
+	  .transition().delay(d => d.i*100)
+		.at({opacity: 1})
+	  .transition().duration(2000)
+		.at({
+		  cx:midX,
+		  cy:midY
+		})
+	  .transition().duration(1000)
+		.translate(d => [d.secondXOffset, d.secondYOffset])
+	  .transition().duration(250)
+		.remove()
+	
+	
+	
+	/*
+	  .transition().duration(2000)
+		.at({
+		  cy:endY
+		})
+	  .transition().duration(250)
+		.remove()
+	*/
+	
+	
+	
+	/*
+	chipSvg.appendMany('circle', dots)
+		.classed()
+		.at({
+		  r: 2,
+		  opacity: 0,
+		})
+		.translate(d => [0, d.startQ])
+	  .transition().delay(d => d.i*100)
+		.at({opacity: 1})
+	  .transition().duration(1000)
+		.translate(d => [chipW/2, d.startQ])
+	  .transition().duration(1000)
+		.translate(d => [chipW/2, d.endQ])
+	  .transition().duration(1000)
+		.translate(d => [chipW, d.endQ])
+	  .transition().duration(250)
+		.at({opacity: 0})
+		.remove()
+	*/
+}
 
 function generateCombination() {
 	//$(".chart").effect( "shake" );
@@ -365,9 +504,15 @@ function reset() {
 	d3.select('#right-drop').attr('xlink:href', 'img/empty_space.svg')
 	d3.select('#mix-gif').attr('xlink:href', 'img/empty_space.svg');
 	d3.select('#output').attr('xlink:href', 'img/empty_space.svg')
+	d3.select('#output-success').attr('xlink:href', 'img/empty_space.svg');
 	
 	d3.select('.instructions-step-number').text('1');
 	d3.select('.instructions-description').text('Choose the first input');
+	
+	d3.select('.flex-drag-container').style('display', 'flex');
+	d3.select('.success-message-container').style('display', 'none');
+	
+	d3.selectAll('circle.dot').remove();
 	/*
 	chartHeaderText.style('display', 'block');
 	dragContainer.style('display', 'flex');
@@ -405,127 +550,7 @@ function reset() {
 	*/
 }
 
-function generateDots(side, input, dropArea, fill) {
-	
-	d3.selectAll('.' + side + '-dot').remove();
-	
-	chipH = $('#chip-svg').height();
-	var chipSVGW = $('#chip-svg').width();
-	var outerChipPathW = document.getElementById("outer-chip-paths").getBoundingClientRect().width;
-	var outerChipPathH = document.getElementById("outer-chip-paths").getBoundingClientRect().height;
-	console.log(outerChipPathW);
-	console.log(outerChipPathH);
-	
-	var channelOffsetX;
-	var sideMultiplier;
-	if (side == 'left') {
-		channelOffsetX = outerChipPathW / 4;
-		sideMultiplier = 1;
-	} else {
-		channelOffsetX = ((3 * outerChipPathW) / 4);
-		sideMultiplier = -1;
-	}
-	var channelOffsetY = outerChipPathH * .17;
-	var midX = .5 * outerChipPathW;
-	var midY = .5 * outerChipPathH;
-	var endY = outerChipPathH * .83;
-	
-	/*
-	var dots = d3.range(1000).map(i => {
-		return {
-			i: i, 
-			startX: Math.floor(Math.random()*channelW), 
-			endX: Math.floor(Math.random()*channelW), 
-		}
-	})
-	*/
-	
-	var dots = d3.range(1000).map(i => {
-		return {
-			i: i, 
-			startX: channelOffsetX, 
-			startY: outerChipPathH * .17,
-			startOffset: Math.floor(Math.random()*10) + Math.floor(Math.random()*-10),
-			midX: .5 * outerChipPathW,
-			midY: .5 * outerChipPathH,
-			midOffset: Math.floor(Math.random()*10) + Math.floor(Math.random()*-10),
-			endX: (1.4 * outerChipPathW) / 3, 
-			endOffset: Math.floor(Math.random()*10) + Math.floor(Math.random()*-10),
-			
-		}
-	})
-	
-	/*
-	chipSvg.appendMany('circle.' + side + '-dot', dots)
-		.at({
-		  r: 4,
-		  opacity: 0,
-		  stroke: fill,
-		  fillOpacity:.4,
-		  fill: fill
-		})
-		.translate(d => [channelOffset + d.startX + d.startOffset, chipH / 3])
-	  .transition().delay(d => d.i*100)
-		.at({opacity: 1})
-	  .transition().duration(2000)
-		.translate(d => [channelOffset + (d.midX * sideMultiplier) + d.midOffset, (.95 * chipH)])
-	  .transition().duration(2000)
-		.translate(d => [channelOffset + (d.endX * sideMultiplier) + d.endOffset, (chipH * 2) - (chipH / 3)])
-	  .transition().duration(250)
-		.at({opacity: 0})
-		.remove()
-	*/
-	
-	console.log(channelOffsetX);
-	console.log(channelOffsetY);
-	
-	chipSvg.appendMany('circle.' + side + '-dot', dots)
-		.at({
-		  r: 4,
-		  opacity: 0,
-		  stroke: fill,
-		  fillOpacity:.4,
-		  fill: fill,
-		  cx: channelOffsetX,
-		  cy: channelOffsetY
-		})
-	  .transition().delay(d => d.i*100)
-		.at({opacity: 1})
-	  .transition().duration(2000)
-		.at({
-		  cx:midX,
-		  cy:midY
-		})
-	  .transition().duration(2000)
-		.at({
-		  cy:endY
-		})
-	  .transition().duration(250)
-		.remove()
-	
-	
-	
-	/*
-	chipSvg.appendMany('circle', dots)
-		.classed()
-		.at({
-		  r: 2,
-		  opacity: 0,
-		})
-		.translate(d => [0, d.startQ])
-	  .transition().delay(d => d.i*100)
-		.at({opacity: 1})
-	  .transition().duration(1000)
-		.translate(d => [chipW/2, d.startQ])
-	  .transition().duration(1000)
-		.translate(d => [chipW/2, d.endQ])
-	  .transition().duration(1000)
-		.translate(d => [chipW, d.endQ])
-	  .transition().duration(250)
-		.at({opacity: 0})
-		.remove()
-	*/
-}
+
 
 
 function fillChannel(side, input, dropArea) {
@@ -559,6 +584,8 @@ function fillChannel(side, input, dropArea) {
 	
 	d3.select(dropArea).style('background-color', fill);
 }
+
+/*
 
 $( ".drag-object" ).draggable({
 	snapMode: 'inner',
@@ -678,6 +705,8 @@ $( "#droppable-right" ).droppable({
 
 	}
 });
+
+*/
 
 d3.selectAll('.remove-input').on('click', function() {
 	var sideLetter = d3.select(this).attr('id').slice(-1);
