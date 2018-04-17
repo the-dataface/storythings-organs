@@ -276,7 +276,6 @@ d3.selectAll('.drag-object').on('click', function() {
 		rightDropItem = id;
 		d3.select('.instructions-step-number').text('3');
 		d3.select('.instructions-description').text('Watch them mix!');
-		d3.select('#mix-gif').attr('xlink:href', 'img/mixture.gif');
 		generateDots('right');
 		
 		d3.select('.flex-drag-container').style('display', 'none');
@@ -297,9 +296,16 @@ d3.selectAll('.drag-object').on('click', function() {
 		}
 		
 		var t = d3.timer(function(elapsed) {
-		  if (elapsed < 3000) {
+		  if (elapsed < 2000) { 
 			  
-		  } else if (elapsed < 5000) {
+		  } else if (elapsed < 4000) {
+			  d3.select('#mix-gif').attr('xlink:href', 'img/mixture.gif');
+			  
+		  } else if (elapsed < 10000) {
+			  console.log('hi');
+			  generateDots('center');
+			  
+		  } else if (elapsed < 15000) {
 			  d3.select('#output').attr('xlink:href', 'img/icons/PNG/' + png + '.png')
 			  if (success) {
 				  d3.select('#output-success').attr('xlink:href', 'img/organ_output_successful.gif');
@@ -329,20 +335,30 @@ function generateDots(side) {
 	var outerChipPathH = document.getElementById("outer-chip-paths").getBoundingClientRect().height;
 	
 	var channelOffsetX;
+	var channelOffsetY;
 	var sideMultiplier;
+	var midX;
+	var midY;
 	if (side == 'left') {
 		//channelOffsetX = outerChipPathW / 4;
 		channelOffsetX = 137;
-		sideMultiplier = 1;
-	} else {
+		channelOffsetY = 160;
+		midX = 180;
+		midY = 240;
+	} else if (side == 'right'){
 		//channelOffsetX = ((3 * outerChipPathW) / 4);
-		channelOffsetX = 300;
-		sideMultiplier = -1;
+		channelOffsetX = 303;
+		channelOffsetY = 160;
+		midX = 260;
+		midY = 240;
+	} else {
+		channelOffsetX = 218
+		channelOffsetY = 360;
+		midX = 218;
+		midY = 495;
 	}
-	var channelOffsetY = 160;
-	var midX = 218;
-	var midY = 315;
-	var endY = 545;
+	//var midX = 218;
+	//var midY = 315;
 	
 	/*
 	var dots = d3.range(1000).map(i => {
@@ -386,12 +402,14 @@ function generateDots(side) {
 		.remove()
 	*/
 	
+	console.log('hey');
+	
 	chipSvg.appendMany('circle.' + side + '-dot.dot', dots)
 		.at({
-		  r: 4,
+		  r: 2,
 		  opacity: 0,
 		  stroke: 'red',
-		  fillOpacity:.4,
+		  fillOpacity:1,
 		  fill: 'red',
 		  cx: channelOffsetX,
 		  cy: channelOffsetY
@@ -399,14 +417,12 @@ function generateDots(side) {
 	    .translate(d => [d.firstXOffset, 0])
 	  .transition().delay(d => d.i*100)
 		.at({opacity: 1})
-	  .transition().duration(2000)
+	  .transition().duration(1000)
 		.at({
 		  cx:midX,
 		  cy:midY
 		})
-	  .transition().duration(1000)
-		.translate(d => [d.secondXOffset, d.secondYOffset])
-	  .transition().duration(250)
+	  .transition().duration(0)
 		.remove()
 	
 	

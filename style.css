@@ -215,12 +215,6 @@ a:hover {
 	font-weight:600;
 }
 
-.svg-container {
-	display:flex;
-	width:calc(100% - 300px);
-	max-width:400px;
-}
-
 @media only screen and (min-width : 1000px) {
 	.flex-drag-container {
 		width:300px;
@@ -229,12 +223,21 @@ a:hover {
 		justify-content:center;
 		flex-flow:row wrap;
 	}
+	.svg-container {
+		display:flex;
+		width:calc(100% - 300px);
+		max-width:400px;
+	}
 }
 
 @media only screen and (max-width: 999px) {
+	.instructions {
+		
+	}
+	
 	.icon {
-		width:80px;
-		height:80px;
+		width:40px;
+		height:40px;
 		text-align:center;
 	}
 	
@@ -268,7 +271,13 @@ a:hover {
 		max-width:40rem;
 		background-color:rgba(255,255,255,.4);
 		padding:40px;
+		font-size:.5rem;
 
+	}
+	.svg-container {
+		display:flex;
+		width:100%;
+		max-width:400px;
 	}
 }
 
