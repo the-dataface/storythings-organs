@@ -74,15 +74,9 @@ a:hover {
 	-moz-transform: translateY(-50%);
 	-webkit-transform: translateY(-50%);
 	transform: translateY(-50%);
-	background:#e4e4e4;
+	width:100%;
 }
 
-.scroll__text {
-	position: relative;
-	padding: 0 1rem;
-	max-width: 30rem;
-	width: 33%;
-}
 .step {
 	margin: 2rem auto;
 	position: relative;
@@ -101,6 +95,39 @@ a:hover {
 	transform: translate(-50%, -50%);
 	width:80%;
 }
+
+.inner-step {
+	border-left:10px solid #d32323;
+	padding-left:10px;
+	position:absolute;
+	top:50%;
+	background-color:white;
+	font-weight:400;
+}
+
+@media only screen and (min-width : 1000px) {
+	.scroll__graphic {
+		width:66%;
+	}
+	.scroll__text {
+		position: relative;
+		padding: 0 1rem;
+		width: 33%;
+		max-width: 30rem;
+	}
+}
+
+@media only screen and (max-width: 999px) {
+	.scroll__graphic {
+		width:100%;
+	}
+	.scroll__text {
+		width: 100%;
+		max-width: 1000px;
+		pointer-events:none;
+	}
+}
+
 
 .chart-header-container {
 	text-align:center;
@@ -137,26 +164,115 @@ a:hover {
 }
 
 
-.drag-container {
-	width:100%;
-	height:40px;
-	display:flex;
-	justify-content:center;
-	margin-top:10px;
-	margin-bottom:30px;
-}
-
 .drag-object {
-	width: 100px; 
-	height: 40px; 
 	padding: 0.5em; 
+	width:140px;
 	margin: 0px 5px 10px 0; 
 	cursor:pointer;
 	text-align:center;
-	font-weight:800;
 	color:white;
 	z-index:100;
 	border-radius:3px;
+}
+
+.drag-object:hover {
+	background-color:#F1F1F1;
+}
+
+.drag-object-selected {
+	background-color:#F1F1F1;
+}
+
+.larger-flex {
+	display:flex;
+	flex-wrap:wrap;
+	justify-content:center;
+	align-items:center;
+}
+
+.instructions {
+	display:none;
+	text-align:center;
+}
+
+.instructions-step {
+	font-weight:500;
+}
+
+.instructions-description {
+	
+} 
+
+.flex-drag-container {
+	width:300px;
+	height:600px;
+	display:none;
+	justify-content:center;
+	flex-flow:row wrap;
+}
+
+.icon {
+	width:100px;
+	height:100px;
+	text-align:center;
+}
+
+.icon-label {
+	text-align:center;
+	color:black;
+	font-weight:600;
+}
+
+.svg-container {
+	display:flex;
+	width:calc(100% - 300px);
+	max-width:400px;
+}
+
+@media only screen and (min-width : 1000px) {
+	
+}
+
+@media only screen and (max-width: 999px) {
+	.icon {
+		width:80px;
+		height:80px;
+		text-align:center;
+	}
+	
+	.drag-object {
+		padding: 0.5em; 
+		width:100px;
+		margin: 0px 5px 10px 0; 
+		cursor:pointer;
+		text-align:center;
+		color:white;
+		z-index:100;
+		border-radius:3px;
+	}
+	
+	.flex-drag-container {
+		width:250px;
+		height:600px;
+		display:none;
+		justify-content:center;
+		flex-flow:row wrap;
+	}
+	
+	.step p {
+		position: absolute;
+		top: 20%;
+		left: 50%;
+		-moz-transform: translate(-50%, -50%);
+		-webkit-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+		width:100%;
+		margin:1rem auto;
+		max-width:40rem;
+		background-color:rgba(255,255,255,.4);
+		padding:40px;
+
+	}
 }
 
 .drop-container {

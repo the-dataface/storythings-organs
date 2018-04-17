@@ -1,0 +1,394 @@
+[
+ {
+   "input1": "Acid",
+   "input2": "Acid",
+   "output": "Acid", 
+   "outputpng": "acid",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Food",
+   "input2": "Acid",
+   "output": "DigestedFood",
+	 "outputpng": "digestedfood",
+   "success": true,
+   "successtext": "Congratulations! You made a stomach-on-a-chip!"
+ },
+ {
+   "input1": "Blood",
+   "input2": "Acid",
+   "output": "Clotted Blood",
+	 "outputpng": "clottedblood",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "DigestedFood",
+   "input2": "Acid",
+   "output": "Extra-digested Food",
+	  "outputpng": "digestedfood",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Oxygen",
+   "input1": "Acid",
+   "output": "Oxoacid",
+	  "outputpng": "oxoacid",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Waste",
+   "input2": "Acid",
+   "output": "Acidic waste",
+	 "outputpng": "acidwaste",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Water",
+   "input2": "Acid",
+   "output": "Diluted Acid",
+	 "outputpng": "dilutedacid",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Acid",
+   "input2": "Food",
+   "output": "Digested Food",
+	  "outputpng": "digestedfood",
+   "success": true,
+   "successtext": "Congratulations! You made a stomach-on-a-chip!"
+ },
+ {
+   "input1": "Food",
+   "input2": "Food",
+   "output": "Food",
+	 "outputpng": "food",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Blood",
+   "input2": "Food",
+   "output": "Blood Sausage",
+	 "outputpng": "bloodsausage",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "DigestedFood",
+   "input2": "Food",
+   "output": "Less-digested Food",
+	 "outputpng": "digestedfood",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Oxygen",
+   "input2": "Food",
+   "output": "Oxygen and food",
+	  "outputpng": "oxygenandfood",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Waste",
+   "input2": "Food",
+   "output": "Inedible food",
+	  "outputpng": "inediblefood",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Water",
+   "input2": "Food",
+   "output": "Soup",
+	 "outputpng": "soup",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Acid",
+   "input2": "Blood",
+   "output": "Clotted Blood",
+	 "outputpng": "clottedblood",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Food",
+   "input2": "Blood",
+   "output": "Blood Sausage",
+	 "outputpng": "bloodsausage",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Blood",
+   "input2": "Blood",
+   "output": "Blood",
+	 "outputpng": "blood",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "DigestedFood",
+   "input2": "Blood",
+   "output": "Nutrients, Water, Waste",
+	 "outputpng": "gut",
+   "success": true,
+   "successtext": "Congratulations! You made a gut-on-a-chip!"
+ },
+ {
+   "input1": "Oxygen",
+   "input2": "Blood",
+   "output": "CO2, Oxygenated Blood",
+	 "outputpng": "lung",
+   "success": true,
+   "successtext": "Congratulations! You made a lung-on-a-chip!"
+ },
+ {
+   "input1": "Waste",
+   "input2": "Blood",
+   "output": "Dirty Blood",
+	 "outputpng": "dirtyblood",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Water",
+   "input2": "Blood",
+   "output": "Diluted Blood",
+	 "outputpng": "dilutedblood",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Acid",
+   "input2": "DigestedFood",
+   "output": "Extra-digested Food",
+	 "outputpng": "digestedfood",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Food",
+   "input1": "DigestedFood",
+   "output": "Less-digested Food",
+	 "outputpng": "digestedfood",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Blood",
+   "input2": "DigestedFood",
+   "output": "Nutrients, Water, Waste",
+	 "outputpng": "gut",
+   "success": true,
+   "successtext": "Congratulations! You made a gut-on-a-chip!"
+ },
+ {
+   "input1": "DigestedFood",
+   "input2": "DigestedFood",
+   "output": "Digested Food",
+	 "outputpng": "digestedfood",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Oxygen",
+   "input2": "DigestedFood",
+   "output": "Digestive Gas",
+	 "outputpng": "digestivegas",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Waste",
+   "input2": "DigestedFood",
+   "output": "Biowaste",
+	 "outputpng": "biowaste",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Water",
+   "input2": "DigestedFood",
+   "output": "Vomit",
+	 "outputpng": "vomit",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Acid",
+   "input2": "Oxygen",
+   "output": "Oxoacid",
+	 "outputpng": "oxoacid",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Food",
+   "input2": "Oxygen",
+   "output": "Oxygen and food",
+	 "outputpng": "oxygenandfood",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Blood",
+   "input2": "Oxygen",
+   "output": "CO2, Oxygenated Blood",
+	 "outputpng": "lung",
+   "success": true,
+   "successtext": "Congratulations! You made a lung-on-a-chip!"
+ },
+ {
+   "input1": "DigestedFood",
+   "input2": "Oxygen",
+   "output": "Digestive Gas",
+	 "outputpng": "digestivegas",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Oxygen",
+   "input2": "Oxygen",
+   "output": "Oxygen",
+	 "outputpng": "oxygen",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Waste",
+   "input2": "Oxygen",
+   "output": "Oxygen and Waste",
+	 "outputpng": "oxygenandwaste",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Water",
+   "input2": "Oxygen",
+   "output": "Dissolved Oxygen",
+	 "outputpng": "dissolvedoxygen",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Acid",
+   "input2": "Waste",
+   "output": "Acidic waste",
+	 "outputpng": "acidwaste",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Food",
+   "input2": "Waste",
+   "output": "Inedible food",
+	 "outputpng": "inediblefood",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Blood",
+   "input2": "Waste",
+   "output": "Dirty Blood",
+	 "outputpng": "dirtyblood",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "DigestedFood",
+   "input2": "Waste",
+   "output": "Biowaste",
+	 "outputpng": "biowaste",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Oxygen",
+   "input2": "Waste",
+   "output": "Oxygen and Waste",
+	 "outputpng": "oxygenandwaste",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Waste",
+   "input2": "Waste",
+   "output": "Waste",
+	 "outputpng": "waste",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Water",
+   "input2": "Waste",
+   "output": "Clean blood, Urine",
+	 "outputpng": "kidneys",
+   "success": true,
+   "successtext": "Congratulations! You made a kidney-on-a-chip!"
+ },
+ {
+   "input1": "Acid",
+   "input2": "Water",
+   "output": "Diluted Acid",
+	 "outputpng": "dilutedacid",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Food",
+   "input2": "Water",
+   "output": "Soup",
+	 "outputpng": "soup",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Blood",
+   "input2": "Water",
+   "output": "Diluted Blood",
+	 "outputpng": "dilutedblood",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "DigestedFood",
+   "input2": "Water",
+   "output": "Vomit",
+	 "outputpng": "vomit",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Oxygen",
+   "input2": "Water",
+   "output": "Dissolved Oxygen",
+	 "outputpng": "dissolvedoxygen",
+   "success": false,
+   "successtext": ""
+ },
+ {
+   "input1": "Waste",
+   "input2": "Water",
+   "output": "Clean blood, Urine",
+	 "outputpng": "kidney",
+   "success": true,
+   "successtext": "Congratulations! You made a kidney-on-a-chip!"
+ },
+ {
+   "input1": "Water",
+   "input2": "Water",
+   "output": "Water",
+	 "outputpng": "water",
+   "success": false,
+   "successtext": ""
+ }
+]
