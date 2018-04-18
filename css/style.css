@@ -107,6 +107,7 @@ hr {
 @media only screen and (min-width : 1000px) {
 	.scroll__graphic {
 		width:66%;
+		left: 33%;
 	}
 	.scroll__text {
 		position: relative;
