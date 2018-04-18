@@ -76,7 +76,7 @@ function handleResize() {
 	if (small_screen) {
 		chipSvg
 		.attr('width', chartWidth - 100)
-		.attr('height', chartHeight * .6);
+		.attr('height', 350);
 	} else if (medium_screen) {
 		chipSvg
 		.attr('width', chartWidth - 200)
