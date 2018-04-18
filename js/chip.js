@@ -33,6 +33,10 @@ if (windowW > 1000) {
 
 //global variables
 
+var leftTimer,
+	rightTimer,
+	centerTimer;
+
 //keep track of inputs
 var leftDrop = false,
 	rightDrop = false,
@@ -301,14 +305,11 @@ d3.selectAll('.drag-object').on('click', function() {
 		}
 		
 		var t = d3.timer(function(elapsed) {
-		  if (elapsed < 2000) { 
-			  
-		  } else if (elapsed < 4000) {
+		  console.log(elapsed);
+		  if (elapsed > 3000 && elapsed < 4000) {
 			  d3.select('#mix-gif').attr('xlink:href', 'img/mixture.gif');
-			  
-		  } else if (elapsed < 5000) {
 			  generateDots('center', [leftDropItem, rightDropItem]);
-		  } else if (elapsed > 8000 && elapsed < 10000) {
+		  } else if (elapsed > 7000 && elapsed < 10000) {
 		  	   d3.select('#output').attr('xlink:href', 'img/icons/PNG/' + png + '.png')
 			  if (success) {
 				  d3.select('#output-success').attr('xlink:href', 'img/organ_output_successful.gif');
@@ -319,7 +320,7 @@ d3.selectAll('.drag-object').on('click', function() {
 				  d3.select('.success-message-container').text('Nooope! You just created ' + output);
 				  d3.select('.success-message-container').style('display', 'block');
 			  }
-		  } else if (elapsed > 12000){
+		  } else if (elapsed > 10000){
 			  
 			 reset();
 
@@ -381,110 +382,137 @@ function generateDots(side, inputs) {
 			fill.push('lightgrey');
 		} 
 	}
-	//var midX = 218;
-	//var midY = 315;
 	
-	/*
-	var dots = d3.range(1000).map(i => {
-		return {
-			i: i, 
-			startX: Math.floor(Math.random()*channelW), 
-			endX: Math.floor(Math.random()*channelW), 
+	var channelOffset;
+	if (side == 'left') {
+		if (leftTimer) {
+			leftTimer.stop();
 		}
-	})
-	*/
-	
-	var dots = d3.range(1000).map(i => {
-		return {
-			i: i, 
-			firstXOffset: Math.floor(Math.random()*10) + Math.floor(Math.random()*-10),
-			secondXOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30),
-			secondYOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30)
-			
-			
-		}
-	})
-	
-	/*
-	chipSvg.appendMany('circle.' + side + '-dot', dots)
-		.at({
-		  r: 4,
-		  opacity: 0,
-		  stroke: fill,
-		  fillOpacity:.4,
-		  fill: fill
-		})
-		.translate(d => [channelOffset + d.startX + d.startOffset, chipH / 3])
-	  .transition().delay(d => d.i*100)
-		.at({opacity: 1})
-	  .transition().duration(2000)
-		.translate(d => [channelOffset + (d.midX * sideMultiplier) + d.midOffset, (.95 * chipH)])
-	  .transition().duration(2000)
-		.translate(d => [channelOffset + (d.endX * sideMultiplier) + d.endOffset, (chipH * 2) - (chipH / 3)])
-	  .transition().duration(250)
-		.at({opacity: 0})
-		.remove()
-	*/
+		leftTimer = d3.interval(function(elapsed) {
+			var dots = d3.range(10).map(i => {
+				return {
+					i: i, 
+					firstXOffset: Math.floor(Math.random()*10) + Math.floor(Math.random()*-10),
+					secondXOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30),
+					secondYOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30)
 
-	
-	chipSvg.appendMany('circle.' + side + '-dot.dot', dots)
-		.at({
-		  opacity:0,
-		  r: 2,
-		  cx: channelOffsetX,
-		  cy: channelOffsetY
-		})
-	    .translate(d => [d.firstXOffset, 0])
-		.style('fill', function(d) {
-			if (fill.length == 2) {
-				return fill[Math.round(Math.random())];
-			} else {
-				return fill[0];
-			}
-		})
-	  .transition().delay(d => d.i*100)
-		.at({opacity: 1})
-	  .transition().duration(1000)
-		.at({
-		  cx:midX,
-		  cy:midY
-		})
-	  .transition().duration(0)
-		.remove()
-	
-	
-	
-	/*
-	  .transition().duration(2000)
-		.at({
-		  cy:endY
-		})
-	  .transition().duration(250)
-		.remove()
-	*/
-	
-	
-	
-	/*
-	chipSvg.appendMany('circle', dots)
-		.classed()
-		.at({
-		  r: 2,
-		  opacity: 0,
-		})
-		.translate(d => [0, d.startQ])
-	  .transition().delay(d => d.i*100)
-		.at({opacity: 1})
-	  .transition().duration(1000)
-		.translate(d => [chipW/2, d.startQ])
-	  .transition().duration(1000)
-		.translate(d => [chipW/2, d.endQ])
-	  .transition().duration(1000)
-		.translate(d => [chipW, d.endQ])
-	  .transition().duration(250)
-		.at({opacity: 0})
-		.remove()
-	*/
+
+				}
+			})
+
+			chipSvg.appendMany('circle.' + side + '-dot.dot', dots)
+				.at({
+				  opacity:0,
+				  r: 2,
+				  cx: channelOffsetX,
+				  cy: channelOffsetY
+				})
+				.translate(d => [d.firstXOffset, 0])
+				.style('fill', function(d) {
+					if (fill.length == 2) {
+						return fill[Math.round(Math.random())];
+					} else {
+						return fill[0];
+					}
+				})
+			  .transition().delay(d => d.i*100)
+				.at({opacity: 1})
+			  .transition().duration(1000)
+				.at({
+				  cx:midX,
+				  cy:midY
+				})
+			  .transition().duration(0)
+				.remove()
+
+		}, 1000);
+	} else if (side == 'right') {
+		if (rightTimer) {
+			rightTimer.stop();
+		}
+		rightTimer = d3.interval(function(elapsed) {
+			var dots = d3.range(10).map(i => {
+				return {
+					i: i, 
+					firstXOffset: Math.floor(Math.random()*10) + Math.floor(Math.random()*-10),
+					secondXOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30),
+					secondYOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30)
+
+
+				}
+			})
+
+			chipSvg.appendMany('circle.' + side + '-dot.dot', dots)
+				.at({
+				  opacity:0,
+				  r: 2,
+				  cx: channelOffsetX,
+				  cy: channelOffsetY
+				})
+				.translate(d => [d.firstXOffset, 0])
+				.style('fill', function(d) {
+					if (fill.length == 2) {
+						return fill[Math.round(Math.random())];
+					} else {
+						return fill[0];
+					}
+				})
+			  .transition().delay(d => d.i*100)
+				.at({opacity: 1})
+			  .transition().duration(1000)
+				.at({
+				  cx:midX,
+				  cy:midY
+				})
+			  .transition().duration(0)
+				.remove()
+
+
+		}, 1000);
+	} else {
+		if (centerTimer) {
+			centerTimer.stop();
+		}
+		centerTimer = d3.interval(function(elapsed) {
+			var dots = d3.range(10).map(i => {
+				return {
+					i: i, 
+					firstXOffset: Math.floor(Math.random()*10) + Math.floor(Math.random()*-10),
+					secondXOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30),
+					secondYOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30)
+
+
+				}
+			})
+
+			chipSvg.appendMany('circle.' + side + '-dot.dot', dots)
+				.at({
+				  opacity:0,
+				  r: 2,
+				  cx: channelOffsetX,
+				  cy: channelOffsetY
+				})
+				.translate(d => [d.firstXOffset, 0])
+				.style('fill', function(d) {
+					if (fill.length == 2) {
+						return fill[Math.round(Math.random())];
+					} else {
+						return fill[0];
+					}
+				})
+			  .transition().delay(d => d.i*100)
+				.at({opacity: 1})
+			  .transition().duration(1000)
+				.at({
+				  cx:midX,
+				  cy:midY
+				})
+			  .transition().duration(0)
+				.remove()
+
+
+		}, 1000);
+	}
 }
 
 function generateCombination() {
@@ -556,6 +584,9 @@ function reset() {
 	d3.select('.success-message-container').style('display', 'none');
 	
 	d3.selectAll('circle.dot').remove();
+	leftTimer.stop();
+	rightTimer.stop();
+	centerTimer.stop();
 	/*
 	chartHeaderText.style('display', 'block');
 	dragContainer.style('display', 'flex');
