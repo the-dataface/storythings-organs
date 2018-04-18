@@ -384,6 +384,7 @@ hr {
 		padding-bottom:5px;
 		font-size:14px;
 		padding-top:5px;
+		line-height:10px;
 	}
 
 	.instructions-description {
@@ -439,7 +440,7 @@ hr {
 	.instructions-step {
 		font-size:13px;
 		padding-top:5px;
-		line-height:13px;
+		line-height:10px;
 	}
 
 	.instructions-description {
