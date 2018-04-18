@@ -57,9 +57,12 @@ d3.json("data/logictable.json", function(data) {
 function handleResize() {
 	// 1. update height of step elements
 	var stepHeight = Math.floor(window.innerHeight * 0.75);
+	var inBetweenStepHeight = Math.floor(window.innerHeight * 0.5);
 	step.style('height', stepHeight + 'px');
 	if (large_screen) {
 		d3.selectAll('.in-between-step').style('height', '50px');
+	} else {
+		d3.selectAll('.in-between-step').style('height', inBetweenStepHeight + 'px');
 	}
 	// 2. update width/height of graphic element
 	var bodyWidth = d3.select('body').node().offsetWidth;
