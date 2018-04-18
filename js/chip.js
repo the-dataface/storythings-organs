@@ -64,7 +64,7 @@ function handleResize() {
 		.style('height', chartHeight + 'px');
 	chipSvg
 		.attr('width', chartWidth)
-		.attr('height', 700);
+		.attr('height', chartHeight * .8);
 	
 	//createAllChipPath(chartWidth, chartHeight);
 	
@@ -105,19 +105,25 @@ function handleStepEnter(response) {
 	}
 	
 }
+function handleStepExit(response) {
+	// response = { element, direction, index }
+	console.log(response)
+	
+}
 function handleContainerEnter(response) {
 	// response = { direction }
+	// sticky the graphic (old school)
+	graphic.classed('is-fixed', true);
+	graphic.classed('is-bottom', false);
 }
 function handleContainerExit(response) {
 	// response = { direction }
+	// un-sticky the graphic, and pin to top/bottom of container
+	graphic.classed('is-fixed', false);
+	graphic.classed('is-bottom', response.direction === 'down');
 }
-function setupStickyfill() {
-	d3.selectAll('.sticky').each(function () {
-		Stickyfill.add(this);
-	});
-}
+
 function init() {
-	setupStickyfill();
 	// 1. force a resize on load to ensure proper dimensions are sent to scrollama
 	handleResize();
 	// 2. setup the scroller passing options
@@ -131,6 +137,7 @@ function init() {
 		debug: false,
 	})
 		.onStepEnter(handleStepEnter)
+		.onStepExit(handleStepExit)
 		.onContainerEnter(handleContainerEnter)
 		.onContainerExit(handleContainerExit);
 	// setup resize event
@@ -301,20 +308,17 @@ d3.selectAll('.drag-object').on('click', function() {
 		  } else if (elapsed < 4000) {
 			  d3.select('#mix-gif').attr('xlink:href', 'img/mixture.gif');
 			  
-		  } else if (elapsed < 10000) {
-			  console.log('hi');
+		  } else if (elapsed < 5000) {
 			  generateDots('center');
-			  
-		  } else if (elapsed < 15000) {
-			  d3.select('#output').attr('xlink:href', 'img/icons/PNG/' + png + '.png')
+		  } else if (elapsed > 8000 && elapsed < 10000) {
+		  	   d3.select('#output').attr('xlink:href', 'img/icons/PNG/' + png + '.png')
 			  if (success) {
 				  d3.select('#output-success').attr('xlink:href', 'img/organ_output_successful.gif');
 				  
 				  d3.select('.success-message-container').text(successMessage);
 				  d3.select('.success-message-container').style('display', 'block');
-			  }
-			  
-		  } else {
+			  } 
+		  } else if (elapsed > 10000){
 			  
 			 reset();
 
@@ -401,8 +405,7 @@ function generateDots(side) {
 		.at({opacity: 0})
 		.remove()
 	*/
-	
-	console.log('hey');
+
 	
 	chipSvg.appendMany('circle.' + side + '-dot.dot', dots)
 		.at({
