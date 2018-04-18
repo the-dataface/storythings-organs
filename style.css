@@ -170,9 +170,7 @@ a, a:visited, a:hover {
 }
 
 .drag-object {
-	padding: 0.5em; 
 	width:140px;
-	margin: 0px 5px 10px 0; 
 	cursor:pointer;
 	text-align:center;
 	color:white;
@@ -239,15 +237,18 @@ a, a:visited, a:hover {
 	}
 	
 	.icon {
-		width:40px;
-		height:40px;
+		width:30px;
+		height:30px;
 		text-align:center;
+	}
+	
+	.icon-label {
+		font-size:9px;
 	}
 	
 	.drag-object {
 		padding: 0.5em; 
 		width:100px;
-		margin: 0px 5px 10px 0; 
 		cursor:pointer;
 		text-align:center;
 		color:white;
@@ -256,7 +257,7 @@ a, a:visited, a:hover {
 	}
 	
 	.flex-drag-container {
-		width:100%;
+		width:100px;
 		display:none;
 		justify-content:center;
 		flex-flow:row wrap;
@@ -279,7 +280,7 @@ a, a:visited, a:hover {
 	}
 	.svg-container {
 		display:flex;
-		width:100%;
+		width:calc(100% - 100px);
 		max-width:400px;
 	}
 }
