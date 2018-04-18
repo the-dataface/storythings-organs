@@ -67,11 +67,11 @@ hr {
 
 .chart {
 	position: absolute;
-	right: 1rem;
+	left:50%;
 	top: 50%;
-	-moz-transform: translateY(-50%);
-	-webkit-transform: translateY(-50%);
-	transform: translateY(-50%);
+	-moz-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
 	width:100%;
 }
 
@@ -187,12 +187,10 @@ hr {
 .instructions-container {
 	text-align:center;
 	width:100%;
-	height:80px;
 	position:relative;
 }
 
 .instructions {
-	width:300px;
 	position:absolute;
 	left:50%;
 	transform:translateX(-50%);
@@ -204,27 +202,31 @@ hr {
 	-webkit-box-shadow:0 2px 4px rgba(2,35,64,.33);
 	box-shadow:0 2px 4px rgba(2,35,64,.33);
 	color:black;
-	background-color:#fce303;
 	
 }
 
 .instructions-step {
-	font-weight:500;
+	font-weight:800;
+	margin:0!important;
+	text-decoration:underline;
 	
 }
 
 .instructions-description {
-
+	margin:0!important;
 } 
 
 .icon {
 	text-align:center;
+	margin:0!important;
+	display:inline!important;
 }
 
 .icon-label {
 	text-align:center;
 	color:black;
 	font-weight:600;
+	margin:0;
 }
 
 .svg-container {
@@ -240,20 +242,25 @@ hr {
 	}
 
 @media only screen and (min-width : 1300px) {
+	.instructions-container {
+		height:120px;
+	}
 	.instructions {	
+		width:300px;
 	}
 	.instructions-step {
 		padding-bottom:5px;
 		font-size:20px;
+		padding-top:10px;
 	}
 
 	.instructions-description {
-		padding-bottom:5px;
+		padding-bottom:10px;
 		font-size:20px;
 	} 
 	.icon {
-		width:100px;
-		height:100px;
+		width:100px!important;
+		height:100px!important;
 	}
 	.icon-label {
 		font-size:14px;
@@ -272,29 +279,37 @@ hr {
 }
 
 @media only screen and (min-width : 1000px) and (max-width: 1299px){
+	.instructions-container {
+		height:120px;
+	}
 	.instructions {	
+		width:300px;
 	}
 	.instructions-step {
 		padding-bottom:5px;
+		font-size:20px;
+		padding-top:10px;
 	}
 
 	.instructions-description {
-		padding-bottom:5px;
+		padding-bottom:10px;
+		font-size:20px;
 	} 
 	.icon {
-		width:60px;
-		height:60px;
+		width:60px!important;
+		height:60px!important;
 	}
 	.icon-label {
 		font-size:11px;
+		line-height:16px;
 	}
 	
 	.drag-object {
 		width:70px;
 	}
 	.flex-drag-container {
-		width:160px;
-		height:100%;
+		width:200px;
+		height:500px;
 	}
 	.svg-container {
 		width:350px;
@@ -302,33 +317,39 @@ hr {
 }
 
 @media only screen and (min-width : 764px) and (max-width: 999px) {
+	.instructions-container {
+		height:100px;
+	}
 	.instructions {	
-			padding-bottom:20px;
+		width:300px;
 	}
 	.instructions-step {
 		padding-bottom:5px;
+		font-size:20px;
+		padding-top:10px;
 	}
 
 	.instructions-description {
-		padding-bottom:5px;
+		padding-bottom:10px;
+		font-size:20px;
 	} 
 	
 	.icon {
-		width:60px;
-		height:60px;
+		width:60px!important;
+		height:60px!important;
 	}
 	.icon-label {
 		font-size:9px;
+		line-height:15px;
 	}
 	
 	.drag-object {
-		width:70px;
+		width:80px;
 	}
 	
 	.flex-drag-container {
 		width:160px;
-		height:400px;
-	
+		height:500px;
 	}
 	
 	.svg-container {
@@ -353,23 +374,31 @@ hr {
 }
 
 @media only screen and (min-width : 510px) and (max-width: 763px) {
+	.instructions-container {
+		height:60px;
+	}
 	.instructions {	
+		width:150px;
 	}
 	.instructions-step {
 		padding-bottom:5px;
+		font-size:14px;
+		padding-top:5px;
 	}
 
 	.instructions-description {
 		padding-bottom:5px;
+		font-size:12px;
 	} 
 	
 	.icon {
-		width:30px;
-		height:30px;
+		width:30px!important;
+		height:30px!important;
 	}
 	
 	.icon-label {
 		font-size:9px;
+		line-height:13px;
 	}
 	
 	.drag-object {
@@ -401,24 +430,32 @@ hr {
 }
 
 @media only screen and (max-width: 509px) {
+	.instructions-container {
+		height:60px;
+	}
 	.instructions {	
+		width:180px;
 	}
 	.instructions-step {
-		padding-bottom:5px;
+		font-size:13px;
+		padding-top:5px;
+		line-height:13px;
 	}
 
 	.instructions-description {
 		padding-bottom:5px;
+		font-size:13px;
 	} 
 	
 	.icon {
-		width:20px;
-		height:20px;
+		width:20px!important;
+		height:20px!important;
 	}
 	
 	.icon-label {
 		font-size:7px;
 		text-align:center;
+		line-height:8px;
 	}
 	
 	.drag-object {
@@ -428,7 +465,7 @@ hr {
 	
 	.flex-drag-container {
 		width:50px;
-		height:280px;
+		height:310px;
 		flex-flow:column;
 	}
 	
@@ -457,12 +494,102 @@ hr {
 	text-align:center;
 	width:100%;
 	display:none;
+	text-align:center;
 }
 
-.success-message {
-	font-weight:800;
-	color:green;
+.message {
+	font-weight:200;
 }
+
+.success {
+	background: #228B22;
+    color: #fff;
+	font-weight:800;
+    border: none;
+    border-bottom: 4px solid rgba(0,0,0,0.25);
+    text-align: center;
+    border-radius: 10px;
+	padding-top:5px;
+    margin: 0 auto;
+    margin-top: 0px;
+	display:none;
+    cursor: pointer;
+}
+
+.failure {
+	background: #ee3939;
+    color: #fff;
+	font-weight:800;
+    border: none;
+    border-bottom: 4px solid rgba(0,0,0,0.25);
+    text-align: center;
+    border-radius: 10px;
+	padding-top:5px;
+    margin: 0 auto;
+    margin-top: 0px;
+	display:none;
+    cursor: pointer;
+}
+
+@media only screen and (min-width : 1000px) {
+	.success-message-container {
+		padding-top:10px;
+	}
+
+	.message {
+		font-size:20px;
+	}
+
+	.success {
+		font-size: 20px;
+		width: 200px;
+	}
+
+	.failure {
+		font-size: 20px;
+		width: 300px;
+	}
+}
+
+@media only screen and (min-width : 764px) and (max-width: 999px) {
+	.success-message-container {
+	}
+
+	.message {
+		font-size:16px;
+	}
+
+	.success {
+		font-size: 16px;
+		width: 150px;
+	}
+
+	.failure {
+		font-size: 16px;
+		width: 250px;
+	}
+}
+
+@media only screen and (max-width: 763px) {
+	.success-message-container {
+		
+	}
+
+	.message {
+		font-size:12px;
+	}
+
+	.success {
+		font-size: 12px;
+		width: 120px;
+	}
+
+	.failure {
+		font-size: 12px;
+		width: 200px;
+	}
+}
+
 
 .drop-container {
 	width:100%;

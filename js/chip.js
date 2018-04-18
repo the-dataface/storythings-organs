@@ -76,7 +76,7 @@ function handleResize() {
 	if (small_screen) {
 		chipSvg
 		.attr('width', chartWidth - 100)
-		.attr('height', 350);
+		.attr('height', chartHeight * .6);
 	} else if (medium_screen) {
 		chipSvg
 		.attr('width', chartWidth - 200)
@@ -294,7 +294,7 @@ d3.selectAll('.drag-object').on('click', function() {
 		leftDrop = true;
 		leftDropItem = id;
 		d3.select('.instructions-step-number').text('2');
-		d3.select('.instructions-description').text('Choose the second input');
+		d3.select('.instructions-description').text('Choose the second input!');
 		generateDots('left', [leftDropItem]);
 		
 	} else if (!rightDrop) {
@@ -332,12 +332,14 @@ d3.selectAll('.drag-object').on('click', function() {
 		  	   d3.select('#output').attr('xlink:href', 'img/icons/PNG/' + png + '.png')
 			  if (success) {
 				  d3.select('#output-success').attr('xlink:href', 'img/organ_output_successful.gif');
-				  
-				  d3.select('.success-message-container').text(successMessage);
+				 
 				  d3.select('.success-message-container').style('display', 'block');
+				  d3.select('.success').style('display', 'block');
+				  d3.select('.message').text(successMessage);
 			  } else {
-				  d3.select('.success-message-container').text('Nooope! You just created ' + output);
 				  d3.select('.success-message-container').style('display', 'block');
+				  d3.select('.failure').style('display', 'block');
+				  d3.select('.message').text('You just created ' + output + '.');
 			  }
 		  } else if (elapsed > 10000){
 			  
@@ -597,10 +599,12 @@ function reset() {
 	d3.select('#output-success').attr('xlink:href', 'img/empty_space.svg');
 	
 	d3.select('.instructions-step-number').text('1');
-	d3.select('.instructions-description').text('Choose the first input');
+	d3.select('.instructions-description').text('Choose the first input!');
 	
 	d3.select('.flex-drag-container').style('display', 'flex');
 	d3.select('.success-message-container').style('display', 'none');
+	d3.select('.failure').style('display', 'none');
+	d3.select('.success').style('display', 'none');
 	
 	d3.selectAll('circle.dot').remove();
 	leftTimer.stop();
@@ -659,7 +663,7 @@ function resetScroll() {
 	
 	d3.select('.instructions').style('display', 'none');
 	d3.select('.instructions-step-number').text('1');
-	d3.select('.instructions-description').text('Choose the first input');
+	d3.select('.instructions-description').text('Choose the first input!');
 	
 	d3.select('.flex-drag-container').style('display', 'none');
 	d3.select('.success-message-container').style('display', 'none');

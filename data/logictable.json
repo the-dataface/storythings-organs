@@ -13,7 +13,7 @@
    "output": "DigestedFood",
 	 "outputpng": "digestedfood",
    "success": true,
-   "successtext": "Congratulations! You made a stomach-on-a-chip!"
+   "successtext": "You made a stomach-on-a-chip!"
  },
  {
    "input1": "Blood",
@@ -61,7 +61,7 @@
    "output": "Digested Food",
 	  "outputpng": "digestedfood",
    "success": true,
-   "successtext": "Congratulations! You made a stomach-on-a-chip!"
+   "successtext": "You made a stomach-on-a-chip!"
  },
  {
    "input1": "Food",
@@ -141,7 +141,7 @@
    "output": "Nutrients, Water, Waste",
 	 "outputpng": "gut",
    "success": true,
-   "successtext": "Congratulations! You made a gut-on-a-chip!"
+   "successtext": "You made a gut-on-a-chip!"
  },
  {
    "input1": "Oxygen",
@@ -149,7 +149,7 @@
    "output": "CO2, Oxygenated Blood",
 	 "outputpng": "lung",
    "success": true,
-   "successtext": "Congratulations! You made a lung-on-a-chip!"
+   "successtext": "You made a lung-on-a-chip!"
  },
  {
    "input1": "Waste",
@@ -189,7 +189,7 @@
    "output": "Nutrients, Water, Waste",
 	 "outputpng": "gut",
    "success": true,
-   "successtext": "Congratulations! You made a gut-on-a-chip!"
+   "successtext": "You made a gut-on-a-chip!"
  },
  {
    "input1": "DigestedFood",
@@ -245,7 +245,7 @@
    "output": "CO2, Oxygenated Blood",
 	 "outputpng": "lung",
    "success": true,
-   "successtext": "Congratulations! You made a lung-on-a-chip!"
+   "successtext": "You made a lung-on-a-chip!"
  },
  {
    "input1": "DigestedFood",
@@ -333,7 +333,7 @@
    "output": "Clean blood, Urine",
 	 "outputpng": "kidneys",
    "success": true,
-   "successtext": "Congratulations! You made a kidney-on-a-chip!"
+   "successtext": "You made a kidney-on-a-chip!"
  },
  {
    "input1": "Acid",
@@ -381,7 +381,7 @@
    "output": "Clean blood, Urine",
 	 "outputpng": "kidney",
    "success": true,
-   "successtext": "Congratulations! You made a kidney-on-a-chip!"
+   "successtext": "You made a kidney-on-a-chip!"
  },
  {
    "input1": "Water",
