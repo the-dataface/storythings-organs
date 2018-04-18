@@ -63,8 +63,7 @@ function handleResize() {
 		.style('width', chartWidth + 'px')
 		.style('height', chartHeight + 'px');
 	chipSvg
-		.attr('width', chartWidth)
-		.attr('height', chartHeight * .8);
+		.attr('width', chartWidth);
 	
 	//createAllChipPath(chartWidth, chartHeight);
 	
@@ -274,7 +273,7 @@ d3.selectAll('.drag-object').on('click', function() {
 		leftDropItem = id;
 		d3.select('.instructions-step-number').text('2');
 		d3.select('.instructions-description').text('Choose the second input');
-		generateDots('left');
+		generateDots('left', [leftDropItem]);
 		
 	} else if (!rightDrop) {
 		d3.select('#right-drop').attr('xlink:href', src)
@@ -282,7 +281,7 @@ d3.selectAll('.drag-object').on('click', function() {
 		rightDropItem = id;
 		d3.select('.instructions-step-number').text('3');
 		d3.select('.instructions-description').text('Watch them mix!');
-		generateDots('right');
+		generateDots('right', [rightDropItem]);
 		
 		d3.select('.flex-drag-container').style('display', 'none');
 		
@@ -308,7 +307,7 @@ d3.selectAll('.drag-object').on('click', function() {
 			  d3.select('#mix-gif').attr('xlink:href', 'img/mixture.gif');
 			  
 		  } else if (elapsed < 5000) {
-			  generateDots('center');
+			  generateDots('center', [leftDropItem, rightDropItem]);
 		  } else if (elapsed > 8000 && elapsed < 10000) {
 		  	   d3.select('#output').attr('xlink:href', 'img/icons/PNG/' + png + '.png')
 			  if (success) {
@@ -316,8 +315,11 @@ d3.selectAll('.drag-object').on('click', function() {
 				  
 				  d3.select('.success-message-container').text(successMessage);
 				  d3.select('.success-message-container').style('display', 'block');
-			  } 
-		  } else if (elapsed > 10000){
+			  } else {
+				  d3.select('.success-message-container').text('Nooope! You just created ' + output);
+				  d3.select('.success-message-container').style('display', 'block');
+			  }
+		  } else if (elapsed > 12000){
 			  
 			 reset();
 
@@ -328,7 +330,7 @@ d3.selectAll('.drag-object').on('click', function() {
 	}
 })
 
-function generateDots(side) {
+function generateDots(side, inputs) {
 	
 	d3.selectAll('.' + side + '-dot').remove();
 	
@@ -359,6 +361,25 @@ function generateDots(side) {
 		channelOffsetY = 360;
 		midX = 218;
 		midY = 495;
+	}
+	
+	var fill = [];
+	for (i in inputs) {
+		if (inputs[i] == 'Acid') {
+			fill.push('green');
+		} else if (inputs[i] == 'Blood') {
+			fill.push('red');
+		} else if (inputs[i] == 'Food') {
+			fill.push('yellow');
+		} else if (inputs[i] == 'DigestedFood') {
+			fill.push('darkgrey');
+		} else if (inputs[i] == 'Water') {
+			fill.push('blue');
+		} else if (inputs[i] == 'Waste') {
+			fill.push('brown');
+		} else if (inputs[i] == 'Oxygen') {
+			fill.push('lightgrey');
+		} 
 	}
 	//var midX = 218;
 	//var midY = 315;
@@ -408,15 +429,19 @@ function generateDots(side) {
 	
 	chipSvg.appendMany('circle.' + side + '-dot.dot', dots)
 		.at({
+		  opacity:0,
 		  r: 2,
-		  opacity: 0,
-		  stroke: 'red',
-		  fillOpacity:1,
-		  fill: 'red',
 		  cx: channelOffsetX,
 		  cy: channelOffsetY
 		})
 	    .translate(d => [d.firstXOffset, 0])
+		.style('fill', function(d) {
+			if (fill.length == 2) {
+				return fill[Math.round(Math.random())];
+			} else {
+				return fill[0];
+			}
+		})
 	  .transition().delay(d => d.i*100)
 		.at({opacity: 1})
 	  .transition().duration(1000)
