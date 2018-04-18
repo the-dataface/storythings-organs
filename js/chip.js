@@ -103,21 +103,21 @@ function handleStepEnter(response) {
 	//chart.select('p').text(response.index + 1)
 	console.log(response.index);
 	console.log(response.direction);
-	if (response.index == 0 && !animationRunning) {
+	if (response.index == 1 && !animationRunning) {
 		drawChipOutline();
 		
 		
 		d3.select('.instructions').style('display', 'none')
 		d3.select('.flex-drag-container').style('display', 'none')
 		d3.select('.chart-footer-container').style('display', 'none')
-	} else if (response.index == 1 && !animationRunning) {
+	} else if (response.index == 3 && !animationRunning) {
 		drawChipChannels();
 		resetScroll();
 		
 		d3.select('.instructions').style('display', 'none')
 		d3.select('.flex-drag-container').style('display', 'none')
 		d3.select('.chart-footer-container').style('display', 'none')
-	} else if (response.index == 2 && !animationRunning) {
+	} else if (response.index == 5 && !animationRunning) {
 
 		d3.selectAll('.outer-chip-path-immediate').style('visibility', 'visible');
 		d3.selectAll('.channel-path-immediate').style('visibility', 'visible');
