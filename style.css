@@ -248,7 +248,7 @@ a, a:visited, a:hover {
 	
 	.drag-object {
 		padding: 0.5em; 
-		width:100px;
+		width:50px;
 		cursor:pointer;
 		text-align:center;
 		color:white;
@@ -281,7 +281,6 @@ a, a:visited, a:hover {
 	.svg-container {
 		display:flex;
 		width:calc(100% - 100px);
-		max-width:400px;
 	}
 }
 

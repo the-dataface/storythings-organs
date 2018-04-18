@@ -4,6 +4,7 @@ var graphic = container.select('.scroll__graphic');
 var chart = graphic.select('.chart');
 var chartHeader = graphic.select('.chart-header');
 var chartHeaderText = graphic.select('.chart-header-text');
+var flexDragContainer = d3.select('.flex-drag-container');
 var dragContainer = d3.select('.drag-container');
 var dropContainer = d3.select('.drop-container');
 var chipSvg = graphic.select('#chip-svg');
@@ -17,6 +18,8 @@ var scroller = scrollama();
 // window width and height
 var windowW = window.innerWidth;
 var windowH = window.innerHeight;
+
+console.log(flexDragContainer.node().offsetWidth);
 
 // what size screen?
 var large_screen = false;
@@ -71,6 +74,11 @@ function handleResize() {
 	chipSvg
 		.attr('width', chartWidth);
 	
+	if (small_screen) {
+		chipSvg
+		.attr('height', chartHeight * .6);
+	}
+	
 	//createAllChipPath(chartWidth, chartHeight);
 	
 	// 3. tell scrollama to update new element dimensions
@@ -96,6 +104,7 @@ function handleStepEnter(response) {
 		d3.select('.chart-footer-container').style('display', 'none')
 	} else if (response.index == 1 && !animationRunning) {
 		drawChipChannels();
+		resetScroll();
 		
 		d3.select('.instructions').style('display', 'none')
 		d3.select('.flex-drag-container').style('display', 'none')
@@ -628,7 +637,32 @@ function reset() {
 	*/
 }
 
-
+function resetScroll() {
+	d3.selectAll('.drag-object').classed('drag-object-selected', false);
+	leftDrop = false;
+	leftDropItem = null;
+	rightDrop = false;
+	rightDropItem = null;
+	
+	d3.select('#left-drop').attr('xlink:href', 'img/empty_space.svg')
+	d3.select('#right-drop').attr('xlink:href', 'img/empty_space.svg')
+	d3.select('#mix-gif').attr('xlink:href', 'img/empty_space.svg');
+	d3.select('#output').attr('xlink:href', 'img/empty_space.svg')
+	d3.select('#output-success').attr('xlink:href', 'img/empty_space.svg');
+	
+	d3.select('.instructions').style('display', 'none');
+	d3.select('.instructions-step-number').text('1');
+	d3.select('.instructions-description').text('Choose the first input');
+	
+	d3.select('.flex-drag-container').style('display', 'none');
+	d3.select('.success-message-container').style('display', 'none');
+	
+	d3.selectAll('circle.dot').remove();
+	animationRunning = false;
+	if (leftTimer.stop()) {
+		leftTimer.stop();
+	}
+}
 
 
 function fillChannel(side, input, dropArea) {
