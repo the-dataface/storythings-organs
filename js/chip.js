@@ -80,11 +80,11 @@ function handleResize() {
 	} else if (medium_screen) {
 		chipSvg
 		.attr('width', chartWidth - 200)
-		.attr('height', chartHeight - 250);
+		.attr('height', chartHeight - 160);
 	} else {
 		chipSvg
 		.attr('width', chartWidth - 300)
-		.attr('height', chartHeight - 300);
+		.attr('height', chartHeight - 200);
 	}
 	
 	//createAllChipPath(chartWidth, chartHeight);
