@@ -58,6 +58,9 @@ function handleResize() {
 	// 1. update height of step elements
 	var stepHeight = Math.floor(window.innerHeight * 0.75);
 	step.style('height', stepHeight + 'px');
+	if (large_screen) {
+		d3.selectAll('.in-between-step').style('height', '50px');
+	}
 	// 2. update width/height of graphic element
 	var bodyWidth = d3.select('body').node().offsetWidth;
 	var textWidth = text.node().offsetWidth;
@@ -103,21 +106,21 @@ function handleStepEnter(response) {
 	//chart.select('p').text(response.index + 1)
 	console.log(response.index);
 	console.log(response.direction);
-	if (response.index == 1 && !animationRunning) {
+	if (((response.index == 1 && !large_screen) || (response.index == 0 && large_screen)) && !animationRunning) {
 		drawChipOutline();
 		
 		
 		d3.select('.instructions').style('display', 'none')
 		d3.select('.flex-drag-container').style('display', 'none')
 		d3.select('.chart-footer-container').style('display', 'none')
-	} else if (response.index == 3 && !animationRunning) {
+	} else if (((response.index == 3 && !large_screen) || (response.index == 2 && large_screen)) && !animationRunning) {
 		drawChipChannels();
 		resetScroll();
 		
 		d3.select('.instructions').style('display', 'none')
 		d3.select('.flex-drag-container').style('display', 'none')
 		d3.select('.chart-footer-container').style('display', 'none')
-	} else if (response.index == 5 && !animationRunning) {
+	} else if (((response.index == 5 && !large_screen) || (response.index == 3 && large_screen)) && !animationRunning) {
 
 		d3.selectAll('.outer-chip-path-immediate').style('visibility', 'visible');
 		d3.selectAll('.channel-path-immediate').style('visibility', 'visible');

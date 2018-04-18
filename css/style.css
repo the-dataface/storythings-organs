@@ -81,6 +81,10 @@ hr {
 	opacity:.5;
 }
 
+.in-between-step {
+	
+}
+
 .step.is-active {
 	opacity:1;
 }
