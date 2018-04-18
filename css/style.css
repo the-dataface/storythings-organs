@@ -162,7 +162,6 @@ hr {
 }
 
 .drag-object {
-	width:140px;
 	cursor:pointer;
 	text-align:center;
 	color:white;
@@ -185,21 +184,40 @@ hr {
 	align-items:center;
 }
 
+.instructions-container {
+	text-align:center;
+	width:100%;
+	height:80px;
+	position:relative;
+}
+
 .instructions {
+	width:300px;
+	position:absolute;
+	left:50%;
+	transform:translateX(-50%);
+	-webkit-transform:translateX(-50%);
+	-ms-transform:translateX(-50%);
 	display:none;
 	text-align:center;
+	border:1px solid rgba(2,35,64,.25);
+	-webkit-box-shadow:0 2px 4px rgba(2,35,64,.33);
+	box-shadow:0 2px 4px rgba(2,35,64,.33);
+	color:black;
+	background-color:#fce303;
+	
 }
 
 .instructions-step {
 	font-weight:500;
+	
 }
 
 .instructions-description {
+
 } 
 
 .icon {
-	width:100px;
-	height:100px;
 	text-align:center;
 }
 
@@ -209,29 +227,145 @@ hr {
 	font-weight:600;
 }
 
-@media only screen and (min-width : 1000px) {
-	.flex-drag-container {
+.svg-container {
+		display:flex;
+	}
+
+.flex-drag-container {
 		width:300px;
 		height:600px;
 		display:none;
 		justify-content:center;
 		flex-flow:row wrap;
 	}
+
+@media only screen and (min-width : 1300px) {
+	.instructions {	
+	}
+	.instructions-step {
+		padding-bottom:5px;
+		font-size:20px;
+	}
+
+	.instructions-description {
+		padding-bottom:5px;
+		font-size:20px;
+	} 
+	.icon {
+		width:100px;
+		height:100px;
+	}
+	.icon-label {
+		font-size:14px;
+	}
+	
+	.drag-object {
+		width:120px;
+	}
+	.flex-drag-container {
+		width:240px;
+		height:600px;
+	}
 	.svg-container {
-		display:flex;
-		width:calc(100% - 300px);
-		max-width:400px;
+		width:500px;
 	}
 }
 
-@media only screen and (max-width: 999px) {
+@media only screen and (min-width : 1000px) and (max-width: 1299px){
 	.instructions {	
 	}
+	.instructions-step {
+		padding-bottom:5px;
+	}
+
+	.instructions-description {
+		padding-bottom:5px;
+	} 
+	.icon {
+		width:60px;
+		height:60px;
+	}
+	.icon-label {
+		font-size:11px;
+	}
+	
+	.drag-object {
+		width:70px;
+	}
+	.flex-drag-container {
+		width:160px;
+		height:100%;
+	}
+	.svg-container {
+		width:350px;
+	}
+}
+
+@media only screen and (min-width : 764px) and (max-width: 999px) {
+	.instructions {	
+			padding-bottom:20px;
+	}
+	.instructions-step {
+		padding-bottom:5px;
+	}
+
+	.instructions-description {
+		padding-bottom:5px;
+	} 
+	
+	.icon {
+		width:60px;
+		height:60px;
+	}
+	.icon-label {
+		font-size:9px;
+	}
+	
+	.drag-object {
+		width:70px;
+	}
+	
+	.flex-drag-container {
+		width:160px;
+		height:400px;
+	
+	}
+	
+	.svg-container {
+		width:400px;
+	}
+	
+	.step p {
+		position: absolute;
+		top: 20%;
+		left: 50%;
+		-moz-transform: translate(-50%, -50%);
+		-webkit-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+		width:100%;
+		margin:1rem auto;
+		max-width:40rem;
+		background-color:rgba(255,255,255,.4);
+		padding:40px;
+		font-size:.5rem;
+
+	}
+}
+
+@media only screen and (min-width : 510px) and (max-width: 763px) {
+	.instructions {	
+	}
+	.instructions-step {
+		padding-bottom:5px;
+	}
+
+	.instructions-description {
+		padding-bottom:5px;
+	} 
 	
 	.icon {
 		width:30px;
 		height:30px;
-		text-align:center;
 	}
 	
 	.icon-label {
@@ -239,20 +373,16 @@ hr {
 	}
 	
 	.drag-object {
-		padding: 0.5em; 
 		width:100px;
-		cursor:pointer;
-		text-align:center;
-		color:white;
-		z-index:100;
-		border-radius:3px;
 	}
 	
 	.flex-drag-container {
 		width:100px;
-		display:none;
-		justify-content:center;
-		flex-flow:row wrap;
+		height:400px;
+	}
+	
+	.svg-container {
+		width:350px;
 	}
 	
 	.step p {
@@ -268,10 +398,58 @@ hr {
 		background-color:rgba(255,255,255,.4);
 		padding:40px;
 	}
+}
+
+@media only screen and (max-width: 509px) {
+	.instructions {	
+	}
+	.instructions-step {
+		padding-bottom:5px;
+	}
+
+	.instructions-description {
+		padding-bottom:5px;
+	} 
+	
+	.icon {
+		width:20px;
+		height:20px;
+	}
+	
+	.icon-label {
+		font-size:7px;
+		text-align:center;
+	}
+	
+	.drag-object {
+		width:30px;
+		height:40px;
+	}
+	
+	.flex-drag-container {
+		width:50px;
+		height:280px;
+		flex-flow:column;
+	}
+	
 	.svg-container {
-		display:flex;
-		width:calc(100% - 100px);
-		max-width:400px;
+		width:180px;
+	}
+	
+	.step p {
+		position: absolute;
+		top: 20%;
+		left: 50%;
+		-moz-transform: translate(-50%, -50%);
+		-webkit-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+		width:100%;
+		margin:1rem auto;
+		max-width:40rem;
+		background-color:rgba(255,255,255,.4);
+		padding:40px;
+		font-size:.5rem;
+
 	}
 }
 
