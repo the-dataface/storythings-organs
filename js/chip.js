@@ -43,6 +43,8 @@ var leftDrop = false,
 	leftDropItem,
 	rightDropItem;
 
+var animationRunning = false;
+
 var combinations;
 d3.json("data/logictable.json", function(data) {
   combinations = data;
@@ -85,20 +87,20 @@ function handleStepEnter(response) {
 	//chart.select('p').text(response.index + 1)
 	console.log(response.index);
 	console.log(response.direction);
-	if (response.index == 0) {
+	if (response.index == 0 && !animationRunning) {
 		drawChipOutline();
 		
 		
 		d3.select('.instructions').style('display', 'none')
 		d3.select('.flex-drag-container').style('display', 'none')
 		d3.select('.chart-footer-container').style('display', 'none')
-	} else if (response.index == 1) {
+	} else if (response.index == 1 && !animationRunning) {
 		drawChipChannels();
 		
 		d3.select('.instructions').style('display', 'none')
 		d3.select('.flex-drag-container').style('display', 'none')
 		d3.select('.chart-footer-container').style('display', 'none')
-	} else if (response.index == 2) {
+	} else if (response.index == 2 && !animationRunning) {
 
 		d3.selectAll('.outer-chip-path-immediate').style('visibility', 'visible');
 		d3.selectAll('.channel-path-immediate').style('visibility', 'visible');
@@ -280,6 +282,7 @@ d3.selectAll('.drag-object').on('click', function() {
 		generateDots('left', [leftDropItem]);
 		
 	} else if (!rightDrop) {
+		animationRunning = true;
 		d3.select('#right-drop').attr('xlink:href', src)
 		rightDrop = true;
 		rightDropItem = id;
@@ -587,6 +590,7 @@ function reset() {
 	leftTimer.stop();
 	rightTimer.stop();
 	centerTimer.stop();
+	animationRunning = false;
 	/*
 	chartHeaderText.style('display', 'block');
 	dragContainer.style('display', 'flex');
