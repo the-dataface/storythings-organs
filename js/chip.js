@@ -112,17 +112,18 @@ function handleStepExit(response) {
 }
 function handleContainerEnter(response) {
 	// response = { direction }
+	// sticky the graphic (old school)
+	graphic.classed('is-fixed', true);
+	graphic.classed('is-bottom', false);
 }
 function handleContainerExit(response) {
 	// response = { direction }
+	// un-sticky the graphic, and pin to top/bottom of container
+	graphic.classed('is-fixed', false);
+	graphic.classed('is-bottom', response.direction === 'down');
 }
-function setupStickyfill() {
-	d3.selectAll('.sticky').each(function () {
-		Stickyfill.add(this);
-	});
-}
+
 function init() {
-	setupStickyfill();
 	// 1. force a resize on load to ensure proper dimensions are sent to scrollama
 	handleResize();
 	// 2. setup the scroller passing options
