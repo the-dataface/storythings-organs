@@ -71,12 +71,18 @@ function handleResize() {
 	chart
 		.style('width', chartWidth + 'px')
 		.style('height', chartHeight + 'px');
-	chipSvg
-		.attr('width', chartWidth);
+
 	
 	if (small_screen) {
 		chipSvg
+		.attr('width', chartWidth - 100)
 		.attr('height', chartHeight * .6);
+	} else if (medium_screen) {
+		chipSvg
+		.attr('width', chartWidth - 200)
+	} else {
+		chipSvg
+		.attr('width', chartWidth - 300)
 	}
 	
 	//createAllChipPath(chartWidth, chartHeight);

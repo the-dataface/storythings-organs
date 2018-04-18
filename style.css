@@ -170,12 +170,12 @@ a, a:visited, a:hover {
 }
 
 .drag-object {
-	width:140px;
 	cursor:pointer;
 	text-align:center;
 	color:white;
 	z-index:100;
 	border-radius:3px;
+	padding:10px;
 }
 
 .drag-object:hover {
@@ -196,6 +196,7 @@ a, a:visited, a:hover {
 .instructions {
 	display:none;
 	text-align:center;
+	padding-bottom:20px;
 }
 
 .instructions-step {
@@ -206,8 +207,6 @@ a, a:visited, a:hover {
 } 
 
 .icon {
-	width:100px;
-	height:100px;
 	text-align:center;
 }
 
@@ -217,50 +216,85 @@ a, a:visited, a:hover {
 	font-weight:600;
 }
 
-@media only screen and (min-width : 1000px) {
-	.flex-drag-container {
+.svg-container {
+		display:flex;
+	}
+
+.flex-drag-container {
 		width:300px;
 		height:600px;
 		display:none;
 		justify-content:center;
 		flex-flow:row wrap;
 	}
+
+@media only screen and (min-width : 1300px) {
+	.icon {
+		width:100px;
+		height:100px;
+	}
+	.icon-label {
+		font-size:14px;
+	}
+	
+	.drag-object {
+		width:120px;
+	}
+	.flex-drag-container {
+		width:240px;
+		height:600px;
+	}
 	.svg-container {
-		display:flex;
-		width:calc(100% - 300px);
-		max-width:400px;
+		width:500px;
 	}
 }
 
-@media only screen and (max-width: 999px) {
+@media only screen and (min-width : 1000px) and (max-width: 1299px){
+	.icon {
+		width:60px;
+		height:60px;
+	}
+	.icon-label {
+		font-size:11px;
+	}
+	
+	.drag-object {
+		width:70px;
+	}
+	.flex-drag-container {
+		width:160px;
+		height:100%;
+	}
+	.svg-container {
+		width:350px;
+	}
+}
+
+@media only screen and (min-width : 764px) and (max-width: 999px) {
 	.instructions {	
+		
 	}
 	
 	.icon {
-		width:30px;
-		height:30px;
-		text-align:center;
+		width:60px;
+		height:60px;
 	}
-	
 	.icon-label {
 		font-size:9px;
 	}
 	
 	.drag-object {
-		padding: 0.5em; 
-		width:50px;
-		cursor:pointer;
-		text-align:center;
-		color:white;
-		z-index:100;
-		border-radius:3px;
+		width:70px;
 	}
 	
 	.flex-drag-container {
-		width:100px;
-		display:none;
-		justify-content:center;
-		flex-flow:row wrap;
+		width:160px;
+		height:400px;
+	
+	}
+	
+	.svg-container {
+		width:400px;
 	}
 	
 	.step p {
@@ -278,9 +312,94 @@ a, a:visited, a:hover {
 		font-size:.5rem;
 
 	}
+}
+
+@media only screen and (min-width : 510px) and (max-width: 763px) {
+	.instructions {	
+	}
+	
+	.icon {
+		width:30px;
+		height:30px;
+	}
+	
+	.icon-label {
+		font-size:9px;
+	}
+	
+	.drag-object {
+		width:100px;
+	}
+	
+	.flex-drag-container {
+		width:100px;
+		height:400px;
+	}
+	
 	.svg-container {
-		display:flex;
-		width:calc(100% - 100px);
+		width:350px;
+	}
+	
+	.step p {
+		position: absolute;
+		top: 20%;
+		left: 50%;
+		-moz-transform: translate(-50%, -50%);
+		-webkit-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+		width:100%;
+		margin:1rem auto;
+		max-width:40rem;
+		background-color:rgba(255,255,255,.4);
+		padding:40px;
+		font-size:.5rem;
+
+	}
+}
+
+@media only screen and (max-width: 509px) {
+	.instructions {	
+	}
+	
+	.icon {
+		width:20px;
+		height:20px;
+	}
+	
+	.icon-label {
+		font-size:7px;
+		text-align:center;
+	}
+	
+	.drag-object {
+		width:30px;
+		height:40px;
+	}
+	
+	.flex-drag-container {
+		width:50px;
+		height:280px;
+		flex-flow:column;
+	}
+	
+	.svg-container {
+		width:180px;
+	}
+	
+	.step p {
+		position: absolute;
+		top: 20%;
+		left: 50%;
+		-moz-transform: translate(-50%, -50%);
+		-webkit-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+		width:100%;
+		margin:1rem auto;
+		max-width:40rem;
+		background-color:rgba(255,255,255,.4);
+		padding:40px;
+		font-size:.5rem;
+
 	}
 }
 
