@@ -4,6 +4,7 @@ var graphic = container.select('.scroll__graphic');
 var chart = graphic.select('.chart');
 var chartHeader = graphic.select('.chart-header');
 var chartHeaderText = graphic.select('.chart-header-text');
+var flexDragContainer = d3.select('.flex-drag-container');
 var dragContainer = d3.select('.drag-container');
 var dropContainer = d3.select('.drop-container');
 var chipSvg = graphic.select('#chip-svg');
@@ -17,6 +18,8 @@ var scroller = scrollama();
 // window width and height
 var windowW = window.innerWidth;
 var windowH = window.innerHeight;
+
+console.log(flexDragContainer.node().offsetWidth);
 
 // what size screen?
 var large_screen = false;
@@ -33,11 +36,17 @@ if (windowW > 1000) {
 
 //global variables
 
+var leftTimer,
+	rightTimer,
+	centerTimer;
+
 //keep track of inputs
 var leftDrop = false,
 	rightDrop = false,
 	leftDropItem,
 	rightDropItem;
+
+var animationRunning = false;
 
 var combinations;
 d3.json("data/logictable.json", function(data) {
@@ -62,9 +71,19 @@ function handleResize() {
 	chart
 		.style('width', chartWidth + 'px')
 		.style('height', chartHeight + 'px');
-	chipSvg
-		.attr('width', chartWidth)
-		.attr('height', 700);
+
+	
+	if (small_screen) {
+		chipSvg
+		.attr('width', chartWidth - 100)
+		.attr('height', 350);
+	} else if (medium_screen) {
+		chipSvg
+		.attr('width', chartWidth - 200)
+	} else {
+		chipSvg
+		.attr('width', chartWidth - 300)
+	}
 	
 	//createAllChipPath(chartWidth, chartHeight);
 	
@@ -82,20 +101,21 @@ function handleStepEnter(response) {
 	//chart.select('p').text(response.index + 1)
 	console.log(response.index);
 	console.log(response.direction);
-	if (response.index == 0) {
+	if (response.index == 0 && !animationRunning) {
 		drawChipOutline();
 		
 		
 		d3.select('.instructions').style('display', 'none')
 		d3.select('.flex-drag-container').style('display', 'none')
 		d3.select('.chart-footer-container').style('display', 'none')
-	} else if (response.index == 1) {
+	} else if (response.index == 1 && !animationRunning) {
 		drawChipChannels();
+		resetScroll();
 		
 		d3.select('.instructions').style('display', 'none')
 		d3.select('.flex-drag-container').style('display', 'none')
 		d3.select('.chart-footer-container').style('display', 'none')
-	} else if (response.index == 2) {
+	} else if (response.index == 2 && !animationRunning) {
 
 		d3.selectAll('.outer-chip-path-immediate').style('visibility', 'visible');
 		d3.selectAll('.channel-path-immediate').style('visibility', 'visible');
@@ -103,6 +123,11 @@ function handleStepEnter(response) {
 		d3.select('.instructions').style('display', 'block')
 		d3.select('.flex-drag-container').style('display', 'flex')
 	}
+	
+}
+function handleStepExit(response) {
+	// response = { element, direction, index }
+	console.log(response)
 	
 }
 function handleContainerEnter(response) {
@@ -131,6 +156,7 @@ function init() {
 		debug: false,
 	})
 		.onStepEnter(handleStepEnter)
+		.onStepExit(handleStepExit)
 		.onContainerEnter(handleContainerEnter)
 		.onContainerExit(handleContainerExit);
 	// setup resize event
@@ -268,15 +294,16 @@ d3.selectAll('.drag-object').on('click', function() {
 		leftDropItem = id;
 		d3.select('.instructions-step-number').text('2');
 		d3.select('.instructions-description').text('Choose the second input');
-		generateDots('left');
+		generateDots('left', [leftDropItem]);
 		
 	} else if (!rightDrop) {
+		animationRunning = true;
 		d3.select('#right-drop').attr('xlink:href', src)
 		rightDrop = true;
 		rightDropItem = id;
 		d3.select('.instructions-step-number').text('3');
 		d3.select('.instructions-description').text('Watch them mix!');
-		generateDots('right');
+		generateDots('right', [rightDropItem]);
 		
 		d3.select('.flex-drag-container').style('display', 'none');
 		
@@ -296,25 +323,22 @@ d3.selectAll('.drag-object').on('click', function() {
 		}
 		
 		var t = d3.timer(function(elapsed) {
-		  if (elapsed < 2000) { 
-			  
-		  } else if (elapsed < 4000) {
+		  console.log(elapsed);
+		  if (elapsed > 3000 && elapsed < 4000) {
 			  d3.select('#mix-gif').attr('xlink:href', 'img/mixture.gif');
-			  
-		  } else if (elapsed < 10000) {
-			  console.log('hi');
-			  generateDots('center');
-			  
-		  } else if (elapsed < 15000) {
-			  d3.select('#output').attr('xlink:href', 'img/icons/PNG/' + png + '.png')
+			  generateDots('center', [leftDropItem, rightDropItem]);
+		  } else if (elapsed > 7000 && elapsed < 10000) {
+		  	   d3.select('#output').attr('xlink:href', 'img/icons/PNG/' + png + '.png')
 			  if (success) {
 				  d3.select('#output-success').attr('xlink:href', 'img/organ_output_successful.gif');
 				  
 				  d3.select('.success-message-container').text(successMessage);
 				  d3.select('.success-message-container').style('display', 'block');
+			  } else {
+				  d3.select('.success-message-container').text('Nooope! You just created ' + output);
+				  d3.select('.success-message-container').style('display', 'block');
 			  }
-			  
-		  } else {
+		  } else if (elapsed > 10000){
 			  
 			 reset();
 
@@ -325,7 +349,7 @@ d3.selectAll('.drag-object').on('click', function() {
 	}
 })
 
-function generateDots(side) {
+function generateDots(side, inputs) {
 	
 	d3.selectAll('.' + side + '-dot').remove();
 	
@@ -357,107 +381,156 @@ function generateDots(side) {
 		midX = 218;
 		midY = 495;
 	}
-	//var midX = 218;
-	//var midY = 315;
 	
-	/*
-	var dots = d3.range(1000).map(i => {
-		return {
-			i: i, 
-			startX: Math.floor(Math.random()*channelW), 
-			endX: Math.floor(Math.random()*channelW), 
+	var fill = [];
+	for (i in inputs) {
+		if (inputs[i] == 'Acid') {
+			fill.push('green');
+		} else if (inputs[i] == 'Blood') {
+			fill.push('red');
+		} else if (inputs[i] == 'Food') {
+			fill.push('yellow');
+		} else if (inputs[i] == 'DigestedFood') {
+			fill.push('darkgrey');
+		} else if (inputs[i] == 'Water') {
+			fill.push('blue');
+		} else if (inputs[i] == 'Waste') {
+			fill.push('brown');
+		} else if (inputs[i] == 'Oxygen') {
+			fill.push('lightgrey');
+		} 
+	}
+	
+	var channelOffset;
+	if (side == 'left') {
+		if (leftTimer) {
+			leftTimer.stop();
 		}
-	})
-	*/
-	
-	var dots = d3.range(1000).map(i => {
-		return {
-			i: i, 
-			firstXOffset: Math.floor(Math.random()*10) + Math.floor(Math.random()*-10),
-			secondXOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30),
-			secondYOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30)
-			
-			
+		leftTimer = d3.interval(function(elapsed) {
+			var dots = d3.range(10).map(i => {
+				return {
+					i: i, 
+					firstXOffset: Math.floor(Math.random()*10) + Math.floor(Math.random()*-10),
+					secondXOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30),
+					secondYOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30)
+
+
+				}
+			})
+
+			chipSvg.appendMany('circle.' + side + '-dot.dot', dots)
+				.at({
+				  opacity:0,
+				  r: 2,
+				  cx: channelOffsetX,
+				  cy: channelOffsetY
+				})
+				.translate(d => [d.firstXOffset, 0])
+				.style('fill', function(d) {
+					if (fill.length == 2) {
+						return fill[Math.round(Math.random())];
+					} else {
+						return fill[0];
+					}
+				})
+			  .transition().delay(d => d.i*100)
+				.at({opacity: 1})
+			  .transition().duration(1000)
+				.at({
+				  cx:midX,
+				  cy:midY
+				})
+			  .transition().duration(0)
+				.remove()
+
+		}, 1000);
+	} else if (side == 'right') {
+		if (rightTimer) {
+			rightTimer.stop();
 		}
-	})
-	
-	/*
-	chipSvg.appendMany('circle.' + side + '-dot', dots)
-		.at({
-		  r: 4,
-		  opacity: 0,
-		  stroke: fill,
-		  fillOpacity:.4,
-		  fill: fill
-		})
-		.translate(d => [channelOffset + d.startX + d.startOffset, chipH / 3])
-	  .transition().delay(d => d.i*100)
-		.at({opacity: 1})
-	  .transition().duration(2000)
-		.translate(d => [channelOffset + (d.midX * sideMultiplier) + d.midOffset, (.95 * chipH)])
-	  .transition().duration(2000)
-		.translate(d => [channelOffset + (d.endX * sideMultiplier) + d.endOffset, (chipH * 2) - (chipH / 3)])
-	  .transition().duration(250)
-		.at({opacity: 0})
-		.remove()
-	*/
-	
-	console.log('hey');
-	
-	chipSvg.appendMany('circle.' + side + '-dot.dot', dots)
-		.at({
-		  r: 2,
-		  opacity: 0,
-		  stroke: 'red',
-		  fillOpacity:1,
-		  fill: 'red',
-		  cx: channelOffsetX,
-		  cy: channelOffsetY
-		})
-	    .translate(d => [d.firstXOffset, 0])
-	  .transition().delay(d => d.i*100)
-		.at({opacity: 1})
-	  .transition().duration(1000)
-		.at({
-		  cx:midX,
-		  cy:midY
-		})
-	  .transition().duration(0)
-		.remove()
-	
-	
-	
-	/*
-	  .transition().duration(2000)
-		.at({
-		  cy:endY
-		})
-	  .transition().duration(250)
-		.remove()
-	*/
-	
-	
-	
-	/*
-	chipSvg.appendMany('circle', dots)
-		.classed()
-		.at({
-		  r: 2,
-		  opacity: 0,
-		})
-		.translate(d => [0, d.startQ])
-	  .transition().delay(d => d.i*100)
-		.at({opacity: 1})
-	  .transition().duration(1000)
-		.translate(d => [chipW/2, d.startQ])
-	  .transition().duration(1000)
-		.translate(d => [chipW/2, d.endQ])
-	  .transition().duration(1000)
-		.translate(d => [chipW, d.endQ])
-	  .transition().duration(250)
-		.at({opacity: 0})
-		.remove()
-	*/
+		rightTimer = d3.interval(function(elapsed) {
+			var dots = d3.range(10).map(i => {
+				return {
+					i: i, 
+					firstXOffset: Math.floor(Math.random()*10) + Math.floor(Math.random()*-10),
+					secondXOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30),
+					secondYOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30)
+
+
+				}
+			})
+
+			chipSvg.appendMany('circle.' + side + '-dot.dot', dots)
+				.at({
+				  opacity:0,
+				  r: 2,
+				  cx: channelOffsetX,
+				  cy: channelOffsetY
+				})
+				.translate(d => [d.firstXOffset, 0])
+				.style('fill', function(d) {
+					if (fill.length == 2) {
+						return fill[Math.round(Math.random())];
+					} else {
+						return fill[0];
+					}
+				})
+			  .transition().delay(d => d.i*100)
+				.at({opacity: 1})
+			  .transition().duration(1000)
+				.at({
+				  cx:midX,
+				  cy:midY
+				})
+			  .transition().duration(0)
+				.remove()
+
+
+		}, 1000);
+	} else {
+		if (centerTimer) {
+			centerTimer.stop();
+		}
+		centerTimer = d3.interval(function(elapsed) {
+			var dots = d3.range(10).map(i => {
+				return {
+					i: i, 
+					firstXOffset: Math.floor(Math.random()*10) + Math.floor(Math.random()*-10),
+					secondXOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30),
+					secondYOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30)
+
+
+				}
+			})
+
+			chipSvg.appendMany('circle.' + side + '-dot.dot', dots)
+				.at({
+				  opacity:0,
+				  r: 2,
+				  cx: channelOffsetX,
+				  cy: channelOffsetY
+				})
+				.translate(d => [d.firstXOffset, 0])
+				.style('fill', function(d) {
+					if (fill.length == 2) {
+						return fill[Math.round(Math.random())];
+					} else {
+						return fill[0];
+					}
+				})
+			  .transition().delay(d => d.i*100)
+				.at({opacity: 1})
+			  .transition().duration(1000)
+				.at({
+				  cx:midX,
+				  cy:midY
+				})
+			  .transition().duration(0)
+				.remove()
+
+
+		}, 1000);
+	}
 }
 
 function generateCombination() {
@@ -529,6 +602,10 @@ function reset() {
 	d3.select('.success-message-container').style('display', 'none');
 	
 	d3.selectAll('circle.dot').remove();
+	leftTimer.stop();
+	rightTimer.stop();
+	centerTimer.stop();
+	animationRunning = false;
 	/*
 	chartHeaderText.style('display', 'block');
 	dragContainer.style('display', 'flex');
@@ -566,7 +643,32 @@ function reset() {
 	*/
 }
 
-
+function resetScroll() {
+	d3.selectAll('.drag-object').classed('drag-object-selected', false);
+	leftDrop = false;
+	leftDropItem = null;
+	rightDrop = false;
+	rightDropItem = null;
+	
+	d3.select('#left-drop').attr('xlink:href', 'img/empty_space.svg')
+	d3.select('#right-drop').attr('xlink:href', 'img/empty_space.svg')
+	d3.select('#mix-gif').attr('xlink:href', 'img/empty_space.svg');
+	d3.select('#output').attr('xlink:href', 'img/empty_space.svg')
+	d3.select('#output-success').attr('xlink:href', 'img/empty_space.svg');
+	
+	d3.select('.instructions').style('display', 'none');
+	d3.select('.instructions-step-number').text('1');
+	d3.select('.instructions-description').text('Choose the first input');
+	
+	d3.select('.flex-drag-container').style('display', 'none');
+	d3.select('.success-message-container').style('display', 'none');
+	
+	d3.selectAll('circle.dot').remove();
+	animationRunning = false;
+	if (leftTimer.stop()) {
+		leftTimer.stop();
+	}
+}
 
 
 function fillChannel(side, input, dropArea) {
