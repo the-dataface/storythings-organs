@@ -209,28 +209,6 @@ function drawChipOutline() {
 	 	  .delay(1000)
 		  .duration(1000)
 		  .style('opacity', '0');
-	
-	/*
-	d3.select('.outer-chip-path').style('visibility', 'visible');
-	var path = document.querySelector('.outer-chip-path');
-	var length = path.getTotalLength();
-	
-	// Clear any previous transition
-	path.style.transition = path.style.WebkitTransition =
-	  'none';
-	// Set up the starting positions
-	path.style.strokeDasharray = length + ' ' + length;
-	path.style.strokeDashoffset = length;
-	// Trigger a layout so styles are calculated & the browser
-	// picks up the starting position before animating
-	path.getBoundingClientRect();
-	// Define our transition
-	path.style.transition = path.style.WebkitTransition =
-	  'stroke-dashoffset 5s ease-in-out';
-	// Go!
-	path.style.strokeDashoffset = '0';
-	*/
-	
 }
 
 function drawChipChannels() {
@@ -260,33 +238,6 @@ function drawChipChannels() {
 	 	  .delay(2000)
 		  .duration(1000)
 		  .style('opacity', '0');
-	
-	/*
-	d3.selectAll('.channel-path').style('visibility', 'visible');
-	var i = 0;
-	while (i < 4) {
-		var path = document.getElementsByClassName('channel-path')[i];
-		var length = path.getTotalLength();
-		
-		// Clear any previous transition
-		path.style.transition = path.style.WebkitTransition =
-		  'none';
-		// Set up the starting positions
-		path.style.strokeDasharray = length + ' ' + length;
-		path.style.strokeDashoffset = length;
-		// Trigger a layout so styles are calculated & the browser
-		// picks up the starting position before animating
-		path.getBoundingClientRect();
-		// Define our transition
-		path.style.transition = path.style.WebkitTransition =
-		  'stroke-dashoffset 2s ease-in-out';
-		// Go!
-		path.style.strokeDashoffset = '0'; 
-		
-		i += 1;
-	}
-	*/
-		
 }
 
 d3.selectAll('.drag-object').on('click', function() {
@@ -585,7 +536,6 @@ function generateCombination() {
 	  } else {
 		  
 		reset()
-		  
 		t.stop();
 	  }
 	});
@@ -619,41 +569,6 @@ function reset() {
 	rightTimer.stop();
 	centerTimer.stop();
 	animationRunning = false;
-	/*
-	chartHeaderText.style('display', 'block');
-	dragContainer.style('display', 'flex');
-	d3.select('.create-button').style('display', 'block');
-	outputContainer.style('display', 'none');
-	d3.select('.output-generic-text').style('display', 'none')
-	d3.select('.output-created-text').style('display', 'none')
-	d3.select('.output-sorry-text').style('display', 'none')
-	d3.select('.output-success-text').style('display', 'none')
-	
-	d3.select('.dropped-left')
-		.classed('dropped', false)
-		.classed('dropped-left', false)
-		.style('left', 0)
-		.style('top', 0);
-	
-	d3.select('.dropped-right')
-		.classed('dropped', false)
-		.classed('dropped-right', false)
-		.style('left', 0)
-		.style('top', 0);
-	
-	d3.selectAll('.drop-area')
-	  .style('border-color', '#b5b5b5')
-	  .select('.drop-area-text')
-  	  .text('drop here')
-	  .style('color', 'grey');
-	
-	d3.selectAll('circle').remove();
-	
-	leftDrop = null;
-	rightDrop = null;
-	leftFill = '#b5b5b5';
-	rightFill = '#b5b5b5';
-	*/
 }
 
 function resetScroll() {
@@ -712,129 +627,6 @@ function fillChannel(side, input, dropArea) {
 	
 	d3.select(dropArea).style('background-color', fill);
 }
-
-/*
-
-$( ".drag-object" ).draggable({
-	snapMode: 'inner',
-	snap:'.drop-area',
-	revert: function(event, ui) {
-            $(this).data("uiDraggable").originalPosition = {
-                top : 0,
-                left : 0
-            };
-            // return boolean
-            return !event;
-            // that evaluate like this:
-            // return event !== false ? false : true;
-        }
-});
-
-$( "#droppable-left" ).droppable({
-	over: function(event, ui) {
-		var inputID = $(ui.draggable).attr('id');
-		
-		var fill;
-		if (inputID == 'blood') {
-			fill = 'red';
-		} else if (inputID == 'acid') {
-			fill = 'green';
-		} else if (inputID == 'water') {
-			fill = 'blue';
-		} else if (inputID == 'waste') {
-			fill = 'brown';
-		}
-		
-		d3.select(this).style('border-color', fill);
-		d3.select(this).select('.remove-input').style('color', fill);
-	},
-	out: function(event, ui) {
-		console.log('over!');
-       d3.select(this).style('border-color', leftFill);
-		d3.select(this).select('.remove-input').style('color', leftFill);
-    },
-	drop: function( event, ui ) {
-		var areaID = $(this).attr('id');
-		var inputID = $(ui.draggable).attr('id');
-		
-		var fill;
-		if (inputID == 'blood') {
-			fill = 'red';
-		} else if (inputID == 'acid') {
-			fill = 'green';
-		} else if (inputID == 'water') {
-			fill = 'blue';
-		} else if (inputID == 'waste') {
-			fill = 'brown';
-		}
-		
-		leftFill = fill;
-
-		//fillChannel('left', inputID, this);
-		changeInputs('left', inputID, this, fill);
-		generateDots('left', inputID, this, fill);
-		
-		$(ui.draggable).addClass('dropped');
-		$(ui.draggable).addClass('dropped-left');
-		
-		leftDrop = inputID;
-		
-		
-	}
-});
-
-$( "#droppable-right" ).droppable({
-	over: function(event, ui) {
-		var inputID = $(ui.draggable).attr('id');
-		
-		var fill;
-		if (inputID == 'blood') {
-			fill = 'red';
-		} else if (inputID == 'acid') {
-			fill = 'green';
-		} else if (inputID == 'water') {
-			fill = 'blue';
-		} else if (inputID == 'waste') {
-			fill = 'brown';
-		}
-		
-		d3.select(this).style('border-color', fill);
-		d3.select(this).select('.remove-input').style('color', fill);
-	},
-	out: function(event, ui) {
-        d3.select(this).style('border-color', rightFill);
-		d3.select(this).select('.remove-input').style('color', rightFill);
-    },
-	drop: function( event, ui ) {
-		var areaID = $(this).attr('id');
-		var inputID = $(ui.draggable).attr('id');
-		
-		var fill;
-		if (inputID == 'blood') {
-			fill = 'red';
-		} else if (inputID == 'acid') {
-			fill = 'green';
-		} else if (inputID == 'water') {
-			fill = 'blue';
-		} else if (inputID == 'waste') {
-			fill = 'brown';
-		}
-		
-		rightFill = fill;
-		
-		//fillChannel('right', inputID, this);
-		changeInputs('right', inputID, this, fill);
-		generateDots('right', inputID, this, fill);
-		
-		$(ui.draggable).addClass('dropped');
-		$(ui.draggable).addClass('dropped-right');
-		
-		rightDrop = inputID;
-
-	}
-});
-
-*/
 
 d3.selectAll('.remove-input').on('click', function() {
 	var sideLetter = d3.select(this).attr('id').slice(-1);
@@ -907,68 +699,4 @@ function createAllChipPath(chartW, chartH) {
 	channelW = 50;
 	firstChannelOffset = chipW / 3;
 	secondChannelOffset = (2 * chipW) / 3
-	/*
-	
-	var outerPath = 'M' + sideMargin + ' ' + topMargin + ' v ' + chipH + ' h' + chipW + ' v -' + chipH + ' h -' + chipW;
-	
-	chipSVG.append('path')
-	  .attr('class', 'outer-chip-path')
-	  .attr('d', outerPath)
-	  .style('visibility', 'hidden');
-	
-	chipSVG.append('path')
-	  .attr('class', 'outer-chip-path-immediate')
-	  .attr('d', outerPath)
-	  .style('visibility', 'hidden');
-	
-	var leftChannelPathLeft = 'M' + firstChannelOffset + ' ' + topMargin + ' v ' + chipH;
-	
-	var leftChannelPathRight = 'M' + (firstChannelOffset + channelW) + ' ' + topMargin + ' v ' + chipH;
-	
-	var rightChannelPathLeft = 'M' + secondChannelOffset + ' ' + topMargin + ' v ' + chipH;
-	
-	var rightChannelPathRight = 'M' + (secondChannelOffset + channelW) + ' ' + topMargin + ' v ' + chipH;
-	
-	chipSVG.append('path')
-	  .attr('class', 'channel-path')
-	  .attr('d', leftChannelPathLeft)
-	  .style('visibility', 'hidden');
-	
-	chipSVG.append('path')
-	  .attr('class', 'channel-path')
-	  .attr('d', leftChannelPathRight)
-	  .style('visibility', 'hidden');
-	
-	chipSVG.append('path')
-	  .attr('class', 'channel-path')
-	  .attr('d', rightChannelPathLeft)
-	  .style('visibility', 'hidden');
-	
-	chipSVG.append('path')
-	  .attr('class', 'channel-path')
-	  .attr('d', rightChannelPathRight)
-	  .style('visibility', 'hidden');
-	
-	chipSVG.append('path')
-	  .attr('class', 'channel-path-immediate')
-	  .attr('d', leftChannelPathLeft)
-	  .style('visibility', 'hidden');
-	
-	chipSVG.append('path')
-	  .attr('class', 'channel-path-immediate')
-	  .attr('d', leftChannelPathRight)
-	  .style('visibility', 'hidden');
-	
-	chipSVG.append('path')
-	  .attr('class', 'channel-path-immediate')
-	  .attr('d', rightChannelPathLeft)
-	  .style('visibility', 'hidden');
-	
-	chipSVG.append('path')
-	  .attr('class', 'channel-path-immediate')
-	  .attr('d', rightChannelPathRight)
-	  .style('visibility', 'hidden');
-	  
-	 */
-	
 }
