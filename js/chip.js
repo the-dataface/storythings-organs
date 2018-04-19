@@ -678,9 +678,6 @@ function resetScroll() {
 	
 	d3.selectAll('circle.dot').remove();
 	animationRunning = false;
-	if (leftTimer.stop()) {
-		leftTimer.stop();
-	}
 }
 
 
