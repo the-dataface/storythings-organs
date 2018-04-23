@@ -25,13 +25,16 @@ console.log(flexDragContainer.node().offsetWidth);
 var large_screen = false;
 var medium_screen = false;
 var small_screen = false;
+var very_small_screen = false;
 
 if (windowW > 1000) {
 	large_screen = true;
 } else if (windowW > 763) {
 	medium_screen = true;
-} else {
+} else if (windowW > 510) {
 	small_screen = true;
+} else {
+	very_small_screen = true;
 }
 
 //global variables
@@ -73,24 +76,42 @@ function handleResize() {
 		.style('height', window.innerHeight + 'px');
 	var chartMargin = 32;
 	var chartWidth = graphic.node().offsetWidth - chartMargin;
-	var chartHeight = Math.floor(window.innerHeight) * .8;
+	var chartHeight = Math.floor(window.innerHeight) * .9;
 	chart
 		.style('width', chartWidth + 'px')
 		.style('height', chartHeight + 'px');
-
 	
-	if (small_screen) {
+	
+	if (very_small_screen) {
+		chartHeight = Math.floor(window.innerHeight);
+		chart
+		.style('height', chartHeight + 'px');
+		
 		chipSvg
-		.attr('width', chartWidth - 100)
-		.attr('height', chartHeight - 150);
+		.attr('height', chartHeight - 300)
+		
+		d3.select('.svg-container')
+		.attr('height', (chartHeight - 300) + 'px')
+		
+	} else if (small_screen) {
+		chartHeight = Math.floor(window.innerHeight);
+		chart
+		.style('height', chartHeight + 'px');
+		
+		chipSvg
+		.attr('height', chartHeight - 350)
+		
+		d3.select('.svg-container').attr('height', '100px');
+		
 	} else if (medium_screen) {
 		chipSvg
 		.attr('width', chartWidth - 200)
-		.attr('height', chartHeight - 160);
+		.attr('height', (chartWidth - 200) * 1.4)
 	} else {
 		chipSvg
-		.attr('width', chartWidth - 300)
-		.attr('height', chartHeight - 200);
+		.attr('width', chartWidth - 350)
+		.attr('height', (chartWidth - 200))
+		
 	}
 	
 	//createAllChipPath(chartWidth, chartHeight);
@@ -240,20 +261,21 @@ function drawChipChannels() {
 		  .style('opacity', '0');
 }
 
+d3.selectAll('.drag-object').on('mouseover', function() {
+	console.log('hi');
+})
+
 d3.selectAll('.drag-object').on('click', function() {
 	thisObject = d3.select(this);
 	var src = thisObject.select('img').attr('src');
 	var id = thisObject.attr('id');
 	thisObject.classed('drag-object-selected', true);
 	
-	console.log(src);
-	
 	if (!leftDrop) {
 		d3.select('#left-drop').attr('xlink:href', src)
 		leftDrop = true;
 		leftDropItem = id;
-		d3.select('.instructions-step-number').text('2');
-		d3.select('.instructions-description').text('Choose the second input!');
+		d3.select('.instructions-description').text('Choose the second input.');
 		generateDots('left', [leftDropItem]);
 		
 	} else if (!rightDrop) {
@@ -261,11 +283,8 @@ d3.selectAll('.drag-object').on('click', function() {
 		d3.select('#right-drop').attr('xlink:href', src)
 		rightDrop = true;
 		rightDropItem = id;
-		d3.select('.instructions-step-number').text('3');
-		d3.select('.instructions-description').text('Watch them mix!');
+		d3.select('.instructions-description').text("Let's see what happens...");
 		generateDots('right', [rightDropItem]);
-		
-		d3.select('.flex-drag-container').style('display', 'none');
 		
 		var output,
 			png,
@@ -283,7 +302,7 @@ d3.selectAll('.drag-object').on('click', function() {
 		}
 		
 		var t = d3.timer(function(elapsed) {
-		  console.log(elapsed);
+		  d3.select('.flex-drag-container').style('pointer-events', 'none');
 		  if (elapsed > 3000 && elapsed < 4000) {
 			  d3.select('#mix-gif').attr('xlink:href', 'img/mixture.gif');
 			  generateDots('center', [leftDropItem, rightDropItem]);
@@ -297,18 +316,28 @@ d3.selectAll('.drag-object').on('click', function() {
 				  d3.select('.message').text(successMessage);
 			  } else {
 				  d3.select('.success-message-container').style('display', 'block');
-				  d3.select('.failure').style('display', 'block');
+				 // d3.select('.failure').style('display', 'block');
 				  d3.select('.message').text('You just created ' + output + '.');
 			  }
-		  } else if (elapsed > 10000){
-			  
-			 reset();
-
+		  } else if (elapsed > 12000){
+			  endAnimation();
 			 t.stop();
 		  }
 		});
 		
 	}
+})
+
+function endAnimation() {
+	d3.select('.svg-container').style('opacity', '.5');
+	 d3.select('.flex-drag-container').style('opacity', '.5')
+	 d3.select('.instructions-container').style('opacity', '.5')
+	 d3.select('.success-message-container').style('opacity', '.5')
+	 d3.select('.reset-button').style('display', 'block')
+}
+
+d3.select('.reset-button').on('click', function() {
+	reset();
 })
 
 function generateDots(side, inputs) {
@@ -347,19 +376,19 @@ function generateDots(side, inputs) {
 	var fill = [];
 	for (i in inputs) {
 		if (inputs[i] == 'Acid') {
-			fill.push('green');
+			fill.push('#4A9B64');
 		} else if (inputs[i] == 'Blood') {
-			fill.push('red');
+			fill.push('#C16148');
 		} else if (inputs[i] == 'Food') {
-			fill.push('yellow');
+			fill.push('#C3B19C');
 		} else if (inputs[i] == 'DigestedFood') {
-			fill.push('darkgrey');
+			fill.push('#C3B19C');
 		} else if (inputs[i] == 'Water') {
-			fill.push('blue');
+			fill.push('#4379C9');
 		} else if (inputs[i] == 'Waste') {
-			fill.push('brown');
+			fill.push('#695249');
 		} else if (inputs[i] == 'Oxygen') {
-			fill.push('lightgrey');
+			fill.push('#D9E9F1');
 		} 
 	}
 	
@@ -534,7 +563,7 @@ function generateCombination() {
 		}
 		  
 	  } else {
-		  
+		
 		reset()
 		t.stop();
 	  }
@@ -544,6 +573,12 @@ function generateCombination() {
 }
 
 function reset() {
+	d3.select('.svg-container').style('opacity', '1');
+	 d3.select('.flex-drag-container').style('opacity', '1')
+	 d3.select('.instructions-container').style('opacity', '1')
+	 d3.select('.success-message-container').style('opacity', '1')
+	 d3.select('.reset-button').style('display', 'none')
+	
 	d3.selectAll('.drag-object').classed('drag-object-selected', false);
 	leftDrop = false;
 	leftDropItem = null;
@@ -555,13 +590,14 @@ function reset() {
 	d3.select('#mix-gif').attr('xlink:href', 'img/empty_space.svg');
 	d3.select('#output').attr('xlink:href', 'img/empty_space.svg')
 	d3.select('#output-success').attr('xlink:href', 'img/empty_space.svg');
+	 d3.select('.flex-drag-container').style('pointer-events', 'all');
 	
 	d3.select('.instructions-step-number').text('1');
-	d3.select('.instructions-description').text('Choose the first input!');
+	d3.select('.instructions-description').text('Choose the first input.');
 	
 	d3.select('.flex-drag-container').style('display', 'flex');
 	d3.select('.success-message-container').style('display', 'none');
-	d3.select('.failure').style('display', 'none');
+	//d3.select('.failure').style('display', 'none');
 	d3.select('.success').style('display', 'none');
 	
 	d3.selectAll('circle.dot').remove();
@@ -586,7 +622,7 @@ function resetScroll() {
 	
 	d3.select('.instructions').style('display', 'none');
 	d3.select('.instructions-step-number').text('1');
-	d3.select('.instructions-description').text('Choose the first input!');
+	d3.select('.instructions-description').text('Choose the first input.');
 	
 	d3.select('.flex-drag-container').style('display', 'none');
 	d3.select('.success-message-container').style('display', 'none');
