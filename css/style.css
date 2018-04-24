@@ -38,7 +38,6 @@ hr {
 	width: 100vw;
 	max-width: 1400px;
 	padding: 0 4vw;
-	font-family:'Futura'
 }
 
 @media only screen and (max-width: 999px) {
@@ -81,6 +80,7 @@ hr {
 	-webkit-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 	width:100%;
+	font-family:'Futura'
 }
 
 .step {
@@ -251,6 +251,12 @@ hr {
 }
 
 .icon:hover {
+	border:3px solid black;
+	border-radius:100px;
+	padding:2px;
+}
+
+.icon-selected {
 	border:3px solid black;
 	border-radius:100px;
 	padding:2px;
@@ -835,7 +841,7 @@ hr {
     color: black;
     font-size: 25px;
     width: 200px;
-    height: 50testpx;
+    height: 50px;
     border: none;
     border-bottom: 4px solid rgba(0,0,0,0.25);
     text-align: center;
@@ -854,6 +860,94 @@ hr {
     border: 1px solid lightgrey;
     border-bottom: 4px solid rgba(0,0,0,0.25);
 }
+
+.point-up {
+	position:absolute;
+	display:none;
+	top:calc(50% + 80px);
+	left:50%;
+	z-index:100;
+	width:40px;
+	height:40px;
+	font-size:50px;
+	transform:translate(-50%, -50%);
+}
+
+.emoji {
+	font-size:50px;
+	animation: mover 2s infinite;
+}
+
+@-webkit-keyframes mover {
+    0% { -webkit-transform: translateY(-20px); }
+    100% { -webkit-transform: translateY(0); }
+}
+@keyframes mover {
+    0% { transform: translateY(-20px); }
+    100% { transform: translateY(0); }
+}
+@-moz-keyframes mover {
+    0% { -moz-transform: translateY(-20px); }
+    100% { -moz-transform: translateY(0); }
+}
+@-ms-keyframes mover {
+    0% { -ms-transform: translateY(-20px); }
+    100% { -ms-transform: translateY(0); }
+}
+
+@-o-keyframes mover {
+    0% { -o-transform: translateY(-20px); }
+    100% { -o-transform: translateY(0); }
+}
+
+@media only screen and (max-width: 763px) {
+	.reset-button {
+		font-size: 18px;
+		width: 100px;
+		height: 40px;
+		border-bottom: 4px solid rgba(0,0,0,0.25);
+		text-align: center;
+		border-radius: 10px;
+	}
+	.point-up {
+		top:calc(50% + 52px);
+		width:30px;
+		height:30px;
+		font-size:50px;
+	}
+	.emoji {
+		font-size:30px;
+	}
+	@-webkit-keyframes mover {
+		0% { -webkit-transform: translateY(-10px); }
+		100% { -webkit-transform: translateY(0); }
+	}
+	@keyframes mover {
+		0% { transform: translateY(-10px); }
+		100% { transform: translateY(0); }
+	}
+	@-moz-keyframes mover {
+		0% { -moz-transform: translateY(-10px); }
+		100% { -moz-transform: translateY(0); }
+	}
+	@-ms-keyframes mover {
+		0% { -ms-transform: translateY(-10px); }
+		100% { -ms-transform: translateY(0); }
+	}
+
+	@-o-keyframes mover {
+		0% { -o-transform: translateY(-10px); }
+		100% { -o-transform: translateY(0); }
+	}
+}
+
+.animated.mover {
+    -webkit-animation-name: mover;
+    -moz-animation-name: mover;
+    -o-animation-name: mover;
+    animation-name: mover;
+}
+
 
 .site-footer {
 	background: #000;

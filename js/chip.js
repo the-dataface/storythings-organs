@@ -74,7 +74,7 @@ function handleResize() {
 		.style('height', window.innerHeight + 'px');
 	var chartMargin = 32;
 	var chartWidth = graphic.node().offsetWidth - chartMargin;
-	var chartHeight = Math.floor(window.innerHeight) * .9;
+	var chartHeight = Math.floor(window.innerHeight) * .8;
 	chart
 		.style('width', chartWidth + 'px')
 		.style('height', chartHeight + 'px');
@@ -263,7 +263,9 @@ d3.selectAll('.drag-object').on('click', function() {
 	thisObject = d3.select(this);
 	var src = thisObject.select('img').attr('src');
 	var id = thisObject.attr('id');
-	thisObject.classed('drag-object-selected', true);
+	thisObject.select('.icon').classed('icon-selected', true);
+	
+	
 	
 	if (!leftDrop) {
 		d3.select('#left-drop').attr('xlink:href', src)
@@ -281,6 +283,9 @@ d3.selectAll('.drag-object').on('click', function() {
 		});
 		
 	} else if (!rightDrop) {
+		d3.selectAll('.icon').style('pointer-events', 'none');
+		d3.selectAll('.drag-object').style('pointer-events', 'none');
+		
 		animationRunning = true;
 		d3.select('#right-drop').attr('xlink:href', src)
 		rightDrop = true;
@@ -304,7 +309,6 @@ d3.selectAll('.drag-object').on('click', function() {
 		}
 		
 		var t = d3.timer(function(elapsed) {
-		  d3.select('.flex-drag-container').style('pointer-events', 'none');
 		  if (elapsed > 3000 && elapsed < 4000) {
 			  d3.select('#mix-gif').attr('xlink:href', 'img/mixture.gif');
 			  generateDots('center', [leftDropItem, rightDropItem]);
@@ -332,11 +336,12 @@ d3.selectAll('.drag-object').on('click', function() {
 })
 
 function endAnimation() {
-	d3.select('.svg-container').style('opacity', '.5');
-	 d3.select('.flex-drag-container').style('opacity', '.5')
-	 d3.select('.instructions-container').style('opacity', '.5')
-	 d3.select('.success-message-container').style('opacity', '.5')
+	d3.select('.svg-container').style('opacity', '.4');
+	 d3.select('.flex-drag-container').style('opacity', '.4')
+	 d3.select('.instructions-container').style('opacity', '.4')
+	 d3.select('.success-message-container').style('opacity', '.4')
 	 d3.select('.reset-button').style('display', 'block')
+	d3.select('.point-up').style('display', 'block')
 }
 
 d3.select('.reset-button').on('click', function() {
@@ -361,8 +366,8 @@ function generateDots(side, inputs) {
 		//channelOffsetX = outerChipPathW / 4;
 		channelOffsetX = 137;
 		channelOffsetY = 160;
-		midX = 190;
-		midY = 260;
+		midX = 180;
+		midY = 240;
 	} else if (side == 'right'){
 		//channelOffsetX = ((3 * outerChipPathW) / 4);
 		channelOffsetX = 303;
@@ -710,8 +715,9 @@ function reset() {
 	 d3.select('.instructions-container').style('opacity', '1')
 	 d3.select('.success-message-container').style('opacity', '1')
 	 d3.select('.reset-button').style('display', 'none')
+	 d3.select('.point-up').style('display', 'none')
 	
-	d3.selectAll('.drag-object').classed('drag-object-selected', false);
+	d3.selectAll('.icon').classed('icon-selected', false);
 	leftDrop = false;
 	leftDropItem = null;
 	rightDrop = false;
@@ -722,7 +728,8 @@ function reset() {
 	d3.select('#mix-gif').attr('xlink:href', 'img/empty_space.svg');
 	d3.select('#output').attr('xlink:href', 'img/empty_space.svg')
 	d3.select('#output-success').attr('xlink:href', 'img/empty_space.svg');
-	 d3.select('.flex-drag-container').style('pointer-events', 'all');
+		d3.selectAll('.icon').style('pointer-events', 'all');
+		d3.selectAll('.drag-object').style('pointer-events', 'all');
 	
 	d3.select('.instructions-step-number').text('1');
 	d3.select('.instructions-description').text('Choose the first input.');
@@ -740,7 +747,7 @@ function reset() {
 }
 
 function resetScroll() {
-	d3.selectAll('.drag-object').classed('drag-object-selected', false);
+	d3.selectAll('.icon').classed('icon-selected', false);
 	leftDrop = false;
 	leftDropItem = null;
 	rightDrop = false;
