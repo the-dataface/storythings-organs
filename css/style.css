@@ -454,7 +454,7 @@ hr {
 @media only screen and (max-width: 509px) {
 	.instructions-container {
 		height:80px;
-		padding-top:10px;
+		padding-top:5px;
 	}
 	.instructions {	
 		width:100%;
@@ -495,7 +495,7 @@ hr {
 	}
 
 	.svg-container {
-		width:90%;
+		
 		
 	}
 	#chip-svg {
@@ -587,7 +587,7 @@ hr {
 
 	.success {
 		font-size: 14px;
-		width: 120px;
+		width: 140px;
 	}
 
 	.failure {

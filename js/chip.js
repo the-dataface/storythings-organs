@@ -86,10 +86,7 @@ function handleResize() {
 		.style('height', chartHeight + 'px');
 		
 		chipSvg
-		.attr('height', chartHeight - 300)
-		
-		d3.select('.svg-container')
-		.attr('height', (chartHeight - 300) + 'px')
+		.attr('height', chartHeight - 350)
 		
 	} else if (small_screen) {
 		chartHeight = Math.floor(window.innerHeight);
