@@ -250,6 +250,12 @@ hr {
 	display:inline!important;
 }
 
+.icon:hover {
+	border:3px solid black;
+	border-radius:100px;
+	padding:2px;
+}
+
 .icon-label {
 	font-size:14px;
 	text-align:center;
@@ -269,7 +275,7 @@ hr {
 }
 @media only screen and (min-width : 1300px) {
 	.instructions-container {
-		height:100px;
+		height:110px;
 		padding-bottom:10px;
 	}
 	.instructions-header {
@@ -303,7 +309,7 @@ hr {
 
 @media only screen and (min-width : 1000px) and (max-width: 1299px){
 	.instructions-container {
-		height:80px;
+		height:90px;
 		font-size:20px;
 	}
 	.instructions-header {
@@ -343,11 +349,12 @@ hr {
 		height:80px;
 	}
 	.instructions-header {
-		font-size:25px;
+		font-size:30px;
+		padding-bottom:10px;
 	}
 	
 	.instructions-description {
-		font-size:20px!important;
+		font-size:25px!important;
 	}
 
 	.icon-label {
@@ -383,7 +390,8 @@ hr {
 
 @media only screen and (min-width : 510px) and (max-width: 763px) {
 	.instructions-container {
-		height:70px;
+		height:80px;
+		padding-top:10px;
 	}
 	.instructions-header {
 		font-size:20px;
@@ -439,7 +447,8 @@ hr {
 
 @media only screen and (max-width: 509px) {
 	.instructions-container {
-		height:70px;
+		height:80px;
+		padding-top:10px;
 	}
 	.instructions {	
 		width:100%;
@@ -527,13 +536,13 @@ hr {
 
 @media only screen and (min-width : 1000px) {
 	.success-message-container {
-		padding-top:10px;
+		padding-top:20px;
 	}
 	.message {
-		font-size:25px;
+		font-size:30px;
 	}
 	.success {
-		font-size: 25px;
+		font-size: 30px;
 		width: 300px;
 	}
 
@@ -548,11 +557,11 @@ hr {
 		padding-top:10px;
 	}
 	.message {
-		font-size:18px;
+		font-size:25px;
 	}
 
 	.success {
-		font-size: 18px;
+		font-size: 25px;
 		width: 200px;
 	}
 
@@ -822,11 +831,11 @@ hr {
 	top:50%;
 	left:50%;
 	transform:translate(-50%, -50%);
-	background: #ee3939;
-    color: #fff;
+	background: lightgrey;
+    color: black;
     font-size: 25px;
     width: 200px;
-    height: 40px;
+    height: 50testpx;
     border: none;
     border-bottom: 4px solid rgba(0,0,0,0.25);
     text-align: center;
@@ -841,7 +850,7 @@ hr {
 
 .reset-button:hover {
 	background: #fff;
-    color: #ee3939;
+    color: black;
     border: 1px solid lightgrey;
     border-bottom: 4px solid rgba(0,0,0,0.25);
 }

@@ -19,8 +19,6 @@ var scroller = scrollama();
 var windowW = window.innerWidth;
 var windowH = window.innerHeight;
 
-console.log(flexDragContainer.node().offsetWidth);
-
 // what size screen?
 var large_screen = false;
 var medium_screen = false;
@@ -104,13 +102,9 @@ function handleResize() {
 		d3.select('.svg-container').attr('height', '100px');
 		
 	} else if (medium_screen) {
-		chipSvg
-		.attr('width', chartWidth - 200)
-		.attr('height', (chartWidth - 200) * 1.4)
+		
 	} else {
-		chipSvg
-		.attr('width', chartWidth - 350)
-		.attr('height', (chartWidth - 200))
+		
 		
 	}
 	
@@ -277,6 +271,14 @@ d3.selectAll('.drag-object').on('click', function() {
 		leftDropItem = id;
 		d3.select('.instructions-description').text('Choose the second input.');
 		generateDots('left', [leftDropItem]);
+	
+		var t = d3.timer(function(elapsed) {
+		  if (elapsed > 2000 && elapsed < 4000) {
+			 //generatePhysicsDots([leftDropItem]);
+		  } else if (elapsed > 4000) {
+		  	   t.stop();
+		  } 
+		});
 		
 	} else if (!rightDrop) {
 		animationRunning = true;
@@ -306,6 +308,7 @@ d3.selectAll('.drag-object').on('click', function() {
 		  if (elapsed > 3000 && elapsed < 4000) {
 			  d3.select('#mix-gif').attr('xlink:href', 'img/mixture.gif');
 			  generateDots('center', [leftDropItem, rightDropItem]);
+			  
 		  } else if (elapsed > 7000 && elapsed < 10000) {
 		  	   d3.select('#output').attr('xlink:href', 'img/icons/PNG/' + png + '.png')
 			  if (success) {
@@ -358,8 +361,8 @@ function generateDots(side, inputs) {
 		//channelOffsetX = outerChipPathW / 4;
 		channelOffsetX = 137;
 		channelOffsetY = 160;
-		midX = 180;
-		midY = 240;
+		midX = 190;
+		midY = 260;
 	} else if (side == 'right'){
 		//channelOffsetX = ((3 * outerChipPathW) / 4);
 		channelOffsetX = 303;
@@ -523,6 +526,135 @@ function generateDots(side, inputs) {
 		}, 1000);
 	}
 }
+
+function generatePhysicsDots(inputs) {
+	/*
+	count = 1000;
+	var radius = 250;
+	*/
+	
+	console.log('generating');
+
+
+
+	/*
+	while (count) {
+		var pt_angle = Math.random() * 2 * Math.PI;
+		var pt_radius_sq = Math.random() * radius * radius;
+		var pt_x = Math.sqrt(pt_radius_sq) * Math.cos(pt_angle);
+		var pt_y = Math.sqrt(pt_radius_sq) * Math.sin(pt_angle);
+		d3.select('.container').append('circle').attr('cx', pt_x + 250).attr('cy', pt_y + 250).attr('r', '2').attr('fill', 'red');
+		count--;
+	}
+	*/
+
+	const GAS_DENSITY = 0.0005, // particles per sq px
+				NUM_DIFFUSERS = 5,
+				DIFFUSER_RADIUS = 50;
+	let	TEMP = 10;
+
+	const canvasWidth = window.innerWidth,
+		canvasHeight = window.innerHeight,
+		numGasParticles = Math.round(canvasWidth * canvasHeight * GAS_DENSITY),
+		svgCanvas = d3.select('svg#chip-svg');
+
+	var width = 70;
+	var height = 70;
+	var τ = 2 * Math.PI;
+
+	function randomVelocity(temp) {
+		// The Maxwell-Boltzman velocity distribution where temp is a renormalized temperature temp = kT/m
+		return d3.randomNormal(0, Math.sqrt(temp))();
+	}
+
+	function generateParticles(temp) {
+
+		const gas = d3.range(numGasParticles).map(() => {
+			return {
+				x: Math.random() * width,
+				y: Math.random() * height,
+				vx: randomVelocity(temp),
+				vy: randomVelocity(temp),
+				r: 3
+			}
+		});
+
+		return gas;
+	}
+
+	var nodes = d3.range(200).map(function () {
+		return {
+			x: width/2 + (-0.5 + Math.random())*150,
+			y: height/2 + (-0.5 + Math.random())*150
+		};
+	});
+
+
+	const forceSim = d3.forceSimulation()
+		.alphaDecay(0)
+		.velocityDecay(0)
+		.on('tick', particleDigest)
+		.force("brownian", function () {
+			for (var i = 0, n = nodes.length, node, k = 0.1; i < n; ++i) {
+				if (Math.random() > 1 - k) {
+					var angle = Math.random() * τ;
+					node = nodes[i];
+					node.vx += 0.2 * Math.cos(angle);
+					node.vy += 0.2 * Math.sin(angle);
+
+				}
+			}
+		})
+		.force("bounce-on-container", function () {
+			for (var i = 0, n = nodes.length, node; i < n; ++i) {
+				node = nodes[i];
+				var dx = node.x / width - 1 / 2,
+					dy = node.y / height - 1 / 2,
+					d2 = dx * dx + dy * dy;
+				if (d2 > 0.16) {
+					var angle = Math.atan2(dy, dx),
+						angle1 = Math.atan2(node.vy, node.vx),
+						angle2 = Math.PI - angle1 + 2 * angle,
+						norm = Math.sqrt(node.vx*node.vx + node.vy*node.vy);
+					node.vx = norm * Math.cos(angle2);
+					node.vy = norm * Math.sin(angle2);
+				}
+
+			}
+		})
+		.nodes(nodes.slice());
+
+	// Event handlers
+
+	//
+
+	function particleDigest() {
+		let particle = svgCanvas.selectAll('circle.particle').data(forceSim.nodes());
+
+		particle.exit().remove();
+
+		particle.merge(
+			particle.enter().append('circle')
+				.classed('particle', true)
+				.attr('r', 2)
+				.attr('fill', 'darkslategrey')
+		)
+			.attr('cx', d => d.x)
+			.attr('cy', d => d.y)
+			.attr('transform', 'translate(150, 150)')
+	}
+}
+
+/*
+
+.attr('fill', function() {
+					if (fill.length == 2) {
+						return fill[Math.round(Math.random())];
+					} else {
+						return fill[0];
+					}
+				})
+				*/
 
 function generateCombination() {
 	//$(".chart").effect( "shake" );
