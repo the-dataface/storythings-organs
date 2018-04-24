@@ -124,8 +124,7 @@ function handleStepEnter(response) {
 	})
 	// update graphic based on step
 	//chart.select('p').text(response.index + 1)
-	console.log(response.index);
-	console.log(response.direction);
+	
 	if (((response.index == 1 && !large_screen) || (response.index == 0 && large_screen)) && !animationRunning) {
 		drawChipOutline();
 		
@@ -152,7 +151,7 @@ function handleStepEnter(response) {
 }
 function handleStepExit(response) {
 	// response = { element, direction, index }
-	console.log(response)
+	
 	
 }
 function handleContainerEnter(response) {
@@ -258,7 +257,7 @@ function drawChipChannels() {
 }
 
 d3.selectAll('.drag-object').on('mouseover', function() {
-	console.log('hi');
+	
 })
 
 d3.selectAll('.drag-object').on('click', function() {
@@ -413,9 +412,11 @@ function generateDots(side, inputs) {
 					i: i, 
 					firstXOffset: Math.floor(Math.random()*10) + Math.floor(Math.random()*-10),
 					secondXOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30),
-					secondYOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30)
-
-
+					secondYOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30),
+					firstQuadrantPoint: generateRandomPointInCircle(1),
+					secondQuadrantPoint: generateRandomPointInCircle(2),
+					thirdQuadrantPoint: generateRandomPointInCircle(3),
+					fourthQuadrantPoint: generateRandomPointInCircle(4)
 				}
 			})
 
@@ -436,10 +437,38 @@ function generateDots(side, inputs) {
 				})
 			  .transition().delay(d => d.i*100)
 				.at({opacity: 1})
-			  .transition().duration(1000)
+			  .transition().duration(1000).ease(d3.easeLinear)
 				.at({
 				  cx:midX,
 				  cy:midY
+				})
+			   .transition().duration(1000).ease(d3.easeLinear)
+				.attr('cx', function(d) {
+					return d.firstQuadrantPoint[0];
+				})
+				.attr('cy', function(d) {
+					return d.firstQuadrantPoint[1];
+				})
+			  .transition().duration(1000).ease(d3.easeLinear)
+				.attr('cx', function(d) {
+					return d.secondQuadrantPoint[0];
+				})
+				.attr('cy', function(d) {
+					return d.secondQuadrantPoint[1];
+				})
+			  .transition().duration(1000).ease(d3.easeLinear)
+				.attr('cx', function(d) {
+					return d.thirdQuadrantPoint[0];
+				})
+				.attr('cy', function(d) {
+					return d.thirdQuadrantPoint[1];
+				})
+			  .transition().duration(1000).ease(d3.easeLinear)
+				.attr('cx', function(d) {
+					return d.fourthQuadrantPoint[0];
+				})
+				.attr('cy', function(d) {
+					return d.fourthQuadrantPoint[1];
 				})
 			  .transition().duration(0)
 				.remove()
@@ -455,8 +484,11 @@ function generateDots(side, inputs) {
 					i: i, 
 					firstXOffset: Math.floor(Math.random()*10) + Math.floor(Math.random()*-10),
 					secondXOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30),
-					secondYOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30)
-
+					secondYOffset: Math.floor(Math.random()*30) + Math.floor(Math.random()*-30),
+					firstQuadrantPoint: generateRandomPointInCircle(1),
+					secondQuadrantPoint: generateRandomPointInCircle(2),
+					thirdQuadrantPoint: generateRandomPointInCircle(3),
+					fourthQuadrantPoint: generateRandomPointInCircle(4)
 
 				}
 			})
@@ -478,10 +510,38 @@ function generateDots(side, inputs) {
 				})
 			  .transition().delay(d => d.i*100)
 				.at({opacity: 1})
-			  .transition().duration(1000)
+			  .transition().duration(1000).ease(d3.easeLinear)
 				.at({
 				  cx:midX,
 				  cy:midY
+				})
+			  .transition().duration(1000).ease(d3.easeLinear)
+				.attr('cx', function(d) {
+					return d.firstQuadrantPoint[0];
+				})
+				.attr('cy', function(d) {
+					return d.firstQuadrantPoint[1];
+				})
+			  .transition().duration(1000).ease(d3.easeLinear)
+				.attr('cx', function(d) {
+					return d.secondQuadrantPoint[0];
+				})
+				.attr('cy', function(d) {
+					return d.secondQuadrantPoint[1];
+				})
+			  .transition().duration(1000).ease(d3.easeLinear)
+				.attr('cx', function(d) {
+					return d.thirdQuadrantPoint[0];
+				})
+				.attr('cy', function(d) {
+					return d.thirdQuadrantPoint[1];
+				})
+			  .transition().duration(1000).ease(d3.easeLinear)
+				.attr('cx', function(d) {
+					return d.fourthQuadrantPoint[0];
+				})
+				.attr('cy', function(d) {
+					return d.fourthQuadrantPoint[1];
 				})
 			  .transition().duration(0)
 				.remove()
@@ -534,13 +594,44 @@ function generateDots(side, inputs) {
 	}
 }
 
+function generateRandomPointInCircle(quadrant) {
+
+	var countA = 200,
+		countB = 200,// number of random  points
+		radius = 60,
+		cx = 218 - radius / 2,
+		cy = 296 - radius / 2,
+		generating = true;
+			
+
+	while (generating) {
+
+		var pt_angle = Math.random() * 2 * Math.PI;
+		var pt_radius_sq = Math.random() * radius * radius;
+		var pt_x = Math.sqrt(pt_radius_sq) * Math.cos(pt_angle);
+		var pt_y = Math.sqrt(pt_radius_sq) * Math.sin(pt_angle);
+		var absX = pt_x + 60 / 2;
+		var absY = pt_y + 60 / 2
+		var x = absX + cx;
+		var y = absY + cy;
+
+		if (quadrant == 1 && absX < radius / 2 && absY < radius / 2) {
+			return [x, y];
+		} else if (quadrant == 2 && absX < radius / 2 && absY > radius / 2) {
+			return [x, y];
+		} else if (quadrant == 3 && absX > radius / 2 && absY > radius / 2) {
+			return [x, y];
+		} else if (quadrant == 4 && absX > radius / 2 && absY < radius / 2) {
+			return [x, y];
+		}
+	}
+}
+
 function generatePhysicsDots(inputs) {
 	/*
 	count = 1000;
 	var radius = 250;
 	*/
-	
-	console.log('generating');
 
 
 
