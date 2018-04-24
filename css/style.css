@@ -280,6 +280,9 @@ hr {
 	flex-flow:row wrap;
 }
 @media only screen and (min-width : 1300px) {
+	.chart {
+		min-height:800px;
+	}
 	.instructions-container {
 		height:110px;
 		padding-bottom:10px;
@@ -314,6 +317,9 @@ hr {
 }
 
 @media only screen and (min-width : 1000px) and (max-width: 1299px){
+	.chart {
+		min-height:800px;
+	}
 	.instructions-container {
 		height:90px;
 		font-size:20px;

@@ -100,8 +100,13 @@ function handleResize() {
 		
 	} else if (medium_screen) {
 		
+		chipSvg
+		.attr('height', chartHeight - 400)
+		
 	} else {
 		
+		chipSvg
+		.attr('height', chartHeight - 400)
 		
 	}
 	
