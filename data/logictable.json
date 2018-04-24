@@ -11,7 +11,7 @@
    "input1": "Food",
    "input2": "Acid",
    "output": "DigestedFood",
-	 "outputpng": "digestedfood",
+	 "outputpng": "stomach",
    "success": true,
    "successtext": "You made a stomach-on-a-chip!"
  },
@@ -147,7 +147,7 @@
    "input1": "Oxygen",
    "input2": "Blood",
    "output": "CO2, Oxygenated Blood",
-	 "outputpng": "lung",
+	 "outputpng": "lungs",
    "success": true,
    "successtext": "You made a lung-on-a-chip!"
  },
@@ -243,7 +243,7 @@
    "input1": "Blood",
    "input2": "Oxygen",
    "output": "CO2, Oxygenated Blood",
-	 "outputpng": "lung",
+	 "outputpng": "lungs",
    "success": true,
    "successtext": "You made a lung-on-a-chip!"
  },
