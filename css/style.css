@@ -295,8 +295,8 @@ hr {
 		font-size:30px!important;
 	}
 	.icon {
-		width:100%;
-		height:100%;
+		width:100px;
+		height:100px;
 	}
 	.icon-label {
 		font-size:16px;
@@ -312,7 +312,7 @@ hr {
 	
 	.drag-object {
 		width:40%;
-		margin:auto;
+		margin:10px;
 	}
 }
 
@@ -331,8 +331,8 @@ hr {
 		font-size:20px;
 	}
 	.icon {
-		width:100%;
-		height:100%;
+		width:80px;
+		height:80px%;
 	}
 	.icon-label {
 		font-size:16px;
@@ -341,7 +341,7 @@ hr {
 	
 	.drag-object {
 		width:40%;
-		margin:auto;
+		margin:10px;
 	}
 	
 	.flex-drag-container {
@@ -374,24 +374,24 @@ hr {
 		line-height:16px;
 	}
 	.icon {
-		width:100%;
-		height:100%;
+		width:80px;
+		height:80px;
 	}
 	
 	.drag-object {
 		width:40%;
-		margin:auto;
+		margin:10px;
 	}
 	
 	.flex-drag-container {
-		width:25%;
+		width:200px;
 		height:500px;
 		margin-right:10px;
 		justify-content:center;
 	}
 	
 	.svg-container {
-		width:70%;
+		width:calc(100% - 220px);
 		margin:auto;
 	}
 	#chip-svg {
