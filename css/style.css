@@ -47,6 +47,7 @@ hr {
 }
 
 .scroll__graphic {
+	font-family: 'Futura';
 	position: absolute;
 	top: 0;
 	left: 33%;
