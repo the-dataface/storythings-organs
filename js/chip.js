@@ -62,6 +62,13 @@ function handleResize() {
 	if (large_screen) {
 		d3.selectAll('.in-between-step').style('display', 'none');
 		step.style('height', stepHeight + 'px');
+	} if (medium_screen) {
+		d3.selectAll('.text-step').each(function() {
+			var height = d3.select(this).select('p').node().getBoundingClientRect().height;
+			console.log(height);
+			d3.select(this).style('height', height + 'px');
+		})
+		d3.selectAll('.in-between-step').style('height', stepHeight + 'px');
 	} else {
 		d3.selectAll('.text-step').each(function() {
 			var height = d3.select(this).select('p').node().getBoundingClientRect().height;
