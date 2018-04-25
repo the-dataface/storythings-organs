@@ -297,8 +297,8 @@ hr {
 		font-size:22px!important;
 	}
 	.icon {
-		width:60px;
-		height:60px;
+		width:70px;
+		height:70px;
 	}
 	.icon-label {
 		font-size:14px;
@@ -314,7 +314,7 @@ hr {
 	
 	.drag-object {
 		width:40%;
-		margin:10px;
+		margin-bottom:10px;
 	}
 }
 
@@ -334,8 +334,8 @@ hr {
 		font-size:22px;
 	}
 	.icon {
-		width:60px;
-		height:60px;
+		width:70px;
+		height:70px;
 	}
 	.icon-label {
 		font-size:14px;
@@ -344,7 +344,7 @@ hr {
 	
 	.drag-object {
 		width:40%;
-		margin:10px;
+		margin-bottom:10px;
 	}
 	
 	.flex-drag-container {
