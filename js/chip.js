@@ -59,10 +59,11 @@ function handleResize() {
 	// 1. update height of step elements
 	var stepHeight = Math.floor(window.innerHeight);
 	var inBetweenStepHeight = Math.floor(window.innerHeight * 0.3);
-	step.style('height', stepHeight + 'px');
 	if (large_screen) {
 		d3.selectAll('.in-between-step').style('display', 'none');
+		step.style('height', stepHeight + 'px');
 	} else {
+		step.style('height', stepHeight * .8 + 'px');
 		d3.selectAll('.in-between-step').style('height', inBetweenStepHeight + 'px');
 	}
 	// 2. update width/height of graphic element
