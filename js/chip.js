@@ -101,12 +101,12 @@ function handleResize() {
 	} else if (medium_screen) {
 		
 		chipSvg
-		.attr('height', chartHeight - 200)
+		.attr('height', chartHeight - 150)
 		
 	} else {
 		
 		chipSvg
-		.attr('height', chartHeight - 200)
+		.attr('height', chartHeight - 250)
 		
 	}
 	
