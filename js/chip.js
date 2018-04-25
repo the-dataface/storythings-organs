@@ -106,7 +106,8 @@ function handleResize() {
 	} else {
 		
 		chipSvg
-		.attr('height', chartHeight - 250)
+		.attr('height', chartHeight - 200)
+		.attr('width', (chartHeight - 200) / 1.4)
 		
 	}
 	
