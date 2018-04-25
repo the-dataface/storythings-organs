@@ -278,14 +278,6 @@ d3.selectAll('.drag-object').on('click', function() {
 		leftDropItem = id;
 		d3.select('.instructions-description').text('Choose the second input.');
 		generateDots('left', [leftDropItem]);
-	
-		var t = d3.timer(function(elapsed) {
-		  if (elapsed > 2000 && elapsed < 4000) {
-			 //generatePhysicsDots([leftDropItem]);
-		  } else if (elapsed > 4000) {
-		  	   t.stop();
-		  } 
-		});
 		
 	} else if (!rightDrop) {
 		d3.selectAll('.icon').style('pointer-events', 'none');
@@ -313,9 +305,29 @@ d3.selectAll('.drag-object').on('click', function() {
 
 		}
 		
+		var addedGif = false;
 		var t = d3.timer(function(elapsed) {
 		  if (elapsed > 3000 && elapsed < 4000) {
-			  d3.select('#mix-gif').attr('xlink:href', 'img/mixture.gif');
+			  //document.getElementById("mix-gif").setAttribute("xlink:href", 'img/mixture.gif');
+			  $('#mix-gif').attr("xlink:href","img/mixture.gif");
+			  
+			  
+			  if (true) {
+				  addedGif = true;
+				  
+				  d3.select('#mix-area-pat')
+				  .append('image')
+			  	  .attr('id', 'mix-gif-on')
+			  	  .attr('x', '0%')
+			  	  .attr('y', '0%')
+			  	  .attr('width', '512')
+				  .attr('width', '512');
+			  
+				  document.getElementById("mix-gif-on").setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', 'img/mixture.gif');
+				  
+			  }
+			  
+			  //d3.select('#mix-gif').attr('xlink:href', 'img/mixture.gif');
 			  generateDots('center', [leftDropItem, rightDropItem]);
 			  
 		  } else if (elapsed > 7000 && elapsed < 10000) {
@@ -823,6 +835,7 @@ function reset() {
 	d3.select('#left-drop').attr('xlink:href', 'img/empty_space.svg')
 	d3.select('#right-drop').attr('xlink:href', 'img/empty_space.svg')
 	d3.select('#mix-gif').attr('xlink:href', 'img/empty_space.svg');
+	d3.selectAll('.mix-gif-on').remove();
 	d3.select('#output').attr('xlink:href', 'img/empty_space.svg')
 	d3.select('#output-success').attr('xlink:href', 'img/empty_space.svg');
 		d3.selectAll('.icon').style('pointer-events', 'all');
@@ -853,6 +866,7 @@ function resetScroll() {
 	d3.select('#left-drop').attr('xlink:href', 'img/empty_space.svg')
 	d3.select('#right-drop').attr('xlink:href', 'img/empty_space.svg')
 	d3.select('#mix-gif').attr('xlink:href', 'img/empty_space.svg');
+	d3.selectAll('#mix-gif-on').remove();
 	d3.select('#output').attr('xlink:href', 'img/empty_space.svg')
 	d3.select('#output-success').attr('xlink:href', 'img/empty_space.svg');
 	
