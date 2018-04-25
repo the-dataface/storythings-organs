@@ -470,11 +470,12 @@ hr {
 	}
 	
 	.instructions-header {
-		font-size:16px;
+		font-size:17px;
 	}
 	
 	.instructions-description {
-		font-size:12px!important;
+		font-size:14px!important;
+		line-height:18px;
 	}
 	.instructions-step {
 		font-size:13px;
@@ -483,7 +484,7 @@ hr {
 	}
 	
 	.icon {
-		width:40p!important;
+		width:40px!important;
 		height:40px;
 	}
 	
