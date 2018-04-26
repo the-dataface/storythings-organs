@@ -57,25 +57,33 @@ d3.json("data/logictable.json", function(data) {
 // generic window resize listener event
 function handleResize() {
 	// 1. update height of step elements
-	var stepHeight = Math.floor(window.innerHeight);
+	
 	//var inBetweenStepHeight = Math.floor(window.innerHeight);
+	var stepHeight = Math.floor(window.innerHeight);
 	if (large_screen) {
 		d3.selectAll('.in-between-step').style('display', 'none');
 		step.style('height', stepHeight + 'px');
-	} if (medium_screen) {
+		/*
 		d3.selectAll('.text-step').each(function() {
 			var height = d3.select(this).select('p').node().getBoundingClientRect().height;
-			console.log(height);
+			var stepMargin = Math.floor(window.innerHeight * .3);
+			d3.select(this).style('height', height + stepMargin + 'px');
+		})
+		*/
+	} else if (medium_screen) {
+		d3.selectAll('.text-step').each(function() {
+			var height = d3.select(this).select('p').node().getBoundingClientRect().height;
 			d3.select(this).style('height', height + 'px');
 		})
 		d3.selectAll('.in-between-step').style('height', stepHeight + 'px');
+		
 	} else {
 		d3.selectAll('.text-step').each(function() {
 			var height = d3.select(this).select('p').node().getBoundingClientRect().height;
-			console.log(height);
 			d3.select(this).style('height', height + 'px');
 		})
 		d3.selectAll('.in-between-step').style('height', 500 + 'px');
+		console.log('what');
 	}
 	// 2. update width/height of graphic element
 	var bodyWidth = d3.select('body').node().offsetWidth;
