@@ -82,7 +82,7 @@ function handleResize() {
 			var height = d3.select(this).select('p').node().getBoundingClientRect().height;
 			d3.select(this).style('height', height + 'px');
 		})
-		d3.selectAll('.in-between-step').style('height', 500 + 'px');
+		d3.selectAll('.in-between-step').style('height', stepHeight * .8 + 'px');
 		console.log('what');
 	}
 	// 2. update width/height of graphic element
@@ -150,9 +150,9 @@ function handleStepEnter(response) {
 	console.log(response.direction);
 	
 	if (((response.index == 1 && !large_screen) || (response.index == 0 && large_screen)) && !animationRunning) {
-		d3.select('.instructions').style('display', 'none')
-		d3.select('.flex-drag-container').style('display', 'none')
-		d3.select('.chart-footer-container').style('display', 'none')
+		d3.select('.instructions').style('opacity', '0')
+		d3.select('.flex-drag-container').style('opacity', '0')
+		d3.select('.chart-footer-container').style('opacity', '0')
 		if (response.direction == 'down') {
 			drawChipOutline();
 		} else {
@@ -160,22 +160,23 @@ function handleStepEnter(response) {
 	  		.style('opacity', '0');
 		}
 	} else if (((response.index == 3 && !large_screen) || (response.index == 2 && large_screen)) && !animationRunning) {
-		d3.select('.instructions').style('display', 'none')
-		d3.select('.flex-drag-container').style('display', 'none')
-		d3.select('.chart-footer-container').style('display', 'none')
+		d3.select('.instructions').style('opacity', '0')
+		d3.select('.flex-drag-container').style('opacity', '0')
+		d3.select('.chart-footer-container').style('opacity', '0')
 		if (response.direction == 'down') {
 			drawChipChannels();
-			resetScroll();
+			d3.select('#outer-chip-img')
+	  		.style('opacity', '1');
 		} else {
-	
+			resetScroll();
 		}
 	} else if (((response.index == 5 && !large_screen) || (response.index == 4 && large_screen)) && !animationRunning) {
 
 		d3.selectAll('.outer-chip-path-immediate').style('visibility', 'visible');
 		d3.selectAll('.channel-path-immediate').style('visibility', 'visible');
-		d3.select('.chart-footer-container').style('display', 'block')
-		d3.select('.instructions').style('display', 'block')
-		d3.select('.flex-drag-container').style('display', 'flex')
+		d3.select('.chart-footer-container').style('opacity', '1')
+		d3.select('.instructions').style('opacity', '1')
+		d3.select('.flex-drag-container').style('opacity', '1')
 	}
 	
 }
@@ -899,12 +900,12 @@ function resetScroll() {
 	d3.select('#output').attr('xlink:href', 'img/empty_space.svg')
 	d3.select('#output-success').attr('xlink:href', 'img/empty_space.svg');
 	
-	d3.select('.instructions').style('display', 'none');
+	d3.select('.instructions').style('opacity', '0');
 	d3.select('.instructions-step-number').text('1');
 	d3.select('.instructions-description').text('Choose the first input.');
 	
-	d3.select('.flex-drag-container').style('display', 'none');
-	d3.select('.success-message-container').style('display', 'none');
+	d3.select('.flex-drag-container').style('opacity', '0');
+	d3.select('.success-message-container').style('opacity', '0');
 	
 	d3.selectAll('circle.dot').remove();
 	animationRunning = false;
