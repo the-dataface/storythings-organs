@@ -147,22 +147,28 @@ function handleStepEnter(response) {
 	// update graphic based on step
 	//chart.select('p').text(response.index + 1)
 	
-	console.log(response.index);
+	console.log(response.direction);
 	
 	if (((response.index == 1 && !large_screen) || (response.index == 0 && large_screen)) && !animationRunning) {
-		drawChipOutline();
-		
-		
 		d3.select('.instructions').style('display', 'none')
 		d3.select('.flex-drag-container').style('display', 'none')
 		d3.select('.chart-footer-container').style('display', 'none')
+		if (response.direction == 'down') {
+			drawChipOutline();
+		} else {
+			d3.select('#inner-chip-img')
+	  		.style('opacity', '0');
+		}
 	} else if (((response.index == 3 && !large_screen) || (response.index == 2 && large_screen)) && !animationRunning) {
-		drawChipChannels();
-		resetScroll();
-		
 		d3.select('.instructions').style('display', 'none')
 		d3.select('.flex-drag-container').style('display', 'none')
 		d3.select('.chart-footer-container').style('display', 'none')
+		if (response.direction == 'down') {
+			drawChipChannels();
+			resetScroll();
+		} else {
+	
+		}
 	} else if (((response.index == 5 && !large_screen) || (response.index == 4 && large_screen)) && !animationRunning) {
 
 		d3.selectAll('.outer-chip-path-immediate').style('visibility', 'visible');
@@ -189,6 +195,10 @@ function handleContainerExit(response) {
 	// un-sticky the graphic, and pin to top/bottom of container
 	graphic.classed('is-fixed', false);
 	graphic.classed('is-bottom', response.direction === 'down');
+	if (response.direction == 'up') {
+		d3.select('#outer-chip-img')
+	  		.style('opacity', '0');
+	}
 }
 
 function init() {
@@ -329,7 +339,7 @@ d3.selectAll('.drag-object').on('click', function() {
 		var t = d3.timer(function(elapsed) {
 		  if (elapsed > 3000 && elapsed < 4000) {
 			  //document.getElementById("mix-gif").setAttribute("xlink:href", 'img/mixture.gif');
-			  $('#mix-gif').attr("xlink:href","img/mixture.gif");
+			  $('#mix-gif').attr("xlink:href","img/poof.gif");
 			  
 			  
 			  if (true) {
@@ -343,7 +353,7 @@ d3.selectAll('.drag-object').on('click', function() {
 			  	  .attr('width', '512')
 				  .attr('width', '512');
 			  
-				  document.getElementById("mix-gif-on").setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', 'img/mixture.gif');
+				  document.getElementById("mix-gif-on").setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', 'img/poof.gif');
 				  
 			  }
 			  
@@ -378,7 +388,6 @@ function endAnimation() {
 	 d3.select('.instructions-container').style('opacity', '.4')
 	 d3.select('.success-message-container').style('opacity', '.4')
 	 d3.select('.reset-button').style('display', 'block')
-	d3.select('.point-up').style('display', 'block')
 }
 
 d3.select('.reset-button').on('click', function() {
@@ -844,7 +853,6 @@ function reset() {
 	 d3.select('.instructions-container').style('opacity', '1')
 	 d3.select('.success-message-container').style('opacity', '1')
 	 d3.select('.reset-button').style('display', 'none')
-	 d3.select('.point-up').style('display', 'none')
 	
 	d3.selectAll('.icon').classed('icon-selected', false);
 	leftDrop = false;
@@ -884,6 +892,7 @@ function resetScroll() {
 	rightDropItem = null;
 	
 	d3.select('#left-drop').attr('xlink:href', 'img/empty_space.svg')
+ 	//document.getElementById("left-drop").setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', 'img/empty_space.svg');
 	d3.select('#right-drop').attr('xlink:href', 'img/empty_space.svg')
 	d3.select('#mix-gif').attr('xlink:href', 'img/empty_space.svg');
 	d3.selectAll('#mix-gif-on').remove();
@@ -899,6 +908,9 @@ function resetScroll() {
 	
 	d3.selectAll('circle.dot').remove();
 	animationRunning = false;
+	leftTimer.stop();
+	rightTimer.stop();
+	centerTimer.stop();
 }
 
 
