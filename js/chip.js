@@ -153,22 +153,20 @@ function handleStepEnter(response) {
 		d3.select('.instructions').style('opacity', '0')
 		d3.select('.flex-drag-container').style('opacity', '0')
 		d3.select('.chart-footer-container').style('opacity', '0')
-		d3.select('.success-message-container').style('opacity', '0')
+		d3.select('.success-message-container').style('display', 'none')
 		if (response.direction == 'down') {
 			drawChipOutline();
 		} else {
-			d3.select('#inner-chip-img')
-	  		.style('opacity', '0');
+			d3.select('#inner-chip-img').style('opacity', '0');
 		}
 	} else if (((response.index == 3 && !large_screen) || (response.index == 2 && large_screen)) && !animationRunning) {
 		d3.select('.instructions').style('opacity', '0')
 		d3.select('.flex-drag-container').style('opacity', '0')
 		d3.select('.chart-footer-container').style('opacity', '0')
-		d3.select('.success-message-container').style('opacity', '0')
+		d3.select('.success-message-container').style('display', 'none')
 		if (response.direction == 'down') {
 			drawChipChannels();
-			d3.select('#outer-chip-img')
-	  		.style('opacity', '1');
+			d3.select('#outer-chip-img').style('opacity', '1');
 		} else {
 			resetScroll();
 		}
@@ -176,6 +174,8 @@ function handleStepEnter(response) {
 
 		d3.selectAll('.outer-chip-path-immediate').style('visibility', 'visible');
 		d3.selectAll('.channel-path-immediate').style('visibility', 'visible');
+		
+		d3.select('#inner-chip-img').style('opacity', '1')
 		d3.select('.chart-footer-container').style('opacity', '1')
 		d3.select('.instructions').style('opacity', '1')
 		d3.select('.flex-drag-container').style('opacity', '1')
@@ -310,7 +310,7 @@ d3.selectAll('.drag-object').on('click', function() {
 		leftDrop = true;
 		leftDropItem = id;
 		d3.select('.instructions-description').text('Choose the second input.');
-		generateDots('left', [leftDropItem]);
+		//generateDots('left', [leftDropItem]);
 		
 	} else if (!rightDrop) {
 		d3.selectAll('.icon').style('pointer-events', 'none');
@@ -321,7 +321,7 @@ d3.selectAll('.drag-object').on('click', function() {
 		rightDrop = true;
 		rightDropItem = id;
 		d3.select('.instructions-description').text("Let's see what happens...");
-		generateDots('right', [rightDropItem]);
+		//generateDots('right', [rightDropItem]);
 		
 		var output,
 			png,
@@ -345,14 +345,14 @@ d3.selectAll('.drag-object').on('click', function() {
 			  $('#mix-gif').attr("xlink:href","img/poof.gif");
 			  
 			  
-			  if (true) {
+			  if (!addedGif) {
 				  addedGif = true;
 				  
 				  d3.select('#mix-area-pat')
 				  .append('image')
 			  	  .attr('id', 'mix-gif-on')
-			  	  .attr('x', '0%')
-			  	  .attr('y', '0%')
+			  	  .attr('x', '10')
+			  	  .attr('y', '10')
 			  	  .attr('width', '512')
 				  .attr('width', '512');
 			  
@@ -361,18 +361,18 @@ d3.selectAll('.drag-object').on('click', function() {
 			  }
 			  
 			  //d3.select('#mix-gif').attr('xlink:href', 'img/mixture.gif');
-			  generateDots('center', [leftDropItem, rightDropItem]);
+			  //generateDots('center', [leftDropItem, rightDropItem]);
 			  
 		  } else if (elapsed > 7000 && elapsed < 10000) {
 		  	   d3.select('#output').attr('xlink:href', 'img/icons/PNG/' + png + '.png')
 			  if (success) {
 				  d3.select('#output-success').attr('xlink:href', 'img/organ_output_successful.gif');
 				 
-				  d3.select('.success-message-container').style('opacity', '1');
+				  d3.select('.success-message-container').style('display', 'block')
 				  d3.select('.success').style('display', 'block');
 				  d3.select('.message').text(successMessage);
 			  } else {
-				  d3.select('.success-message-container').style('opacity', '1');
+				   d3.select('.success-message-container').style('display', 'block')
 				 // d3.select('.failure').style('display', 'block');
 				  d3.select('.message').text('You just created ' + output + '.');
 			  }
@@ -853,10 +853,10 @@ function generateCombination() {
 }
 
 function reset() {
+	d3.select('.success-message-container').style('display', 'none');
 	d3.select('.svg-container').style('opacity', '1');
-	 d3.select('.flex-drag-container').style('opacity', '1')
-	 d3.select('.instructions-container').style('opacity', '1')
-	 d3.select('.success-message-container').style('opacity', '0')
+	 d3.select('.flex-drag-container').style('opacity', '1');
+	 d3.select('.instructions-container').style('opacity', '1');
 	
 	d3.selectAll('.icon').classed('icon-selected', false);
 	leftDrop = false;
@@ -867,24 +867,22 @@ function reset() {
 	d3.select('#left-drop').attr('xlink:href', 'img/empty_space.svg')
 	d3.select('#right-drop').attr('xlink:href', 'img/empty_space.svg')
 	d3.select('#mix-gif').attr('xlink:href', 'img/empty_space.svg');
-	d3.selectAll('.mix-gif-on').remove();
+	d3.select('#mix-gif-on').remove();
 	d3.select('#output').attr('xlink:href', 'img/empty_space.svg')
 	d3.select('#output-success').attr('xlink:href', 'img/empty_space.svg');
-		d3.selectAll('.icon').style('pointer-events', 'all');
-		d3.selectAll('.drag-object').style('pointer-events', 'all');
+	d3.selectAll('.icon').style('pointer-events', 'all');
+	d3.selectAll('.drag-object').style('pointer-events', 'all');
 	
 	d3.select('.instructions-step-number').text('1');
 	d3.select('.instructions-description').text('Choose the first input.');
 	
 	d3.select('.flex-drag-container').style('display', 'flex');
-	//d3.select('.failure').style('display', 'none');
-	d3.select('.success').style('display', 'none');
 	
 	d3.selectAll('circle.dot').remove();
+	animationRunning = false;
 	leftTimer.stop();
 	rightTimer.stop();
 	centerTimer.stop();
-	animationRunning = false;
 }
 
 function resetScroll() {
@@ -907,7 +905,7 @@ function resetScroll() {
 	d3.select('.instructions-description').text('Choose the first input.');
 	
 	d3.select('.flex-drag-container').style('opacity', '0');
-	d3.select('.success-message-container').style('opacity', '0');
+	d3.select('.success-message-container').style('display', 'none');
 	
 	d3.selectAll('circle.dot').remove();
 	animationRunning = false;

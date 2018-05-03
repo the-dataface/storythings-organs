@@ -521,7 +521,7 @@ hr {
 .success-message-container {
 	text-align:center;
 	width:100%;
-	opacity:0;
+	display:none;
 }
 
 .message {
