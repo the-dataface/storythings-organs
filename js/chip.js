@@ -310,7 +310,7 @@ d3.selectAll('.drag-object').on('click', function() {
 		leftDrop = true;
 		leftDropItem = id;
 		d3.select('.instructions-description').text('Choose the second input.');
-		//generateDots('left', [leftDropItem]);
+		generateDots('left', [leftDropItem]);
 		
 	} else if (!rightDrop) {
 		d3.selectAll('.icon').style('pointer-events', 'none');
@@ -321,7 +321,7 @@ d3.selectAll('.drag-object').on('click', function() {
 		rightDrop = true;
 		rightDropItem = id;
 		d3.select('.instructions-description').text("Let's see what happens...");
-		//generateDots('right', [rightDropItem]);
+		generateDots('right', [rightDropItem]);
 		
 		var output,
 			png,
@@ -361,7 +361,7 @@ d3.selectAll('.drag-object').on('click', function() {
 			  }
 			  
 			  //d3.select('#mix-gif').attr('xlink:href', 'img/mixture.gif');
-			  //generateDots('center', [leftDropItem, rightDropItem]);
+			  generateDots('center', [leftDropItem, rightDropItem]);
 			  
 		  } else if (elapsed > 7000 && elapsed < 10000) {
 		  	   d3.select('#output').attr('xlink:href', 'img/icons/PNG/' + png + '.png')
