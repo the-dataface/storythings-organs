@@ -844,7 +844,6 @@ function generateCombination() {
 		  
 	  } else {
 		
-		reset()
 		t.stop();
 	  }
 	});
