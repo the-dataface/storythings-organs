@@ -153,6 +153,7 @@ function handleStepEnter(response) {
 		d3.select('.instructions').style('opacity', '0')
 		d3.select('.flex-drag-container').style('opacity', '0')
 		d3.select('.chart-footer-container').style('opacity', '0')
+		d3.select('.success-message-container').style('opacity', '0')
 		if (response.direction == 'down') {
 			drawChipOutline();
 		} else {
@@ -163,6 +164,7 @@ function handleStepEnter(response) {
 		d3.select('.instructions').style('opacity', '0')
 		d3.select('.flex-drag-container').style('opacity', '0')
 		d3.select('.chart-footer-container').style('opacity', '0')
+		d3.select('.success-message-container').style('opacity', '0')
 		if (response.direction == 'down') {
 			drawChipChannels();
 			d3.select('#outer-chip-img')
@@ -366,11 +368,11 @@ d3.selectAll('.drag-object').on('click', function() {
 			  if (success) {
 				  d3.select('#output-success').attr('xlink:href', 'img/organ_output_successful.gif');
 				 
-				  d3.select('.success-message-container').style('display', 'block');
+				  d3.select('.success-message-container').style('opacity', '1');
 				  d3.select('.success').style('display', 'block');
 				  d3.select('.message').text(successMessage);
 			  } else {
-				  d3.select('.success-message-container').style('display', 'block');
+				  d3.select('.success-message-container').style('opacity', '1');
 				 // d3.select('.failure').style('display', 'block');
 				  d3.select('.message').text('You just created ' + output + '.');
 			  }
@@ -384,11 +386,13 @@ d3.selectAll('.drag-object').on('click', function() {
 })
 
 function endAnimation() {
+	/*
 	d3.select('.svg-container').style('opacity', '.4');
 	 d3.select('.flex-drag-container').style('opacity', '.4')
 	 d3.select('.instructions-container').style('opacity', '.4')
 	 d3.select('.success-message-container').style('opacity', '.4')
 	 d3.select('.reset-button').style('display', 'block')
+	 */
 }
 
 d3.select('.reset-button').on('click', function() {
@@ -845,15 +849,14 @@ function generateCombination() {
 	  }
 	});
 	
-	
+	x
 }
 
 function reset() {
 	d3.select('.svg-container').style('opacity', '1');
 	 d3.select('.flex-drag-container').style('opacity', '1')
 	 d3.select('.instructions-container').style('opacity', '1')
-	 d3.select('.success-message-container').style('opacity', '1')
-	 d3.select('.reset-button').style('display', 'none')
+	 d3.select('.success-message-container').style('opacity', '0')
 	
 	d3.selectAll('.icon').classed('icon-selected', false);
 	leftDrop = false;
@@ -874,7 +877,6 @@ function reset() {
 	d3.select('.instructions-description').text('Choose the first input.');
 	
 	d3.select('.flex-drag-container').style('display', 'flex');
-	d3.select('.success-message-container').style('display', 'none');
 	//d3.select('.failure').style('display', 'none');
 	d3.select('.success').style('display', 'none');
 	

@@ -521,7 +521,7 @@ hr {
 .success-message-container {
 	text-align:center;
 	width:100%;
-	text-align:center;
+	opacity:0;
 }
 
 .message {
@@ -842,11 +842,6 @@ hr {
 }
 
 .reset-button {
-	position:absolute;
-	display:none;
-	top:100%;
-	left:50%;
-	transform:translate(-50%, -100%);
 	background: #b34a3f;
     color: white;
     font-size: 25px;
@@ -858,8 +853,6 @@ hr {
     margin: 0 auto;
     margin-top: 0px;
     cursor: pointer;
-    transition: all 0.1s ease-in-out;
-	z-index:100;
 }
 
 .reset-button:hover {
