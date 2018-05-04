@@ -363,7 +363,7 @@ d3.selectAll('.drag-object').on('click', function() {
 			  //d3.select('#mix-gif').attr('xlink:href', 'img/mixture.gif');
 			  generateDots('center', [leftDropItem, rightDropItem]);
 			  
-		  } else if (elapsed > 7000 && elapsed < 10000) {
+		  } else if (elapsed > 7000 && elapsed < 8000) {
 		  	   d3.select('#output').attr('xlink:href', 'img/icons/PNG/' + png + '.png')
 			  if (success) {
 				  d3.select('#output-success').attr('xlink:href', 'img/organ_output_successful.gif');
@@ -373,11 +373,11 @@ d3.selectAll('.drag-object').on('click', function() {
 				  d3.select('.message').text(successMessage);
 			  } else {
 				   d3.select('.success-message-container').style('display', 'block')
+				  d3.select('.success').style('display', 'none');
 				 // d3.select('.failure').style('display', 'block');
 				  d3.select('.message').text('You just created ' + output + '.');
 			  }
-		  } else if (elapsed > 12000){
-			  endAnimation();
+		  } else if (elapsed > 8000){
 			 t.stop();
 		  }
 		});
@@ -852,12 +852,9 @@ function generateCombination() {
 }
 
 function reset() {
-	d3.select('.success-message-container').style('display', 'none');
 	d3.select('.svg-container').style('opacity', '1');
 	 d3.select('.flex-drag-container').style('opacity', '1');
 	 d3.select('.instructions-container').style('opacity', '1');
-	d3.select('.success-message-container').style('display', 'none');
-	d3.select('.success-message-container').style('display', 'none');
 	
 	d3.selectAll('.icon').classed('icon-selected', false);
 	leftDrop = false;
@@ -877,7 +874,7 @@ function reset() {
 	d3.select('.instructions-step-number').text('1');
 	d3.select('.instructions-description').text('Choose the first input.');
 	
-	d3.select('.flex-drag-container').style('display', 'flex');
+	d3.select('.success-message-container').style('display', 'none');
 	
 	d3.selectAll('circle.dot').remove();
 	animationRunning = false;
