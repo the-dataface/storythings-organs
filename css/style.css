@@ -521,7 +521,7 @@ hr {
 .success-message-container {
 	text-align:center;
 	width:100%;
-	display:none;
+	opacity:0;
 }
 
 .message {
@@ -555,6 +555,7 @@ hr {
 	}
 	.message {
 		font-size:25px;
+		padding-bottom:10px;
 	}
 	.success {
 		font-size: 25px;
@@ -849,7 +850,6 @@ hr {
     height: 50px;
     text-align: center;
     border-radius: 8px;
-	padding-top:5px;
     margin: 0 auto;
     margin-top: 0px;
     cursor: pointer;

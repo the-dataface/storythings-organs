@@ -148,11 +148,10 @@ function handleStepEnter(response) {
 	//chart.select('p').text(response.index + 1)
 	
 	if (((response.index == 1 && !large_screen) || (response.index == 0 && large_screen)) && !animationRunning) {
-		console.log(animationRunning)
 		d3.select('.instructions').style('opacity', '0')
 		d3.select('.flex-drag-container').style('opacity', '0')
 		d3.select('.chart-footer-container').style('opacity', '0')
-		d3.select('.success-message-container').style('display', 'none')
+		d3.select('.success-message-container').style('opacity', '0')
 		if (response.direction == 'down') {
 			drawChipOutline();
 		} else {
@@ -162,7 +161,7 @@ function handleStepEnter(response) {
 		d3.select('.instructions').style('opacity', '0')
 		d3.select('.flex-drag-container').style('opacity', '0')
 		d3.select('.chart-footer-container').style('opacity', '0')
-		d3.select('.success-message-container').style('display', 'none')
+		d3.select('.success-message-container').style('opacity', '0')
 		if (response.direction == 'down') {
 			drawChipChannels();
 			d3.select('#outer-chip-img').style('opacity', '1');
@@ -182,7 +181,12 @@ function handleStepEnter(response) {
 	
 }
 function handleStepExit(response) {
-	// response = { element, direction, index }
+	if (((response.index == 1 && !large_screen) || (response.index == 0 && large_screen)) && !animationRunning) {
+		if (response.direction == 'up') {
+			d3.select('#outer-chip-img').style('opacity', '0');
+			console.log('go');
+		}
+	}
 	
 	
 }
@@ -363,11 +367,11 @@ d3.selectAll('.drag-object').on('click', function() {
 			  if (success) {
 				  d3.select('#output-success').attr('xlink:href', 'img/organ_output_successful.gif');
 				 
-				  d3.select('.success-message-container').style('display', 'block')
+				  d3.select('.success-message-container').style('opacity', '1')
 				  d3.select('.success').style('display', 'block');
 				  d3.select('.message').text(successMessage);
 			  } else {
-				   d3.select('.success-message-container').style('display', 'block')
+				   d3.select('.success-message-container').style('opacity', '1')
 				  d3.select('.success').style('display', 'none');
 				 // d3.select('.failure').style('display', 'block');
 				  d3.select('.message').text('You just created ' + output + '.');
@@ -869,7 +873,7 @@ function reset() {
 	d3.select('.instructions-step-number').text('1');
 	d3.select('.instructions-description').text('Choose the first input.');
 	
-	d3.select('.success-message-container').style('display', 'none');
+	d3.select('.success-message-container').style('opacity', '0');
 	
 	d3.selectAll('circle.dot').remove();
 	animationRunning = false;
@@ -898,7 +902,7 @@ function resetScroll() {
 	d3.select('.instructions-description').text('Choose the first input.');
 	
 	d3.select('.flex-drag-container').style('opacity', '0');
-	d3.select('.success-message-container').style('display', 'none');
+	d3.select('.success-message-container').style('opacity', '0');
 	
 	d3.selectAll('circle.dot').remove();
 	animationRunning = false;
