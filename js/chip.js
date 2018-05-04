@@ -147,9 +147,8 @@ function handleStepEnter(response) {
 	// update graphic based on step
 	//chart.select('p').text(response.index + 1)
 	
-	console.log(response.direction);
-	
 	if (((response.index == 1 && !large_screen) || (response.index == 0 && large_screen)) && !animationRunning) {
+		console.log(animationRunning)
 		d3.select('.instructions').style('opacity', '0')
 		d3.select('.flex-drag-container').style('opacity', '0')
 		d3.select('.chart-footer-container').style('opacity', '0')
@@ -198,10 +197,6 @@ function handleContainerExit(response) {
 	// un-sticky the graphic, and pin to top/bottom of container
 	graphic.classed('is-fixed', false);
 	graphic.classed('is-bottom', response.direction === 'down');
-	if (response.direction == 'up') {
-		d3.select('#outer-chip-img')
-	  		.style('opacity', '0');
-	}
 }
 
 function init() {
