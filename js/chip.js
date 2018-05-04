@@ -856,6 +856,8 @@ function reset() {
 	d3.select('.svg-container').style('opacity', '1');
 	 d3.select('.flex-drag-container').style('opacity', '1');
 	 d3.select('.instructions-container').style('opacity', '1');
+	d3.select('.success-message-container').style('display', 'none');
+	d3.select('.success-message-container').style('display', 'none');
 	
 	d3.selectAll('.icon').classed('icon-selected', false);
 	leftDrop = false;
