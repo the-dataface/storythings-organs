@@ -530,9 +530,11 @@ hr {
 }
 
 .message-intro {
+	position: relative;
 	font-size: 20px;
 	font-weight:800;
 	width: 200px;
+	height: 45px;
     color: #fff;
     text-align: center;
     border-radius: 8px;
@@ -547,6 +549,48 @@ hr {
 
 .failure {
 	background: #ee3939;
+}
+
+#congratulations-message {
+	position: absolute;
+	top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 95%;
+    height: 80%;
+    margin: auto;
+}
+
+.reset-button {
+	position: relative;
+	background: #b34a3f;
+    color: white;
+    font-size: 25px;
+    width: 200px;
+    height: 50px;
+    text-align: center;
+    border-radius: 8px;
+    margin: 0 auto;
+    margin-top: 0px;
+    cursor: pointer;
+}
+
+.reset-button:hover {
+	background: #d05a3f;
+    color: white;
+    border: 1px solid lightgrey;
+}
+
+#try-again-message {
+	position: absolute;
+	top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 95%;
+    height: 80%;
+    margin: auto;
 }
 
 @media only screen and (min-width : 1000px) {
@@ -840,25 +884,6 @@ hr {
 	font-weight:600;
 	font-size:20px;
 	text-decoration:underline;
-}
-
-.reset-button {
-	background: #b34a3f;
-    color: white;
-    font-size: 25px;
-    width: 200px;
-    height: 50px;
-    text-align: center;
-    border-radius: 8px;
-    margin: 0 auto;
-    margin-top: 0px;
-    cursor: pointer;
-}
-
-.reset-button:hover {
-	background: #d05a3f;
-    color: white;
-    border: 1px solid lightgrey;
 }
 
 .point-up {
