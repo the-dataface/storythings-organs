@@ -186,9 +186,14 @@ function handleStepExit(response) {
 			d3.select('#outer-chip-img').style('opacity', '0');
 			console.log('go');
 		}
+	} else if (((response.index == 3 && !large_screen) || (response.index == 2 && large_screen)) && !animationRunning) {
+		if (response.direction == 'up') {
+			d3.select('#inner-chip-paths').style('opacity', '0');
+			d3.select('#inner-chip-img').transition()
+				.delay(500)
+				.style('opacity', '0');
+		}
 	}
-	
-	
 }
 function handleContainerEnter(response) {
 	// response = { direction }
