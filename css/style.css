@@ -622,13 +622,18 @@ hr {
 
 	.success {
 		font-size: 23px;
-		width: 200px;
+		width: 240px;
 	}
 
 	.failure {
 		font-size: 18px;
 		width: 250px;
 	}
+	
+	#try-again-message {
+		height: 75%;
+	}
+
 }
 
 @media only screen and (max-width: 763px) {
@@ -642,12 +647,22 @@ hr {
 	.success {
 		font-size: 14px;
 		width: 140px;
+		height: 30px;
 	}
 
 	.failure {
 		font-size: 14px;
 		width: 200px;
 	}
+	
+	#congratulations-message {
+		height: 100%;
+	}
+	
+	#try-again-message {
+		height: 100%;
+	}
+
 }
 
 .drop-container {
