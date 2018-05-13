@@ -62,6 +62,7 @@ function handleResize() {
 	var stepHeight = Math.floor(window.innerHeight);
 	if (large_screen) {
 		d3.selectAll('.in-between-step').style('display', 'none');
+		d3.select('.final-step').style('display', 'none');
 		step.style('height', stepHeight + 'px');
 		/*
 		d3.selectAll('.text-step').each(function() {
