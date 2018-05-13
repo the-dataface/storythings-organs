@@ -88,11 +88,6 @@ hr {
 .step {
 	margin: 2rem auto;
 	position: relative;
-	opacity:.5;
-}
-
-.step.is-active {
-	opacity:1;
 }
 
 .step p {
