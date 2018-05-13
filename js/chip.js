@@ -100,23 +100,13 @@ function handleResize() {
 		.style('height', chartHeight + 'px');
 	
 	
-	if (very_small_screen) {
+	if (very_small_screen || small_screen) {
 		chartHeight = Math.floor(window.innerHeight);
 		chart
 		.style('height', chartHeight + 'px');
 		
 		chipSvg
 		.attr('height', chartHeight - 350)
-		
-	} else if (small_screen) {
-		chartHeight = Math.floor(window.innerHeight);
-		chart
-		.style('height', chartHeight + 'px');
-		
-		chipSvg
-		.attr('height', chartHeight - 350)
-		
-		d3.select('.svg-container').attr('height', '100px');
 		
 	} else if (medium_screen) {
 		
@@ -177,6 +167,7 @@ function handleStepEnter(response) {
 		d3.select('.chart-footer-container').style('opacity', '1')
 		d3.select('.instructions').style('opacity', '1')
 		d3.select('.flex-drag-container').style('opacity', '1')
+		d3.selectAll('.drag-object').style('cursor', 'pointer').style('pointer-events', 'all')
 	}
 	
 }
@@ -193,6 +184,8 @@ function handleStepExit(response) {
 				.delay(500)
 				.style('opacity', '0');
 		}
+	} else if (((response.index == 5 && !large_screen) || (response.index == 4 && large_screen)) && !animationRunning) {
+		d3.selectAll('.drag-object').style('cursor', 'auto').style('pointer-events', 'none')
 	}
 }
 function handleContainerEnter(response) {

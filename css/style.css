@@ -189,9 +189,8 @@ hr {
 }
 
 .drag-object {
-	cursor:pointer;
 	text-align:center;
-	pointer-events:all;
+	pointer-events:none;
 	color:white;
 	z-index:100;
 	border-radius:3px;
@@ -284,6 +283,7 @@ hr {
 	flex-flow:row wrap;
 	opacity:0;
 }
+
 @media only screen and (min-width : 1300px) {
 	.chart {
 		
