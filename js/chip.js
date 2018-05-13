@@ -80,9 +80,11 @@ function handleResize() {
 	} else {
 		d3.selectAll('.text-step').each(function() {
 			var height = d3.select(this).select('p').node().getBoundingClientRect().height;
-			d3.select(this).style('height', height + 'px');
+			d3.select(this).style('height', height * 0.8 + 'px');
 		})
-		d3.selectAll('.in-between-step').style('height', stepHeight * .8 + 'px');
+		
+		d3.selectAll('.in-between-step').style('height', stepHeight * 0.7 + 'px');
+		d3.selectAll('.final-step').style('height', stepHeight + 300 + 'px');
 		console.log('what');
 	}
 	// 2. update width/height of graphic element
