@@ -513,6 +513,41 @@ hr {
 
 }
 
+#scroll-prompt {
+	text-align: center;
+    padding: 5% 0;
+}
+
+.scroll-arrow {
+    position: relative;
+    display: block;
+    top: 10px;
+    left: calc(50% - 1em);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 1em 1em 0 1em;
+    border-color: #231f20 transparent transparent transparent;
+    transform: rotate(360deg);
+    animation-name: bounce;
+    animation-duration: 1.3s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+}
+
+.scroll-arrow:after {
+    content: '';
+    position: absolute;
+    top: -1.2em;
+    left: -1em;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 1em 1em 0 1em;
+    border-color: #ffffff transparent transparent transparent;
+    transform: rotate(360deg);
+}
+
 .success-message-container {
 	text-align:center;
 	width:100%;
@@ -608,6 +643,10 @@ hr {
 }
 
 @media only screen and (min-width : 764px) and (max-width: 999px) {
+	#scroll-prompt {
+		font-size: 18px;
+	}
+	
 	.success-message-container {
 		padding-top:10px;
 	}
@@ -632,6 +671,10 @@ hr {
 }
 
 @media only screen and (max-width: 763px) {
+	#scroll-prompt {
+		font-size: 16px;
+	}
+	
 	.success-message-container {
 		padding-top:10px;
 	}

@@ -302,8 +302,7 @@ d3.selectAll('.drag-object').on('click', function() {
 	var src = thisObject.select('img').attr('src');
 	var id = thisObject.attr('id');
 	thisObject.select('.icon').classed('icon-selected', true);
-	
-	
+	d3.select("#scroll-prompt").style('display', 'none');
 	
 	if (!leftDrop) {
 		d3.select('#left-drop').attr('xlink:href', src)
@@ -853,8 +852,9 @@ function generateCombination() {
 
 function reset() {
 	d3.select('.svg-container').style('opacity', '1');
-	 d3.select('.flex-drag-container').style('opacity', '1');
-	 d3.select('.instructions-container').style('opacity', '1');
+	d3.select('.flex-drag-container').style('opacity', '1');
+	d3.select('.instructions-container').style('opacity', '1');
+	d3.select("#scroll-prompt").style('display', 'block');
 	
 	d3.selectAll('.icon').classed('icon-selected', false);
 	leftDrop = false;
