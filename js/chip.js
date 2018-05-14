@@ -145,6 +145,9 @@ function handleStepEnter(response) {
 		d3.select('.flex-drag-container').style('opacity', '0')
 		d3.select('.chart-footer-container').style('opacity', '0')
 		d3.select('.success-message-container').style('opacity', '0')
+
+		d3.select("#scroll-prompt").style('display', 'block');
+
 		if (response.direction == 'down') {
 			drawChipOutline();
 		} else {
@@ -155,6 +158,9 @@ function handleStepEnter(response) {
 		d3.select('.flex-drag-container').style('opacity', '0')
 		d3.select('.chart-footer-container').style('opacity', '0')
 		d3.select('.success-message-container').style('opacity', '0')
+
+		d3.select("#scroll-prompt").style('display', 'block');
+
 		if (response.direction == 'down') {
 			drawChipChannels();
 			d3.select('#outer-chip-img').style('opacity', '1');
@@ -165,6 +171,8 @@ function handleStepEnter(response) {
 
 		d3.selectAll('.outer-chip-path-immediate').style('visibility', 'visible');
 		d3.selectAll('.channel-path-immediate').style('visibility', 'visible');
+
+		d3.select("#scroll-prompt").style('display', 'none');
 		
 		d3.select('#inner-chip-img').style('opacity', '1')
 		d3.select('.chart-footer-container').style('opacity', '1')
@@ -305,7 +313,6 @@ d3.selectAll('.drag-object').on('click', function() {
 	var src = thisObject.select('img').attr('src');
 	var id = thisObject.attr('id');
 	thisObject.select('.icon').classed('icon-selected', true);
-	d3.select("#scroll-prompt").style('display', 'none');
 	
 	if (!leftDrop) {
 		d3.select('#left-drop').attr('xlink:href', src)
