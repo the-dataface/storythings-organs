@@ -51,8 +51,8 @@ hr {
 	font-family: 'Futura';
 	position: absolute;
 	top: 0;
-	left: 33%;
-	width:66%;
+	left: 400px;
+	width:calc(100% - 400px);
 	bottom: auto;
 	background-color: #fff;
 	-webkit-transform: translate3d(0, 0, 0);
@@ -71,7 +71,7 @@ hr {
 .scroll__text {
 	position: relative;
 	padding: 0 1rem;
-	width: 33%;
+	width: 400px;
 }
 
 .chart {
@@ -142,6 +142,8 @@ hr {
 	background-color:white;
 	font-weight:400;
 }
+
+
 
 @media only screen and (max-width: 999px) {
 	.scroll__graphic {

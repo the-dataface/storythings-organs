@@ -61,6 +61,7 @@ function handleResize() {
 	//var inBetweenStepHeight = Math.floor(window.innerHeight);
 	var stepHeight = Math.floor(window.innerHeight);
 	if (large_screen) {
+		console.log('large');
 		d3.selectAll('.in-between-step').style('display', 'none');
 		d3.select('.final-step').style('display', 'none');
 		step.style('height', stepHeight + 'px');
@@ -77,6 +78,7 @@ function handleResize() {
 			d3.select(this).style('height', height + 'px');
 		})
 		d3.selectAll('.in-between-step').style('height', stepHeight + 'px');
+		d3.selectAll('.final-step').style('height', stepHeight + 'px');
 		
 	} else {
 		d3.selectAll('.text-step').each(function() {
@@ -222,7 +224,11 @@ function init() {
 		.onContainerEnter(handleContainerEnter)
 		.onContainerExit(handleContainerExit);
 	// setup resize event
-	window.addEventListener('resize', handleResize);
+	window.addEventListener('resize', function() {
+		if (windowW != window.innerWidth) {
+			handleResize()
+		}
+	});
 }
 // kick things off
 init();
@@ -338,6 +344,7 @@ d3.selectAll('.drag-object').on('click', function() {
 		}
 		
 		var addedGif = false;
+		var addedResetButton = false;
 		var t = d3.timer(function(elapsed) {
 		  if (elapsed > 3000 && elapsed < 4000) {
 			  //document.getElementById("mix-gif").setAttribute("xlink:href", 'img/mixture.gif');
@@ -362,7 +369,7 @@ d3.selectAll('.drag-object').on('click', function() {
 			  //d3.select('#mix-gif').attr('xlink:href', 'img/mixture.gif');
 			  generateDots('center', [leftDropItem, rightDropItem]);
 			  
-		  } else if (elapsed > 7000 && elapsed < 8000) {
+		  } else if (elapsed > 7000 && elapsed < 8000 && !addedResetButton) {
 		  	   d3.select('#output').attr('xlink:href', 'img/icons/PNG/' + png + '.png')
 			  if (success) {
 				  d3.select('#output-success').attr('xlink:href', 'img/organ_output_successful.gif');
@@ -376,7 +383,8 @@ d3.selectAll('.drag-object').on('click', function() {
 				 // d3.select('.failure').style('display', 'block');
 				  d3.select('.message').text('You just created ' + output + '.');
 			  }
-		  } else if (elapsed > 8000){
+			  addedResetButton = true;
+		  } else if (elapsed > 8000 && addedResetButton){
 			 t.stop();
 		  }
 		});
