@@ -61,7 +61,6 @@ function handleResize() {
 	//var inBetweenStepHeight = Math.floor(window.innerHeight);
 	var stepHeight = Math.floor(window.innerHeight);
 	if (large_screen) {
-		console.log('large');
 		d3.selectAll('.in-between-step').style('display', 'none');
 		d3.select('.final-step').style('display', 'none');
 		step.style('height', stepHeight + 'px');
@@ -88,7 +87,6 @@ function handleResize() {
 		
 		d3.selectAll('.in-between-step').style('height', stepHeight * 0.7 + 'px');
 		d3.selectAll('.final-step').style('height', stepHeight + 300 + 'px');
-		console.log('what');
 	}
 	// 2. update width/height of graphic element
 	var bodyWidth = d3.select('body').node().offsetWidth;
@@ -111,7 +109,7 @@ function handleResize() {
 		.style('height', chartHeight + 'px');
 		
 		chipSvg
-		.attr('height', chartHeight - 350)
+		.attr('height', chartHeight - 300)
 		
 	} else if (medium_screen) {
 		
@@ -180,7 +178,6 @@ function handleStepExit(response) {
 	if (((response.index == 1 && !large_screen) || (response.index == 0 && large_screen)) && !animationRunning) {
 		if (response.direction == 'up') {
 			d3.select('#outer-chip-img').style('opacity', '0');
-			console.log('go');
 		}
 	} else if (((response.index == 3 && !large_screen) || (response.index == 2 && large_screen)) && !animationRunning) {
 		if (response.direction == 'up') {
