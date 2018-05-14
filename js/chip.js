@@ -224,7 +224,11 @@ function init() {
 		.onContainerEnter(handleContainerEnter)
 		.onContainerExit(handleContainerExit);
 	// setup resize event
-	window.addEventListener('resize', handleResize);
+	window.addEventListener('resize', function() {
+		if (windowW != window.innerWidth) {
+			handleResize()
+		}
+	});
 }
 // kick things off
 init();
