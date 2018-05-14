@@ -520,21 +520,48 @@ hr {
     padding: 5% 0;
 }
 
+@-webkit-keyframes mover {
+    0% { -webkit-transform: translateY(5px); }
+    100% { -webkit-transform: translateY(0px); }
+}
+@keyframes mover {
+    0% { transform: translateY(5px); }
+    100% { transform: translateY(0px); }
+}
+@-moz-keyframes mover {
+    0% { -moz-transform: translateY(5px); }
+    100% { -moz-transform: translateY(0px); }
+}
+@-ms-keyframes mover {
+    0% { -ms-transform: translateY(5px); }
+    100% { -ms-transform: translateY(0px); }
+}
+
+@-o-keyframes mover {
+    0% { -o-transform: translateY(5px); }
+    100% { -o-transform: translateY(0px); }
+}
+
+.animated.mover {
+    -webkit-animation-name: mover;
+    -moz-animation-name: mover;
+    -o-animation-name: mover;
+    animation-name: mover;
+}
+
+
 .scroll-arrow {
     position: relative;
     display: block;
-    top: 10px;
+    top: 16px;
     left: calc(50% - 1em);
     width: 0;
     height: 0;
     border-style: solid;
     border-width: 1em 1em 0 1em;
     border-color: #231f20 transparent transparent transparent;
-    transform: rotate(360deg);
-    animation-name: bounce;
-    animation-duration: 1.3s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
+	transform: rotate(360deg);
+	animation: mover 2s infinite;
 }
 
 .scroll-arrow:after {
@@ -547,7 +574,7 @@ hr {
     border-style: solid;
     border-width: 1em 1em 0 1em;
     border-color: #ffffff transparent transparent transparent;
-    transform: rotate(360deg);
+	transform: rotate(360deg);
 }
 
 .success-message-container {
