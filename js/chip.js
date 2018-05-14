@@ -716,9 +716,15 @@ function reset() {
 	
 	d3.selectAll('circle.dot').remove();
 	animationRunning = false;
-	leftTimer.stop();
-	rightTimer.stop();
-	centerTimer.stop();
+	if (leftTimer.stop()) {
+		leftTimer.stop();
+	} 
+	if (rightTimer.stop()) {
+		rightTimer.stop();
+	} 
+	if (centerTimer.stop()) {
+		centerTimer.stop();
+	} 
 }
 
 function resetScroll() {
@@ -745,7 +751,13 @@ function resetScroll() {
 	
 	d3.selectAll('circle.dot').remove();
 	animationRunning = false;
-	leftTimer.stop();
-	rightTimer.stop();
-	centerTimer.stop();
+	if (leftTimer.stop()) {
+		leftTimer.stop();
+	} 
+	if (rightTimer.stop()) {
+		rightTimer.stop();
+	} 
+	if (centerTimer.stop()) {
+		centerTimer.stop();
+	} 
 }
