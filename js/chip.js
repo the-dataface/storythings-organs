@@ -352,8 +352,8 @@ d3.selectAll('.drag-object').on('click', function() {
 		var addedResetButton = false;
 		var t = d3.timer(function(elapsed) {
 		  if (elapsed > 3000 && elapsed < 4000) {
-			  //document.getElementById("mix-gif").setAttribute("xlink:href", 'content/images/2018/05/mixture.gif');
-			  $('#mix-gif').attr("xlink:href","content/images/2018/05/poof.gif");
+			  //document.getElementById("mix-gif").setAttribute("xlink:href", '/content/images/2018/05/mixture.gif');
+			  $('#mix-gif').attr("xlink:href","/content/images/2018/05/poof.gif");
 			  
 			  
 			  if (!addedGif) {
@@ -367,17 +367,17 @@ d3.selectAll('.drag-object').on('click', function() {
 			  	  .attr('width', '512')
 				  .attr('width', '512');
 			  
-				  document.getElementById("mix-gif-on").setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', 'content/images/2018/05/poof.gif');
+				  document.getElementById("mix-gif-on").setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '/content/images/2018/05/poof.gif');
 				  
 			  }
 			  
-			  //d3.select('#mix-gif').attr('xlink:href', 'content/images/2018/05/mixture.gif');
+			  //d3.select('#mix-gif').attr('xlink:href', '/content/images/2018/05/mixture.gif');
 			  generateDots('center', [leftDropItem, rightDropItem]);
 			  
 		  } else if (elapsed > 7000 && elapsed < 8000 && !addedResetButton) {
-		  	   d3.select('#output').attr('xlink:href', 'content/images/2018/05/' + png + '.png')
+		  	   d3.select('#output').attr('xlink:href', '/content/images/2018/05/' + png + '.png')
 			  if (success) {
-				  d3.select('#output-success').attr('xlink:href', 'content/images/2018/05/organ_output_successful.gif');
+				  d3.select('#output-success').attr('xlink:href', '/content/images/2018/05/organ_output_successful.gif');
 				 
 				  d3.select('.success-message-container').style('opacity', '1')
 				  d3.select('.success').style('display', 'block');
@@ -701,12 +701,12 @@ function reset() {
 	rightDrop = false;
 	rightDropItem = null;
 	
-	d3.select('#left-drop').attr('xlink:href', 'content/images/2018/05/empty_space.svg')
-	d3.select('#right-drop').attr('xlink:href', 'content/images/2018/05/empty_space.svg')
-	d3.select('#mix-gif').attr('xlink:href', 'content/images/2018/05/empty_space.svg');
+	d3.select('#left-drop').attr('xlink:href', '/content/images/2018/05/empty_space.svg')
+	d3.select('#right-drop').attr('xlink:href', '/content/images/2018/05/empty_space.svg')
+	d3.select('#mix-gif').attr('xlink:href', '/content/images/2018/05/empty_space.svg');
 	d3.select('#mix-gif-on').remove();
-	d3.select('#output').attr('xlink:href', 'content/images/2018/05/empty_space.svg')
-	d3.select('#output-success').attr('xlink:href', 'content/images/2018/05/empty_space.svg');
+	d3.select('#output').attr('xlink:href', '/content/images/2018/05/empty_space.svg')
+	d3.select('#output-success').attr('xlink:href', '/content/images/2018/05/empty_space.svg');
 	d3.selectAll('.icon').style('pointer-events', 'all');
 	d3.selectAll('.drag-object').style('pointer-events', 'all');
 	
@@ -735,13 +735,13 @@ function resetScroll() {
 	rightDrop = false;
 	rightDropItem = null;
 	
-	d3.select('#left-drop').attr('xlink:href', 'content/images/2018/05/empty_space.svg')
- 	//document.getElementById("left-drop").setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', 'content/images/2018/05/empty_space.svg');
-	d3.select('#right-drop').attr('xlink:href', 'content/images/2018/05/empty_space.svg')
-	d3.select('#mix-gif').attr('xlink:href', 'content/images/2018/05/empty_space.svg');
+	d3.select('#left-drop').attr('xlink:href', '/content/images/2018/05/empty_space.svg')
+ 	//document.getElementById("left-drop").setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', '/content/images/2018/05/empty_space.svg');
+	d3.select('#right-drop').attr('xlink:href', '/content/images/2018/05/empty_space.svg')
+	d3.select('#mix-gif').attr('xlink:href', '/content/images/2018/05/empty_space.svg');
 	d3.selectAll('#mix-gif-on').remove();
-	d3.select('#output').attr('xlink:href', 'content/images/2018/05/empty_space.svg')
-	d3.select('#output-success').attr('xlink:href', 'content/images/2018/05/empty_space.svg');
+	d3.select('#output').attr('xlink:href', '/content/images/2018/05/empty_space.svg')
+	d3.select('#output-success').attr('xlink:href', '/content/images/2018/05/empty_space.svg');
 	
 	d3.select('.instructions').style('opacity', '0');
 	d3.select('.instructions-step-number').text('1');
