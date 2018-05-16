@@ -39,6 +39,7 @@ hr {
 	max-width: 1400px;
 	padding: 0 4vw;
 	padding-bottom:20px;
+	margin-top:100px;
 }
 
 @media only screen and (max-width: 999px) {
@@ -64,18 +65,40 @@ hr {
 	.scroll__graphic {
 		min-height:810px;
 	}
+
+	.chart {
+		left:50%;
+		top: 40px;
+		-moz-transform: translate(-50%, 0%);
+		-webkit-transform: translate(-50%, 0%);
+		transform: translate(-50%, 0%);
+	}
 }
 
 @media only screen and (min-width : 764px) and (max-width: 999px) {
 	.scroll__graphic {
-		min-height:810px;
+		min-height:780px;
+	}
+
+	.chart {
+		left:50%;
+		top: 40px;
+		-moz-transform: translate(-50%, 0%);
+		-webkit-transform: translate(-50%, 0%);
+		transform: translate(-50%, 0%);
 	}
 
 }
 
 @media only screen and (max-width: 763px) {
 	
-
+	.chart {
+		left:50%;
+		top: 50%;
+		-moz-transform: translate(-50%, -50%);
+		-webkit-transform: translate(-50%, -50%);
+		transform: translate(-50%, -50%);
+	}
 }
 
 .scroll__graphic.is-fixed {
@@ -94,11 +117,6 @@ hr {
 
 .chart {
 	position: absolute;
-	left:50%;
-	top: 50%;
-	-moz-transform: translate(-50%, -50%);
-	-webkit-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
 	width:100%;
 	font-family:'Futura'
 }
@@ -118,10 +136,24 @@ hr {
 	transform: translate(-50%, -50%);
 }
 
+@media only screen and (min-width: 1000px) {	
+	.step p {
+		top: 20px;
+		-moz-transform: translate(-50%, 0%);
+		-webkit-transform: translate(-50%, 0%);
+		transform: translate(-50%, 0%);
+
+	}
+	
+}
+
 @media only screen and (max-width: 999px) {	
 	.step p {
-		top: 0%;
+		top: 20px;
 		width:100%;
+		-moz-transform: translate(-50%, 0%);
+		-webkit-transform: translate(-50%, 0%);
+		transform: translate(-50%, 0%);
 		max-width:40rem;
 		background-color:#fff;
 		padding:40px;
