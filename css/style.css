@@ -68,7 +68,7 @@ hr {
 
 @media only screen and (min-width : 764px) and (max-width: 999px) {
 	.scroll__graphic {
-		min-height:800px;
+		min-height:810px;
 	}
 
 }
