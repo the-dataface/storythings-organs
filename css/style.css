@@ -60,6 +60,22 @@ hr {
 	transform: translate3d(0, 0, 0);
 }
 
+@media only screen and (min-width : 1000px) {
+	.scroll__graphic {
+		min-height:810px;
+	}
+}
+
+@media only screen and (min-width : 764px) and (max-width: 999px) {
+	
+
+}
+
+@media only screen and (max-width: 763px) {
+	
+
+}
+
 .scroll__graphic.is-fixed {
 	position: fixed;
 }

@@ -56,6 +56,22 @@ d3.json("data/logictable.json", function(data) {
 
 // generic window resize listener event
 function handleResize() {
+	windowW = window.innerWidth;
+	// what size screen?
+	large_screen = false;
+	medium_screen = false;
+	small_screen = false;
+	very_small_screen = false;
+
+	if (windowW > 1000) {
+		large_screen = true;
+	} else if (windowW > 763) {
+		medium_screen = true;
+	} else if (windowW > 510) {
+		small_screen = true;
+	} else {
+		very_small_screen = true;
+	}
 	// 1. update height of step elements
 	
 	//var inBetweenStepHeight = Math.floor(window.innerHeight);
@@ -101,7 +117,6 @@ function handleResize() {
 	chart
 		.style('width', chartWidth + 'px')
 		.style('height', chartHeight + 'px');
-	
 	
 	if (very_small_screen || small_screen) {
 		chartHeight = Math.floor(window.innerHeight);
@@ -201,12 +216,14 @@ function handleStepExit(response) {
 function handleContainerEnter(response) {
 	// response = { direction }
 	// sticky the graphic (old school)
+	console.log('entering')
 	graphic.classed('is-fixed', true);
 	graphic.classed('is-bottom', false);
 }
 function handleContainerExit(response) {
 	// response = { direction }
 	// un-sticky the graphic, and pin to top/bottom of container
+	console.log('exiting')
 	graphic.classed('is-fixed', false);
 	graphic.classed('is-bottom', response.direction === 'down');
 }
@@ -313,6 +330,8 @@ d3.selectAll('.drag-object').on('click', function() {
 	var src = thisObject.select('img').attr('src');
 	var id = thisObject.attr('id');
 	thisObject.select('.icon').classed('icon-selected', true);
+
+	d3.select("#scroll-prompt").style('display', 'none');
 	
 	if (!leftDrop) {
 		d3.select('#left-drop').attr('xlink:href', src)
