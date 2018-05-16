@@ -567,7 +567,7 @@ hr {
 
 #scroll-prompt {
 	text-align: center;
-    padding: 5% 0;
+    padding: 10px 0px 0px 0px;
 }
 
 @-webkit-keyframes mover {
