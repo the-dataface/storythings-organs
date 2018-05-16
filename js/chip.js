@@ -788,12 +788,6 @@ function setAssetPaths() {
 	var asset_path = '/content/images/2018/05/';
 	if (window.location.hostname == 'the-dataface.github.io') {
 		asset_path = asset_path.substring(1);
-		d3.select('.flex-drag-container')
-			.selectAll('img')
-			.attr('src', function(d) { return d3.select(this).attr('src').substring(1); });
-		d3.select('.svg-container')
-			.selectAll('image')
-			.attr("xlink:href", function(d) { return d3.select(this).attr('xlink:href').substring(1); });
 	}
 	return asset_path
 }
