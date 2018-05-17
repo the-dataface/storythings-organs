@@ -131,17 +131,14 @@ hr {
 	width:80%;
 	top: 50%;
 	left: 50%;
-	-moz-transform: translate(-50%, -50%);
-	-webkit-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
+	-moz-transform: translate(-50%, 0%);
+	-webkit-transform: translate(-50%, 0%);
+	transform: translate(-50%, 0%);
 }
 
 @media only screen and (min-width: 1000px) {	
 	.step p {
 		top: 20px;
-		-moz-transform: translate(-50%, 0%);
-		-webkit-transform: translate(-50%, 0%);
-		transform: translate(-50%, 0%);
 
 	}
 	
@@ -151,9 +148,6 @@ hr {
 	.step p {
 		top: 20px;
 		width:100%;
-		-moz-transform: translate(-50%, 0%);
-		-webkit-transform: translate(-50%, 0%);
-		transform: translate(-50%, 0%);
 		max-width:40rem;
 		background-color:#fff;
 		padding:40px;
