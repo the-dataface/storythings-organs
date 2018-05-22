@@ -6,32 +6,6 @@ hr {
 	border-top: 1px solid #dfe1e3;
 }
 
-#intro {
-	max-width: 40rem;
-	margin: 1rem auto;
-}
-
-.intro__overline {
-	font-size: 1.4rem;
-}
-
-.intro__hed {
-	font-size: 1.4rem;
-	margin: 1.5rem auto;
-	text-transform: uppercase;
-	font-weight: 900;
-	letter-spacing: 0.05em;
-}
-
-.intro__dek {
-	font-size: 1.4rem;
-	margin-bottom:3rem;
-}
-
-#outro {
-	height: 640px;
-}
-
 /* scrollama */
 #scroll {
 	position: relative;
@@ -98,10 +72,6 @@ hr {
 	.scroll__graphic {
 		min-height:630px;
 	}
-	
-	.chart {
-		
-	}
 }
 
 .scroll__graphic.is-fixed {
@@ -112,94 +82,16 @@ hr {
 	top: auto;
 }
 
-.scroll__text {
-	position: relative;
-	padding: 0 1rem;
-	width: 400px;
-}
-
 .chart {
 	position: absolute;
 	width:100%;
 	font-family:'Futura'
 }
 
-.step {
-	margin: 2rem auto;
-	position: relative;
-}
-
-.step p {
-	position: absolute;
-	width:80%;
-	top: 50%;
-	left: 50%;
-	-moz-transform: translate(-50%, 0%);
-	-webkit-transform: translate(-50%, 0%);
-	transform: translate(-50%, 0%);
-}
-
-@media only screen and (min-width: 1000px) {	
-	.step p {
-		top: 20px;
-
-	}
-	
-}
-
-@media only screen and (max-width: 999px) {	
-	.step p {
-		top: 20px;
-		width:100%;
-		max-width:40rem;
-		background-color:#fff;
-		padding:40px;
-		border-radius: 4px;
-		box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
-	}
-	
-}
-
-@media only screen and (min-width : 510px) and (max-width: 999px) {
-	.step {
-		margin: 4rem auto;
-		margin-top: 130px;
-	}
-	
-	.step p {
-		margin:1rem auto;
-	}
-}
-
-@media only screen and (max-width: 509px) {	
-	.step {
-		margin-top: 130px;
-	}
-	
-	.step p {
-		margin:10rem auto;
-	}
-}
-
-.inner-step {
-	border-left:10px solid #d32323;
-	padding-left:10px;
-	position:absolute;
-	top:50%;
-	background-color:white;
-	font-weight:400;
-}
-
-
-
 @media only screen and (max-width: 999px) {
 	.scroll__graphic {
 		left: 0;
 		width:100%;
-	}
-	.scroll__text {
-		width: 100%;
-		pointer-events:none;
 	}
 }
 
@@ -238,14 +130,6 @@ hr {
 	color:white;
 	z-index:100;
 	border-radius:3px;
-}
-
-.drag-object:hover {
-	
-}
-
-.drag-object-selected {
-	
 }
 
 .larger-flex {
@@ -324,25 +208,26 @@ hr {
 }
 
 @media only screen and (min-width : 1300px) {
-	.chart {
-		
-	}
 	.instructions-container {
 		height:120px;
 		padding-bottom:5px;
 	}
+	
 	.instructions-header {
 		font-size:35px;
 		padding-bottom:10px;
 	}
+	
 	.instructions-description {
 		font-size:20px!important;
 		line-height:28px;
 	}
+	
 	.icon {
 		width:80px!important;
 		height:80px!important;
 	}
+	
 	.icon-label {
 		font-size:14px;
 		line-height:20px;
@@ -363,6 +248,7 @@ hr {
 		width:44%;
 		margin-bottom:10px;
 	}
+	
 	#chip-svg {
 		height:500px;
 
@@ -370,25 +256,26 @@ hr {
 }
 
 @media only screen and (min-width : 1000px) and (max-width: 1299px){
-	.chart {
-		
-	}
 	.instructions-container {
 		height:120px;
 		padding-bottom:5px;
 	}
+	
 	.instructions-header {
 		font-size:35px;
 		padding-bottom:10px;
 	}
+	
 	.instructions-description {
 		font-size:20px!important;
 		line-height:28px;
 	}
+	
 	.icon {
 		width:80px!important;
 		height:80px!important;
 	}
+	
 	.icon-label {
 		font-size:14px;
 		line-height:20px;
@@ -410,19 +297,19 @@ hr {
 		justify-content:center;
 		margin-bottom:auto;
 	}
+	
 	#chip-svg {
 		margin:auto;
 		height:500px;
 
 	}
-	
-	
 }
 
 @media only screen and (min-width : 764px) and (max-width: 999px) {
 	.instructions-container {
 		height:120px;
 	}
+	
 	.instructions-header {
 		font-size:30px;
 		padding-bottom:10px;
@@ -437,6 +324,7 @@ hr {
 		font-size:12px;
 		line-height:16px;
 	}
+	
 	.icon {
 		width:80px!important;
 		height:80px!important;
@@ -462,10 +350,10 @@ hr {
 		width:calc(100% - 220px);
 		margin:auto;
 	}
+	
 	#chip-svg {
 		margin:auto;
 		height:500px;
-
 	}
 }
 
@@ -474,6 +362,7 @@ hr {
 		height:80px;
 		padding-top:10px;
 	}
+	
 	.instructions-header {
 		font-size:18px;
 	}
@@ -519,12 +408,11 @@ hr {
 	
 	.svg-container {
 		height:250px;
-		
 	}
+	
 	#chip-svg {
 		height:250px;
 		margin:auto;
-
 	}
 }
 
@@ -533,6 +421,7 @@ hr {
 		height:100px;
 		padding-top:5px;
 	}
+	
 	.instructions {	
 		width:100%;
 	}
@@ -545,6 +434,7 @@ hr {
 		font-size:10px!important;
 		line-height:16px;
 	}
+	
 	.instructions-step {
 		font-size:13px;
 		padding-top:5px;
@@ -570,38 +460,30 @@ hr {
 	.flex-drag-container {
 		width:200px;
 		margin-bottom:20px;
-		
 	}
 
-	.svg-container {
-		
-		
-	}
 	#chip-svg {
 		height:250px;
 		margin:auto;
-
 	}
 
-}
-
-#scroll-prompt {
-	text-align: center;
-    padding: 10px 0px 0px 0px;
 }
 
 @-webkit-keyframes mover {
     0% { -webkit-transform: translateY(5px); }
     100% { -webkit-transform: translateY(0px); }
 }
+
 @keyframes mover {
     0% { transform: translateY(5px); }
     100% { transform: translateY(0px); }
 }
+
 @-moz-keyframes mover {
     0% { -moz-transform: translateY(5px); }
     100% { -moz-transform: translateY(0px); }
 }
+
 @-ms-keyframes mover {
     0% { -ms-transform: translateY(5px); }
     100% { -ms-transform: translateY(0px); }
@@ -617,34 +499,6 @@ hr {
     -moz-animation-name: mover;
     -o-animation-name: mover;
     animation-name: mover;
-}
-
-
-.scroll-arrow {
-    position: relative;
-    display: block;
-    top: 16px;
-    left: calc(50% - 1em);
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 1em 1em 0 1em;
-    border-color: #231f20 transparent transparent transparent;
-	transform: rotate(360deg);
-	animation: mover 2s infinite;
-}
-
-.scroll-arrow:after {
-    content: '';
-    position: absolute;
-    top: -1.2em;
-    left: -1em;
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 1em 1em 0 1em;
-    border-color: #ffffff transparent transparent transparent;
-	transform: rotate(360deg);
 }
 
 .success-message-container {
@@ -735,6 +589,7 @@ hr {
 		font-size:20px;
 		padding-bottom:10px;
 	}
+	
 	.success {
 		font-size: 20px;
 		width: 300px;
@@ -773,6 +628,7 @@ hr {
 		width: 170px;
 		height: 35px;
 	}
+	
 	.message {
 		font-size:18px;
 	}
@@ -898,18 +754,6 @@ hr {
 	cursor:pointer;
 }
 
-.down-arrow-svg {
-	animation: mover 2s infinite;
-	position:absolute;
-	top:90%;
-}
-
-.down-arrow {
-	fill:black;
-	stroke:black;
-	stroke-width:4px;
-}
-
 .animated.mover {
     -webkit-animation-name: mover;
     -moz-animation-name: mover;
@@ -975,9 +819,6 @@ hr {
 	position:absolute;
 	top:40px;
 	z-index: -1;
-}
-
-.chip-img {
 }
 
 .dropped {
@@ -1078,23 +919,21 @@ hr {
 	transform:translate(-50%, -50%);
 }
 
-.emoji {
-	font-size:50px;
-	animation: mover 2s infinite;
-}
-
 @-webkit-keyframes mover {
     0% { -webkit-transform: translateY(-20px); }
     100% { -webkit-transform: translateY(0); }
 }
+
 @keyframes mover {
     0% { transform: translateY(-20px); }
     100% { transform: translateY(0); }
 }
+
 @-moz-keyframes mover {
     0% { -moz-transform: translateY(-20px); }
     100% { -moz-transform: translateY(0); }
 }
+
 @-ms-keyframes mover {
     0% { -ms-transform: translateY(-20px); }
     100% { -ms-transform: translateY(0); }
@@ -1114,27 +953,29 @@ hr {
 		text-align: center;
 		border-radius: 10px;
 	}
+	
 	.point-up {
 		top:calc(50% + 52px);
 		width:30px;
 		height:30px;
 		font-size:50px;
 	}
-	.emoji {
-		font-size:30px;
-	}
+
 	@-webkit-keyframes mover {
 		0% { -webkit-transform: translateY(-10px); }
 		100% { -webkit-transform: translateY(0); }
 	}
+	
 	@keyframes mover {
 		0% { transform: translateY(-10px); }
 		100% { transform: translateY(0); }
 	}
+	
 	@-moz-keyframes mover {
 		0% { -moz-transform: translateY(-10px); }
 		100% { -moz-transform: translateY(0); }
 	}
+	
 	@-ms-keyframes mover {
 		0% { -ms-transform: translateY(-10px); }
 		100% { -ms-transform: translateY(0); }
