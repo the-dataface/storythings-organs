@@ -13,8 +13,6 @@ var chipSvg = graphic.select('#chip-svg');
 var svgContainer = d3.select('.svg-container');
 var footerContainer = graphic.select('.chart-footer-container');
 var outputContainer = d3.select('.output-container');
-// initialize the scrollama
-var scroller = scrollama();
 
 // window width and height
 var windowW = window.innerWidth;
