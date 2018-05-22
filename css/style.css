@@ -56,10 +56,8 @@ hr {
 
 .scroll__graphic {
 	font-family: 'Futura';
-	position: absolute;
-	top: 0;
-	left: 400px;
-	width:calc(100% - 400px);
+	position: relative;
+	width:100%;
 	bottom: auto;
 	background-color: #fff;
 	-webkit-transform: translate3d(0, 0, 0);
@@ -336,7 +334,7 @@ hr {
 		
 	}
 	.instructions-container {
-		height:90px;
+		height:110px;
 		padding-bottom:5px;
 	}
 	.instructions-header {
@@ -353,6 +351,10 @@ hr {
 	.icon-label {
 		font-size:14px;
 		line-height:20px;
+	}
+
+	.larger-flex {
+		height:500px;
 	}
 	
 	.flex-drag-container {
@@ -373,7 +375,7 @@ hr {
 		
 	}
 	.instructions-container {
-		height:90px;
+		height:110px;
 		padding-bottom:5px;
 	}
 	.instructions-header {
@@ -396,6 +398,10 @@ hr {
 		width:40%;
 		margin-bottom:10px;
 	}
+
+	.larger-flex {
+		height:500px;
+	}
 	
 	.flex-drag-container {
 		width:200px;
@@ -410,7 +416,7 @@ hr {
 
 @media only screen and (min-width : 764px) and (max-width: 999px) {
 	.instructions-container {
-		height:80px;
+		height:110px;
 	}
 	.instructions-header {
 		font-size:30px;
@@ -418,7 +424,8 @@ hr {
 	}
 	
 	.instructions-description {
-		font-size:25px!important;
+		font-size:16px!important;
+		line-height:22px;
 	}
 
 	.icon-label {
@@ -441,6 +448,10 @@ hr {
 		margin-right:10px;
 		justify-content:center;
 	}
+
+	.larger-flex {
+		height:500px;
+	}
 	
 	.svg-container {
 		width:calc(100% - 220px);
@@ -448,6 +459,7 @@ hr {
 	}
 	#chip-svg {
 		margin:auto;
+		height:500px;
 
 	}
 }
@@ -705,6 +717,7 @@ hr {
 @media only screen and (min-width : 1000px) {
 	.success-message-container {
 		padding-top:20px;
+		height:150px;
 	}
 	.message {
 		font-size:25px;
@@ -728,6 +741,7 @@ hr {
 	
 	.success-message-container {
 		padding-top:10px;
+		height:150px;
 	}
 	.message {
 		font-size:23px;

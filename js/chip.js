@@ -11,6 +11,7 @@ var flexDragContainer = d3.select('.flex-drag-container');
 var dragContainer = d3.select('.drag-container');
 var dropContainer = d3.select('.drop-container');
 var chipSvg = graphic.select('#chip-svg');
+var svgContainer = d3.select('.svg-container');
 var footerContainer = graphic.select('.chart-footer-container');
 var text = container.select('.scroll__text');
 var step = text.selectAll('.step');
@@ -76,48 +77,12 @@ function handleResize() {
 	}
 	// 1. update height of step elements
 	
-	//var inBetweenStepHeight = Math.floor(window.innerHeight);
-	var stepHeight = Math.floor(window.innerHeight);
-	if (large_screen) {
-		d3.selectAll('.in-between-step').style('display', 'none');
-		d3.select('.final-step').style('display', 'none');
-		step.style('height', stepHeight + 'px');
-		/*
-		d3.selectAll('.text-step').each(function() {
-			var height = d3.select(this).select('p').node().getBoundingClientRect().height;
-			var stepMargin = Math.floor(window.innerHeight * .3);
-			d3.select(this).style('height', height + stepMargin + 'px');
-		})
-		*/
-	} else if (medium_screen) {
-		d3.selectAll('.text-step').each(function() {
-			var height = d3.select(this).select('p').node().getBoundingClientRect().height;
-			d3.select(this).style('height', height + 'px');
-		})
-		d3.selectAll('.in-between-step').style('height', stepHeight + 'px');
-		d3.selectAll('.final-step').style('height', stepHeight + 'px');
-		
-	} else {
-		d3.selectAll('.text-step').each(function() {
-			var height = d3.select(this).select('p').node().getBoundingClientRect().height;
-			d3.select(this).style('height', height * 0.8 + 'px');
-		})
-		
-		d3.selectAll('.in-between-step').style('height', stepHeight * 0.7 + 'px');
-		d3.selectAll('.final-step').style('height', stepHeight + 300 + 'px');
-	}
 	// 2. update width/height of graphic element
 	var bodyWidth = d3.select('body').node().offsetWidth;
-	var textWidth = text.node().offsetWidth;
-	var graphicWidth = bodyWidth - textWidth;
-	graphic
+	var graphicWidth = bodyWidth;
 		//.style('width', graphicWidth + 'px')
-		.style('height', window.innerHeight + 'px');
-	var chartMargin = 32;
-	var chartWidth = graphic.node().offsetWidth - chartMargin;
 	var chartHeight = Math.floor(window.innerHeight) * .8;
 	chart
-		.style('width', chartWidth + 'px')
 		.style('height', chartHeight + 'px');
 	
 	if (very_small_screen || small_screen) {
@@ -129,124 +94,38 @@ function handleResize() {
 		.attr('height', chartHeight - 300)
 		
 	} else if (medium_screen) {
-		
-		chipSvg
-		.attr('height', chartHeight - 150)
+		/*
+		svgContainer
+		.attr('height', parseInt(chartHeight) - 500 + 'px')
 		.attr('width', (chartHeight - 150) / 1.4)
+		*/
 		
 	} else {
 		
 		chipSvg
-		.attr('height', chartHeight - 200)
+		.attr('height', chartHeight - 300)
 		.attr('width', (chartHeight - 200) / 1.4)
 		
 	}
 	
-	//createAllChipPath(chartWidth, chartHeight);
-	
-	// 3. tell scrollama to update new element dimensions
-	scroller.resize();
-}
-// scrollama event handlers
-function handleStepEnter(response) {
-	// response = { element, direction, index }
-	// add color to current step only
-	step.classed('is-active', function (d, i) {
-		return i === response.index;
-	})
-	// update graphic based on step
-	//chart.select('p').text(response.index + 1)
-	
-	if (((response.index == 1 && !large_screen) || (response.index == 0 && large_screen)) && !animationRunning) {
-		d3.select('.instructions').style('opacity', '0')
-		d3.select('.flex-drag-container').style('opacity', '0')
-		d3.select('.chart-footer-container').style('opacity', '0')
-		d3.select('.success-message-container').style('opacity', '0')
-
-		d3.select("#scroll-prompt").style('display', 'block');
-
-		if (response.direction == 'down') {
-			drawChipOutline();
-		} else {
-			d3.select('#inner-chip-img').style('opacity', '0');
-		}
-	} else if (((response.index == 3 && !large_screen) || (response.index == 2 && large_screen)) && !animationRunning) {
-		d3.select('.instructions').style('opacity', '0')
-		d3.select('.flex-drag-container').style('opacity', '0')
-		d3.select('.chart-footer-container').style('opacity', '0')
-		d3.select('.success-message-container').style('opacity', '0')
-
-		d3.select("#scroll-prompt").style('display', 'block');
-
-		if (response.direction == 'down') {
-			drawChipChannels();
-			d3.select('#outer-chip-img').style('opacity', '1');
-		} else {
-			resetScroll();
-		}
-	} else if (((response.index == 5 && !large_screen) || (response.index == 4 && large_screen)) && !animationRunning) {
-
-		d3.selectAll('.outer-chip-path-immediate').style('visibility', 'visible');
-		d3.selectAll('.channel-path-immediate').style('visibility', 'visible');
-
-		d3.select("#scroll-prompt").style('display', 'none');
-		
-		d3.select('#inner-chip-img').style('opacity', '1')
-		d3.select('.chart-footer-container').style('opacity', '1')
-		d3.select('.instructions').style('opacity', '1')
-		d3.select('.flex-drag-container').style('opacity', '1')
-		d3.selectAll('.drag-object').style('cursor', 'pointer').style('pointer-events', 'all')
-	}
-	
-}
-function handleStepExit(response) {
-	if (((response.index == 1 && !large_screen) || (response.index == 0 && large_screen)) && !animationRunning) {
-		if (response.direction == 'up') {
-			d3.select('#outer-chip-img').style('opacity', '0');
-		}
-	} else if (((response.index == 3 && !large_screen) || (response.index == 2 && large_screen)) && !animationRunning) {
-		if (response.direction == 'up') {
-			d3.select('#inner-chip-paths').style('opacity', '0');
-			d3.select('#inner-chip-img').transition()
-				.delay(500)
-				.style('opacity', '0');
-		}
-	} else if (((response.index == 5 && !large_screen) || (response.index == 4 && large_screen)) && !animationRunning) {
-		d3.selectAll('.drag-object').style('cursor', 'auto').style('pointer-events', 'none')
-	}
-}
-function handleContainerEnter(response) {
-	// response = { direction }
-	// sticky the graphic (old school)
-	console.log('entering')
-	graphic.classed('is-fixed', true);
-	graphic.classed('is-bottom', false);
-}
-function handleContainerExit(response) {
-	// response = { direction }
-	// un-sticky the graphic, and pin to top/bottom of container
-	console.log('exiting')
-	graphic.classed('is-fixed', false);
-	graphic.classed('is-bottom', response.direction === 'down');
 }
 
 function init() {
 	// 1. force a resize on load to ensure proper dimensions are sent to scrollama
 	handleResize();
-	// 2. setup the scroller passing options
-	// this will also initialize trigger observations
-	// 3. bind scrollama event handlers (this can be chained like below)
-	scroller.setup({
-		container: '#scroll',
-		graphic: '.scroll__graphic',
-		text: '.scroll__text',
-		step: '.scroll__text .step',
-		debug: false,
-	})
-		.onStepEnter(handleStepEnter)
-		.onStepExit(handleStepExit)
-		.onContainerEnter(handleContainerEnter)
-		.onContainerExit(handleContainerExit);
+	
+	d3.selectAll('.outer-chip-path-immediate').style('visibility', 'visible');
+	d3.selectAll('.channel-path-immediate').style('visibility', 'visible');
+
+	d3.select("#scroll-prompt").style('display', 'none');
+	
+	d3.select('#inner-chip-img').style('opacity', '1')
+	d3.select('#outer-chip-img').style('opacity', '1')
+	d3.select('.chart-footer-container').style('opacity', '1')
+	d3.select('.instructions').style('opacity', '1')
+	d3.select('.flex-drag-container').style('opacity', '1')
+	d3.selectAll('.drag-object').style('cursor', 'pointer').style('pointer-events', 'all')
+	
 	// setup resize event
 	window.addEventListener('resize', function() {
 		if (windowW != window.innerWidth) {
