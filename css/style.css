@@ -340,8 +340,8 @@ hr {
 		line-height:28px;
 	}
 	.icon {
-		width:65px;
-		height:65px;
+		width:65px!important;
+		height:65px!important;
 	}
 	.icon-label {
 		font-size:14px;
@@ -364,7 +364,6 @@ hr {
 		margin-bottom:10px;
 	}
 	#chip-svg {
-		margin:auto;
 		height:500px;
 
 	}
@@ -387,8 +386,8 @@ hr {
 		line-height:28px;
 	}
 	.icon {
-		width:65px;
-		height:65px;
+		width:65px!important;
+		height:65px!important;
 	}
 	.icon-label {
 		font-size:14px;
@@ -439,8 +438,8 @@ hr {
 		line-height:16px;
 	}
 	.icon {
-		width:80px;
-		height:80px;
+		width:80px!important;
+		height:80px!important;
 	}
 	
 	.drag-object {

@@ -84,12 +84,9 @@ function handleResize() {
 		.style('height', chartHeight + 'px');
 	
 	if (very_small_screen || small_screen) {
-		chartHeight = Math.floor(window.innerHeight);
-		chart
-		.style('height', chartHeight + 'px');
 		
-		chipSvg
-		.attr('height', chartHeight - 300)
+		
+		
 		
 	} else if (medium_screen) {
 		/*
@@ -100,9 +97,7 @@ function handleResize() {
 		
 	} else {
 		
-		chipSvg
-		.attr('height', chartHeight - 300)
-		.attr('width', (chartHeight - 200) / 1.4)
+		
 		
 	}
 	
