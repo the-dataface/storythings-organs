@@ -2,7 +2,7 @@
  {
    "input1": "Acid",
    "input2": "Acid",
-   "output": "Acid", 
+   "output": "acid", 
    "outputpng": "acid",
    "success": false,
    "successtext": ""
@@ -10,7 +10,7 @@
  {
    "input1": "Food",
    "input2": "Acid",
-   "output": "DigestedFood",
+   "output": "digested food",
 	 "outputpng": "stomach",
    "success": true,
    "successtext": "You made a stomach-on-a-chip!"
@@ -18,7 +18,7 @@
  {
    "input1": "Blood",
    "input2": "Acid",
-   "output": "Clotted Blood",
+   "output": "clotted blood",
 	 "outputpng": "clottedblood",
    "success": false,
    "successtext": ""
@@ -26,7 +26,7 @@
  {
    "input1": "DigestedFood",
    "input2": "Acid",
-   "output": "Extra-digested Food",
+   "output": "extra-digested food",
 	  "outputpng": "digestedfood",
    "success": false,
    "successtext": ""
@@ -34,7 +34,7 @@
  {
    "input1": "Oxygen",
    "input1": "Acid",
-   "output": "Oxoacid",
+   "output": "oxoacid",
 	  "outputpng": "oxoacid",
    "success": false,
    "successtext": ""
@@ -42,7 +42,7 @@
  {
    "input1": "Waste",
    "input2": "Acid",
-   "output": "Acidic waste",
+   "output": "acidic waste",
 	 "outputpng": "acidwaste",
    "success": false,
    "successtext": ""
@@ -50,7 +50,7 @@
  {
    "input1": "Water",
    "input2": "Acid",
-   "output": "Diluted Acid",
+   "output": "diluted acid",
 	 "outputpng": "dilutedacid",
    "success": false,
    "successtext": ""
@@ -58,7 +58,7 @@
  {
    "input1": "Acid",
    "input2": "Food",
-   "output": "Digested Food",
+   "output": "digested food",
 	  "outputpng": "digestedfood",
    "success": true,
    "successtext": "You made a stomach-on-a-chip!"
@@ -66,7 +66,7 @@
  {
    "input1": "Food",
    "input2": "Food",
-   "output": "Food",
+   "output": "food",
 	 "outputpng": "food",
    "success": false,
    "successtext": ""
@@ -74,7 +74,7 @@
  {
    "input1": "Blood",
    "input2": "Food",
-   "output": "Blood Sausage",
+   "output": "blood sausage",
 	 "outputpng": "bloodsausage",
    "success": false,
    "successtext": ""
@@ -82,7 +82,7 @@
  {
    "input1": "DigestedFood",
    "input2": "Food",
-   "output": "Less-digested Food",
+   "output": "less-digested food",
 	 "outputpng": "digestedfood",
    "success": false,
    "successtext": ""
@@ -90,7 +90,7 @@
  {
    "input1": "Oxygen",
    "input2": "Food",
-   "output": "Oxygen and food",
+   "output": "oxygen and food",
 	  "outputpng": "oxygenandfood",
    "success": false,
    "successtext": ""
@@ -98,7 +98,7 @@
  {
    "input1": "Waste",
    "input2": "Food",
-   "output": "Inedible food",
+   "output": "inedible food",
 	  "outputpng": "inediblefood",
    "success": false,
    "successtext": ""
@@ -106,7 +106,7 @@
  {
    "input1": "Water",
    "input2": "Food",
-   "output": "Soup",
+   "output": "soup",
 	 "outputpng": "soup",
    "success": false,
    "successtext": ""
@@ -114,7 +114,7 @@
  {
    "input1": "Acid",
    "input2": "Blood",
-   "output": "Clotted Blood",
+   "output": "clotted blood",
 	 "outputpng": "clottedblood",
    "success": false,
    "successtext": ""
@@ -122,7 +122,7 @@
  {
    "input1": "Food",
    "input2": "Blood",
-   "output": "Blood Sausage",
+   "output": "blood sausage",
 	 "outputpng": "bloodsausage",
    "success": false,
    "successtext": ""
@@ -130,7 +130,7 @@
  {
    "input1": "Blood",
    "input2": "Blood",
-   "output": "Blood",
+   "output": "blood",
 	 "outputpng": "blood",
    "success": false,
    "successtext": ""
@@ -138,7 +138,7 @@
  {
    "input1": "DigestedFood",
    "input2": "Blood",
-   "output": "Nutrients, Water, Waste",
+   "output": "nutrients, water, and waste",
 	 "outputpng": "gut",
    "success": true,
    "successtext": "You made a gut-on-a-chip!"
@@ -146,7 +146,7 @@
  {
    "input1": "Oxygen",
    "input2": "Blood",
-   "output": "CO2, Oxygenated Blood",
+   "output": "CO2 and oxygenated blood",
 	 "outputpng": "lungs",
    "success": true,
    "successtext": "You made a lung-on-a-chip!"
@@ -154,7 +154,7 @@
  {
    "input1": "Waste",
    "input2": "Blood",
-   "output": "Dirty Blood",
+   "output": "dirty blood",
 	 "outputpng": "dirtyblood",
    "success": false,
    "successtext": ""
@@ -162,7 +162,7 @@
  {
    "input1": "Water",
    "input2": "Blood",
-   "output": "Diluted Blood",
+   "output": "diluted blood",
 	 "outputpng": "dilutedblood",
    "success": false,
    "successtext": ""
@@ -170,7 +170,7 @@
  {
    "input1": "Acid",
    "input2": "DigestedFood",
-   "output": "Extra-digested Food",
+   "output": "extra-digested fpod",
 	 "outputpng": "digestedfood",
    "success": false,
    "successtext": ""
@@ -178,7 +178,7 @@
  {
    "input1": "Food",
    "input1": "DigestedFood",
-   "output": "Less-digested Food",
+   "output": "less-digested food",
 	 "outputpng": "digestedfood",
    "success": false,
    "successtext": ""
@@ -186,7 +186,7 @@
  {
    "input1": "Blood",
    "input2": "DigestedFood",
-   "output": "Nutrients, Water, Waste",
+   "output": "nutrients, water, and waste",
 	 "outputpng": "gut",
    "success": true,
    "successtext": "You made a gut-on-a-chip!"
@@ -194,7 +194,7 @@
  {
    "input1": "DigestedFood",
    "input2": "DigestedFood",
-   "output": "Digested Food",
+   "output": "digested food",
 	 "outputpng": "digestedfood",
    "success": false,
    "successtext": ""
@@ -202,7 +202,7 @@
  {
    "input1": "Oxygen",
    "input2": "DigestedFood",
-   "output": "Digestive Gas",
+   "output": "digestive gas",
 	 "outputpng": "digestivegas",
    "success": false,
    "successtext": ""
@@ -210,7 +210,7 @@
  {
    "input1": "Waste",
    "input2": "DigestedFood",
-   "output": "Biowaste",
+   "output": "biowaste",
 	 "outputpng": "biowaste",
    "success": false,
    "successtext": ""
@@ -218,7 +218,7 @@
  {
    "input1": "Water",
    "input2": "DigestedFood",
-   "output": "Vomit",
+   "output": "vomit",
 	 "outputpng": "vomit",
    "success": false,
    "successtext": ""
@@ -226,7 +226,7 @@
  {
    "input1": "Acid",
    "input2": "Oxygen",
-   "output": "Oxoacid",
+   "output": "oxoacid",
 	 "outputpng": "oxoacid",
    "success": false,
    "successtext": ""
@@ -234,7 +234,7 @@
  {
    "input1": "Food",
    "input2": "Oxygen",
-   "output": "Oxygen and food",
+   "output": "oxygen and food",
 	 "outputpng": "oxygenandfood",
    "success": false,
    "successtext": ""
@@ -242,7 +242,7 @@
  {
    "input1": "Blood",
    "input2": "Oxygen",
-   "output": "CO2, Oxygenated Blood",
+   "output": "CO2 and oxygenated blood",
 	 "outputpng": "lungs",
    "success": true,
    "successtext": "You made a lung-on-a-chip!"
@@ -250,7 +250,7 @@
  {
    "input1": "DigestedFood",
    "input2": "Oxygen",
-   "output": "Digestive Gas",
+   "output": "digestive gas",
 	 "outputpng": "digestivegas",
    "success": false,
    "successtext": ""
@@ -258,7 +258,7 @@
  {
    "input1": "Oxygen",
    "input2": "Oxygen",
-   "output": "Oxygen",
+   "output": "oxygen",
 	 "outputpng": "oxygen",
    "success": false,
    "successtext": ""
@@ -266,7 +266,7 @@
  {
    "input1": "Waste",
    "input2": "Oxygen",
-   "output": "Oxygen and Waste",
+   "output": "oxygen and waste",
 	 "outputpng": "oxygenandwaste",
    "success": false,
    "successtext": ""
@@ -274,7 +274,7 @@
  {
    "input1": "Water",
    "input2": "Oxygen",
-   "output": "Dissolved Oxygen",
+   "output": "dissolved oxygen",
 	 "outputpng": "dissolvedoxygen",
    "success": false,
    "successtext": ""
@@ -282,7 +282,7 @@
  {
    "input1": "Acid",
    "input2": "Waste",
-   "output": "Acidic waste",
+   "output": "acidic waste",
 	 "outputpng": "acidwaste",
    "success": false,
    "successtext": ""
@@ -290,7 +290,7 @@
  {
    "input1": "Food",
    "input2": "Waste",
-   "output": "Inedible food",
+   "output": "inedible food",
 	 "outputpng": "inediblefood",
    "success": false,
    "successtext": ""
@@ -298,7 +298,7 @@
  {
    "input1": "Blood",
    "input2": "Waste",
-   "output": "Dirty Blood",
+   "output": "dirty blood",
 	 "outputpng": "dirtyblood",
    "success": false,
    "successtext": ""
@@ -306,7 +306,7 @@
  {
    "input1": "DigestedFood",
    "input2": "Waste",
-   "output": "Biowaste",
+   "output": "biowaste",
 	 "outputpng": "biowaste",
    "success": false,
    "successtext": ""
@@ -314,7 +314,7 @@
  {
    "input1": "Oxygen",
    "input2": "Waste",
-   "output": "Oxygen and Waste",
+   "output": "oxygen and waste",
 	 "outputpng": "oxygenandwaste",
    "success": false,
    "successtext": ""
@@ -322,7 +322,7 @@
  {
    "input1": "Waste",
    "input2": "Waste",
-   "output": "Waste",
+   "output": "waste",
 	 "outputpng": "waste",
    "success": false,
    "successtext": ""
@@ -330,7 +330,7 @@
  {
    "input1": "Water",
    "input2": "Waste",
-   "output": "Clean blood, Urine",
+   "output": "clean blood and urine",
 	 "outputpng": "kidneys",
    "success": true,
    "successtext": "You made a kidney-on-a-chip!"
@@ -338,7 +338,7 @@
  {
    "input1": "Acid",
    "input2": "Water",
-   "output": "Diluted Acid",
+   "output": "diluted acid",
 	 "outputpng": "dilutedacid",
    "success": false,
    "successtext": ""
@@ -346,7 +346,7 @@
  {
    "input1": "Food",
    "input2": "Water",
-   "output": "Soup",
+   "output": "soup",
 	 "outputpng": "soup",
    "success": false,
    "successtext": ""
@@ -354,7 +354,7 @@
  {
    "input1": "Blood",
    "input2": "Water",
-   "output": "Diluted Blood",
+   "output": "diluted blood",
 	 "outputpng": "dilutedblood",
    "success": false,
    "successtext": ""
@@ -362,7 +362,7 @@
  {
    "input1": "DigestedFood",
    "input2": "Water",
-   "output": "Vomit",
+   "output": "vomit",
 	 "outputpng": "vomit",
    "success": false,
    "successtext": ""
@@ -370,7 +370,7 @@
  {
    "input1": "Oxygen",
    "input2": "Water",
-   "output": "Dissolved Oxygen",
+   "output": "dissolved oxygen",
 	 "outputpng": "dissolvedoxygen",
    "success": false,
    "successtext": ""
@@ -378,7 +378,7 @@
  {
    "input1": "Waste",
    "input2": "Water",
-   "output": "Clean blood, Urine",
+   "output": "clean blood and urine",
 	 "outputpng": "kidney",
    "success": true,
    "successtext": "You made a kidney-on-a-chip!"
@@ -386,7 +386,7 @@
  {
    "input1": "Water",
    "input2": "Water",
-   "output": "Water",
+   "output": "water",
 	 "outputpng": "water",
    "success": false,
    "successtext": ""
