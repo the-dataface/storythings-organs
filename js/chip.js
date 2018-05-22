@@ -218,7 +218,6 @@ d3.selectAll('.drag-object').on('click', function() {
 		d3.select('#left-drop').attr('xlink:href', src)
 		leftDrop = true;
 		leftDropItem = id;
-		d3.select('.instructions-description').text('Choose the second input.');
 	
 		generateDots('left', [leftDropItem]);
 		
@@ -230,7 +229,6 @@ d3.selectAll('.drag-object').on('click', function() {
 		d3.select('#right-drop').attr('xlink:href', src)
 		rightDrop = true;
 		rightDropItem = id;
-		d3.select('.instructions-description').text("Let's see what happens...");
 		generateDots('right', [rightDropItem]);
 		
 		var output,
@@ -612,7 +610,6 @@ function reset() {
 	d3.selectAll('.drag-object').style('pointer-events', 'all');
 	
 	d3.select('.instructions-step-number').text('1');
-	d3.select('.instructions-description').text('Choose the first input.');
 	
 	d3.select('.success-message-container').style('opacity', '0');
 	
