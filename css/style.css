@@ -337,7 +337,7 @@ hr {
 	}
 	.instructions-description {
 		font-size:20px!important;
-		line-height:24px;
+		line-height:28px;
 	}
 	.icon {
 		width:65px;
@@ -384,7 +384,7 @@ hr {
 	}
 	.instructions-description {
 		font-size:20px!important;
-		line-height:24px;
+		line-height:28px;
 	}
 	.icon {
 		width:65px;
@@ -431,7 +431,7 @@ hr {
 	
 	.instructions-description {
 		font-size:16px!important;
-		line-height:22px;
+		line-height:24px;
 	}
 
 	.icon-label {
@@ -514,15 +514,16 @@ hr {
 	}
 	
 	.flex-drag-container {
-		width:80%;
+		width:200px;
 		margin-bottom:20px;
 	}
 	
 	.svg-container {
-		width:90%;
+		height:250px;
 		
 	}
 	#chip-svg {
+		height:250px;
 		margin:auto;
 
 	}
@@ -568,7 +569,7 @@ hr {
 	}
 	
 	.flex-drag-container {
-		width:80%;
+		width:200px;
 		margin-bottom:20px;
 		
 	}
@@ -578,6 +579,7 @@ hr {
 		
 	}
 	#chip-svg {
+		height:250px;
 		margin:auto;
 
 	}
