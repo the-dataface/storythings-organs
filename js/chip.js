@@ -50,7 +50,7 @@ var leftDrop = false,
 var animationRunning = false;
 
 var combinations;
-d3.json("data/logictable.json", function(data) {
+d3.json("https://the-dataface.github.io/storythings-organs/data/logictable.json", function(data) {
   combinations = data;
 });
 
