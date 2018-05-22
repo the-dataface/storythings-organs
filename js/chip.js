@@ -2,8 +2,7 @@
 var asset_path = setAssetPaths();
 
 // using d3 for convenience
-var container = d3.select('#scroll');
-var graphic = container.select('.scroll__graphic');
+var graphic = d3.select('.scroll__graphic');
 var chart = graphic.select('.chart');
 var chartHeader = graphic.select('.chart-header');
 var chartHeaderText = graphic.select('.chart-header-text');
@@ -13,8 +12,6 @@ var dropContainer = d3.select('.drop-container');
 var chipSvg = graphic.select('#chip-svg');
 var svgContainer = d3.select('.svg-container');
 var footerContainer = graphic.select('.chart-footer-container');
-var text = container.select('.scroll__text');
-var step = text.selectAll('.step');
 var outputContainer = d3.select('.output-container');
 // initialize the scrollama
 var scroller = scrollama();
@@ -53,9 +50,10 @@ var leftDrop = false,
 var animationRunning = false;
 
 var combinations;
-d3.json("https://the-dataface.github.io/storythings-organs/data/logictable.json", function(data) {
+d3.json("data/logictable.json", function(data) {
   combinations = data;
 });
+
 
 // generic window resize listener event
 function handleResize() {
@@ -208,6 +206,7 @@ d3.selectAll('.drag-object').on('mouseover', function() {
 
 d3.selectAll('.drag-object').on('click', function() {
 	d3.select("#scroll-prompt").style('display', 'none');
+
 	thisObject = d3.select(this);
 	var src = thisObject.select('img').attr('src');
 	var id = thisObject.attr('id');
@@ -220,6 +219,7 @@ d3.selectAll('.drag-object').on('click', function() {
 		leftDrop = true;
 		leftDropItem = id;
 		d3.select('.instructions-description').text('Choose the second input.');
+	
 		generateDots('left', [leftDropItem]);
 		
 	} else if (!rightDrop) {
@@ -368,6 +368,7 @@ function generateDots(side, inputs) {
 		if (leftTimer) {
 			leftTimer.stop();
 		}
+		
 		leftTimer = d3.interval(function(elapsed) {
 			var dots = d3.range(10).map(i => {
 				return {
@@ -381,7 +382,7 @@ function generateDots(side, inputs) {
 					fourthQuadrantPoint: generateRandomPointInCircle(4)
 				}
 			})
-
+			
 			chipSvg.appendMany('circle.' + side + '-dot.dot', dots)
 				.at({
 				  opacity:0,
