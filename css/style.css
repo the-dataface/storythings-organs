@@ -29,7 +29,6 @@ hr {
 }
 
 .scroll__graphic {
-	font-family: 'Futura';
 	position: relative;
 	width:100%;
 	bottom: auto;
@@ -85,42 +84,13 @@ hr {
 .chart {
 	position: absolute;
 	width:100%;
-	font-family:'Futura'
+	font-family:'futura-pt',sans-serif;
 }
 
 @media only screen and (max-width: 999px) {
 	.scroll__graphic {
 		left: 0;
 		width:100%;
-	}
-}
-
-.chart-header-container {
-	text-align:center;
-}
-
-.chart-header {
-	font-size:40px;
-	font-weight:500;
-	font-style:italic;
-	margin-bottom:10px;
-}
-
-.chart-sub-header {
-	font-size:20px;
-	font-weight:300;
-	margin-bottom:30px;
-}
-
-@media only screen and (min-width : 764px) and (max-width: 999px) {
-	.chart-header {
-		font-size:28px;
-	}
-}
-
-@media only screen and (max-width: 763px) {
-	.chart-header {
-		font-size:20px;
 	}
 }
 
@@ -156,10 +126,11 @@ hr {
 .instructions-header {
 	margin:0;
 	font-style:italic;
+	font-weight:700;
 }
 
 .instructions-step {
-	font-weight:800;
+	font-weight:700;
 	text-decoration:underline;
 	margin:0!important;
 }
@@ -167,7 +138,7 @@ hr {
 .instructions-description {
 	margin:0!important;
 	color:#9a9590;
-	font-weight:800;
+	font-weight:700;
 } 
 
 .icon {
@@ -192,7 +163,7 @@ hr {
 	font-size:14px;
 	text-align:center;
 	color:black;
-	font-weight:600;
+	font-weight:700;
 	margin:0;
 }
 
@@ -509,12 +480,12 @@ hr {
 
 .message {
 	font-size:20px;
-	font-weight:200;
+	font-weight:300;
 }
 
 .message-intro {
 	position: relative;
-	font-weight:800;
+	font-weight:700;
     color: #fff;
     text-align: center;
     border-radius: 8px;
@@ -720,7 +691,7 @@ hr {
 	-moz-transform: translate(-50%, -50%);
 	-webkit-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
-	font-weight: 900;
+	font-weight: 700;
 	width:80%;
 	color:grey;
 	text-transform:uppercase;
@@ -748,7 +719,7 @@ hr {
 	top:0px;
 	left:calc(100% - 15px);
 	font-size:13px;
-	font-weight:800;
+	font-weight:700;
 	color:grey;
 	display:none;
 	cursor:pointer;
@@ -880,18 +851,18 @@ hr {
 }
 
 .output-waiting-text {
-	font-weight:600;
+	font-weight:700;
 }
 
 .output-sorry-text {
-	font-weight:600;
+	font-weight:700;
 	font-size:30px;
 	font-style:italic;
 	color:red;
 }
 
 .output-success-text {
-	font-weight:600;
+	font-weight:700;
 	font-size:30px;
 	font-style:italic;
 	color:green;
@@ -902,7 +873,7 @@ hr {
 }
 
 .output-created-text {
-	font-weight:600;
+	font-weight:700;
 	font-size:20px;
 	text-decoration:underline;
 }
