@@ -509,7 +509,7 @@ hr {
     left: 0;
     right: 0;
     width: 95%;
-	height: 95%;
+	height: 90%;
     margin: auto;
 }
 
@@ -538,6 +538,7 @@ hr {
     left: 0;
     right: 0;
     width: 95%;
+	height: 90%;
     margin: auto;
 }
 
@@ -617,10 +618,12 @@ hr {
 
 	#congratulations-message {
 		font-size:18px;
+		height: 100%;
 	}
 
 	#try-again-message {
 		font-size:18px;
+		height: 100%;
 	}
 
 }
@@ -650,10 +653,12 @@ hr {
 	
 	#congratulations-message {
 		font-size:14px;
+		height: 95%;
 	}
 	
 	#try-again-message {
 		font-size:14px;
+		height: 95%;
 	}
 
 }
@@ -921,9 +926,7 @@ hr {
 		font-size: 15px;
 		width: 100px;
 		height: 30px;
-		border-bottom: 4px solid rgba(0,0,0,0.25);
 		text-align: center;
-		border-radius: 10px;
 	}
 	
 	.point-up {
