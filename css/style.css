@@ -514,6 +514,7 @@ hr {
 }
 
 .reset-button {
+	font-weight: 700;
 	position: relative;
 	background: #b34a3f;
     color: white;
